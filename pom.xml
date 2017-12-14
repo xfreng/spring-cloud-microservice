@@ -11,6 +11,7 @@
     <module>cloud-fui-discovery-eureka</module>
     <module>cloud-fui-service2</module>
     <module>cloud-fui-config</module>
+    <module>cloud-fui-config-client</module>
   </modules>
 
 
