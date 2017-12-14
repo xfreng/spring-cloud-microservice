@@ -1,0 +1,7 @@
+#随意设置的一个参数
+search:
+  name: 百度搜索-author-baidu
+  url: https://www.baidu.com
+  location: shanghai
+config-client:
+  name: test

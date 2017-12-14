@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RibbonTestApi {
 
     /**
-     * 获取博客名称API
+     * 获取git地址API
      *
      * @return 相关信息
      */
     @RequestMapping(value = "/name", method = RequestMethod.GET)
     public String getMyBlogNameApi() {
-        return "千万之路刚开始-www.hanyahong.com-beijing" + "该服务器端口8071";
+        return "xfreng - https://github.com/xfreng/spring-cloud-microservice" + "该服务器端口8071";
     }
 }
