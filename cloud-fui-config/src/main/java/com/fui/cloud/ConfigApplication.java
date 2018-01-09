@@ -10,8 +10,8 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @Author sf.xiong
  * @Date 2017/12/14
  */
-@EnableDiscoveryClient
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableConfigServer
 public class ConfigApplication {
 
