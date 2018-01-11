@@ -1,6 +1,6 @@
 shiro:
-  cas: http://127.0.0.1:9090/cas
-  server: http://127.0.0.1:8088/fui
+  cas: http://192.168.131.150:9090/cas
+  server: http://192.168.52.106:8088/fui
 pac4j:
   clientName: fui
 fastdfs:
