@@ -54,6 +54,7 @@
                             <artifactId>eureka-client</artifactId>
                         </dependency>
                     </requiresUnpack>
+                    <mainClass>${start-class}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
