@@ -3,3 +3,11 @@ shiro:
   server: http://127.0.0.1:8088/fui
 pac4j:
   clientName: fui
+fastdfs:
+  clientConf: conf/fastdfs_client.conf
+  heartbeatTime: 3600000
+  heartbeatWaitTime: 200
+  minPoolSize: 10
+  maxPoolSize: 30
+  waitTime: 200
+  uploadFileHost: 192.168.131.150:8080
