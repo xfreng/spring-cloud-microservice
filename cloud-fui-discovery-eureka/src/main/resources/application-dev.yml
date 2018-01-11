@@ -10,4 +10,4 @@ eureka:
     # 设为false，关闭自我保护
     enable-self-preservation: false
     # 清理间隔（单位毫秒，默认是60*1000）
-    eviction-interval-timer-in-ms: 100
+    eviction-interval-timer-in-ms: 3000
