@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: service-admin
+  profiles:
+    active: dev
+info:
+  version: @project.version@
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: xfreng
+    password: passw0rd
+logging:
+  config: classpath:conf/logback.xml
+  level: debug
