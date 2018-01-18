@@ -1,6 +1,6 @@
 shiro:
   cas: http://192.168.131.150:9090/cas
-  server: http://192.168.52.106:9090
+  server: http://192.168.52.106:9090/supervisor
 pac4j:
   clientName: fui
 fastdfs:
