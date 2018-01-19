@@ -1,0 +1,24 @@
+#服务端口
+server:
+  port: 8082
+
+#服务注册中心配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@192.168.131.150:8761/eureka/
+  instance:
+    # 续约更新时间间隔（默认30秒）
+    lease-renewal-interval-in-seconds: 1
+    # 续约到期时间（默认90秒）
+    lease-expiration-duration-in-seconds: 5
+#spring设置
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xfreng/spring-cloud-microservice.git
+          searchPaths: cloud-fui-config-repo
+logging:
+  file: /usr/apps/logs/fui-config.log

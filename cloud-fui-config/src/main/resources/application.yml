@@ -1,20 +1,17 @@
-#服务端口
-server:
-  port: 8082
-
-#服务注册中心配置
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://192.168.131.150:8761/eureka/
-
-#spring设置
 spring:
   application:
     name: config-server
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/xfreng/spring-cloud-microservice.git
-          searchPaths: cloud-fui-config-repo
+  profiles:
+    active: dev
+info:
+  version: @project.version@
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: xfreng
+    password: passw0rd
+logging:
+  config: classpath:conf/logback.xml
+  level: debug
