@@ -1,3 +1,25 @@
-spring:
-  profiles:
-    active: dev
+# server 端口号设置
+server:
+  port: 8761
+# 安全认证的配置
+security:
+  basic:
+    enabled: true
+  user:
+    name: xfreng
+    password: passw0rd
+# 注册中心设置，server本身不被发现
+eureka:
+  environment: dev
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+  server:
+    # 设为false，关闭自我保护
+    enable-self-preservation: false
+    # 清理间隔（单位毫秒，默认是60*1000）
+    eviction-interval-timer-in-ms: 3000
+info:
+  version: @project.version@
