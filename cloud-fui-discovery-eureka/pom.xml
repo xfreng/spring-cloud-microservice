@@ -3,7 +3,7 @@
     <parent>
         <artifactId>spring-cloud-microservice</artifactId>
         <groupId>com.fui.cloud</groupId>
-        <version>${project.version}</version>
+        <version>V1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
