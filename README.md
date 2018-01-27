@@ -13,3 +13,5 @@ Eureka服务发现
 项目视图
 ## 七、cloud-fui-boot-admin-server
 SpringBoot监控中心
+## 八、cloud-fui-support
+Shiro、cas、pac4j权限认证、单点登录通用模块
