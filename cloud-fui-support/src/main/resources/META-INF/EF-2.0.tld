@@ -11,7 +11,7 @@
 	<tag>
 		<name>EFMenu</name>
 		<tag-class>com.fui.cloud.core.ef.tag.TagEFMenu</tag-class>
-		<description></description>
+		<description>TagEFMenu</description>
 		<attribute>
 			<name>id</name>
 			<required>true</required>
@@ -30,7 +30,6 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<!--2.0-->
 		<attribute>
 			<name>style</name>
 			<required>false</required>
@@ -57,7 +56,6 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-		
 		<attribute>
 			<name>version</name>
 			<required>false</required>
@@ -67,7 +65,7 @@
 	<tag>
 		<name>EFTree</name>
 		<tag-class>com.fui.cloud.core.ef.tag.TagEFTree</tag-class>
-		<description></description>
+		<description>TagEFTree</description>
 		<attribute>
 			<name>id</name>
 			<required>true</required>
@@ -115,7 +113,6 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-		<!--2.0-->
 		<attribute>
 			<name>style</name>
 			<required>false</required>
@@ -142,7 +139,6 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-
 		<attribute>
 			<name>version</name>
 			<required>false</required>
