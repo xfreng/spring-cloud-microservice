@@ -1,0 +1,13 @@
+shiro:
+  cas: http://192.168.131.150:9090/cas
+  server: http://192.168.131.150:9090
+pac4j:
+  clientName: workflow
+fastdfs:
+  clientConf: conf/fastdfs_client.conf
+  heartbeatTime: 3600000
+  heartbeatWaitTime: 200
+  minPoolSize: 10
+  maxPoolSize: 30
+  waitTime: 200
+  uploadFileHost: 192.168.131.150:8080

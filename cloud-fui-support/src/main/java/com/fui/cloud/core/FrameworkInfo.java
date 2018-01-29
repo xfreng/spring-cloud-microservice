@@ -14,12 +14,12 @@ public class FrameworkInfo {
         logger.info("********框架配置类********");
     }
 
-    public static String getProjectEname() {
-        return "fui";
-    }
-
     public static String getLoginBackground() {
         return MemCachedUtils.getText("login.background", "background");
+    }
+
+    public static String getProjectEname() {
+        return MemCachedUtils.getText("project.ename", "fui");
     }
 
     public static String getProjectName() {
@@ -32,5 +32,17 @@ public class FrameworkInfo {
 
     public static String getDev() {
         return MemCachedUtils.getText("dev", "框架研发");
+    }
+
+    public static String getTempDir() {
+        return MemCachedUtils.getText("temp.dir", "c:/infogen");
+    }
+
+    public static String get(String key) {
+        return MemCachedUtils.getText(key, null);
+    }
+
+    public static String get(String key, String defaultText) {
+        return MemCachedUtils.getText(key, defaultText);
     }
 }

@@ -40,6 +40,9 @@ public interface CommonConstants {
     String DEFAULT_STYLE = "default";
 
     // 树根节点id
+    String TREE_ROOT_NAME = "$";
+
+    // 树根节点id
     String TREE_ROOT_ID = "root";
 
     // 前台分页总条数
@@ -51,10 +54,16 @@ public interface CommonConstants {
     // 图片上传请求参数
     String UPLOADS = "file";
 
+    // rest service请求前缀
     String HTTP_PREFIX = "http://";
 
+    // rest service名称
     String DB_SERVICE_NAME = "fui-db-sql";
 
+    // rest service api请求前缀
     String DB_SERVICE_PREFIX_MAPPING = "/api/";
+
+    // 流程过滤类型
+    String CATEGORY_NOT_EQUALS = "99";
 
 }
