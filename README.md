@@ -10,7 +10,7 @@ Eureka服务发现
 ## 五、cloud-fui-db-sql服务
 数据库持久
 ## 六、cloud-fui-web-ui服务
-项目视图
+jcoffee框架项目视图（fui-maven移植）
 ## 七、cloud-fui-boot-admin-server
 SpringBoot监控中心
 ## 八、cloud-fui-support
