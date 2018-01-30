@@ -1,0 +1,28 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+spring:
+  application:
+    name: fui-web-ui
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+info:
+  version: @project.version@
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: xfreng
+    password: passw0rd
+logging:
+  config: classpath:conf/logback.xml
+  level: debug

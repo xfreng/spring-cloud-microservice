@@ -1,0 +1,21 @@
+/* to override jqueryui icons for font icons */
+[class^="icon-"],
+[class*=" icon-"] {
+  background: none !important;
+  background-image: none !important;
+  text-indent: 0 !important;
+  padding: .1em 0 0 .1em !important;
+
+  font-size:14px;
+}
+
+.ui-button-icon-only .ui-icon.icon-large {
+	margin-top:-11px  !important;
+	margin-left:-10px !important;
+}
+
+.ui-button-text-icon-primary .ui-icon.icon-large,
+.ui-button-text-icons .ui-icon.icon-large {
+	margin-top:-11px  !important;
+	left:4px !important;
+}

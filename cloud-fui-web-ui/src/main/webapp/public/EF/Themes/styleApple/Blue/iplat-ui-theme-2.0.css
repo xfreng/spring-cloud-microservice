@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+/*
+----通用样式抽取 供换肤统一配置使用----
+*/
+._2字体_标准样式, 
+.ef-form-head-title,
+.ef-tree-item,
+.ef-widget,
+.ui-widget,
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button,
+.ui-autocomplete .ui-menu-item a,
+.ef-menu a, 
+.ef-menu a:visited 
+{
+	font-family:"微软雅黑","Microsoft yahei","Tahoma","Verdana","Arial","sans-serif";
+    font-size: 12px;
+}
+._2字体_IE, 
+BODY.ef-form-ie,
+.ef-form-ie tr, 
+.ef-form-ie td
+{
+	 /* font-family:"tahoma", "宋体", "sans-serif", !important; */ 
+}
+._2字体_等宽样式,
+textarea,
+.ef-grid-content .tableRow0,
+.ef-grid-content .tableRow1,
+.ef-grid-content td
+{
+    font-family: Consolas, 微软雅黑, 宋体, arial;
+    font-size: 12px;
+}
+
+.ef-form-head-title {
+	font-size: 120%;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	height:20px;
+	text-align:left;
+    line-height: 1.7;
+}
+/*EFRegion标题*/
+.ef-region-title {
+	color:#0073EA;
+	font-size:120%;
+	font-weight:bold;
+}
+
+._4图片_文件,
+	 .ef-icon, .ef-buttonBar-no-background .ef-icon, .ef-state-default > .ef-icon,
+	 .ui-state-default .ef-icon, .ef-grid-funcImgButtonTD span, 
+	 .ef-form-configDiv.ef-state-hover > .ef-icon {
+background-image: url(../../Images/icons/ef-icons_6da8d5.png);
+width: 16px;
+height: 16px;
+}
+
+/*jquery使用平台图标时的位置修正
+.ui-icon.ef-icon {
+		margin-left: -8.5PX;
+	}*/

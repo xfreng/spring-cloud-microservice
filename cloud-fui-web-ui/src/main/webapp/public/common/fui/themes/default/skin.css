@@ -1,0 +1,10 @@
+﻿/*-------------------- head --------------------------*/
+.header {
+	background: url(images/default.png) repeat-x;
+}
+
+.foot {
+	background: url(images/default.png) repeat-x 50%;
+}
+
+/*----------------------------------------------*/
