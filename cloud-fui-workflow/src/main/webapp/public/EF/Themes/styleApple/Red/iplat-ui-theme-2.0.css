@@ -1,0 +1,756 @@
+._2字体_标准样式, 
+.ef-form-head-title,
+.ef-tree-item,
+.ef-widget,
+.ui-widget,
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button,
+.ui-autocomplete .ui-menu-item a,
+.ef-menu a, 
+.ef-menu a:visited,
+#popup_container /*弹出框*/
+{
+	font-family:"微软雅黑","Microsoft yahei","Tahoma","Verdana","Arial","sans-serif";
+    font-size: 12px;
+}
+
+._2字体_等宽样式,
+.ef-grid-content .tableRow0,
+.ef-grid-content .tableRow1,
+.ef-grid-content td
+{
+    font-family: Consolas, 微软雅黑, 宋体, arial;
+    font-size: 12px;
+}
+
+._4图片_文件,
+.ef-icon,
+.ef-buttonBar-no-background .ef-icon,
+.ef-state-default > .ef-icon,
+.ui-state-default .ef-icon,
+.ef-grid-funcImgButtonTD span,
+.ef-form-configDiv.ef-state-hover > .ef-icon
+{
+	background-image: url(../../Images/icons/ef-icons_cd0a0a.png);
+}
+.ef-buttonBar-no-background {
+	font-size:80%;
+	}
+/*
+----换肤样式----
+*/
+/*--图片按钮--*/
+.ef-icon {
+	background-image: url(../../Images/icons/ef-icons_cd0a0a.png);
+		width: 16px;
+	height: 16px;
+}
+
+span.ef-icon {
+	float:left;
+}
+/*jquery使用平台图标时的位置修正*/
+.ui-icon.ef-icon {
+		/*margin-left: -8.5PX;*/
+	}
+
+.ef-state-default > .ef-icon {
+	background-image: url(../../Images/icons/ef-icons_cd0a0a.png);
+	width: 16px;
+	height: 16px;
+}
+
+.ef-state-hover .ef-icon {
+	
+}
+
+.ef-state-disabled .ef-icon {
+	background-image: url(../../Images/icons/ef-icons_888888.png);
+	width: 16px;
+	height: 16px;
+}
+
+/*--警告栏--*/
+.ef-state-error {
+	outline:1px solid #CD0A0A;
+	background-color:#FEF1EC;
+	color:#CD0A0A;
+}
+
+
+input.ef-state-error {
+	border:1px solid #CD0A0A;
+	color:#CD0A0A;
+}
+
+
+/*---设置圆角---*/
+.ef-cornerredius-all, .ef-cornerredius-top, .ef-cornerredius-left, .ef-cornerredius-tl { -moz-border-radius-topleft: 3px/*{cornerRadius}*/; -webkit-border-top-left-radius: 3px/*{cornerRadius}*/; -khtml-border-top-left-radius: 3px/*{cornerRadius}*/; border-top-left-radius: 3px/*{cornerRadius}*/; }
+.ef-cornerredius-all, .ef-cornerredius-top, .ef-cornerredius-right, .ef-cornerredius-tr { -moz-border-radius-topright: 3px/*{cornerRadius}*/; -webkit-border-top-right-radius: 3px/*{cornerRadius}*/; -khtml-border-top-right-radius: 3px/*{cornerRadius}*/; border-top-right-radius: 3px/*{cornerRadius}*/; }
+.ef-cornerredius-all, .ef-cornerredius-bottom, .ef-cornerredius-left, .ef-cornerredius-bl { -moz-border-radius-bottomleft: 3px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 3px/*{cornerRadius}*/; -khtml-border-bottom-left-radius: 3px/*{cornerRadius}*/; border-bottom-left-radius: 3px/*{cornerRadius}*/; }
+.ef-cornerredius-all, .ef-cornerredius-bottom, .ef-cornerredius-right, .ef-cornerredius-br { -moz-border-radius-bottomright: 3px/*{cornerRadius}*/; -webkit-border-bottom-right-radius: 3px/*{cornerRadius}*/; -khtml-border-bottom-right-radius: 3px/*{cornerRadius}*/; border-bottom-right-radius: 3px/*{cornerRadius}*/; }
+
+/*--Tab圆角--*/
+.tab_item .tab_item1 {
+	-moz-border-radius-topleft: 3px/*{cornerRadius}*/; -webkit-border-top-left-radius: 3px/*{cornerRadius}*/; -khtml-border-top-left-radius: 3px/*{cornerRadius}*/; border-top-left-radius: 3px/*{cornerRadius}*/;
+}
+
+.tab_item .tab_item3 {
+	-moz-border-radius-topright: 3px/*{cornerRadius}*/; -webkit-border-top-right-radius: 3px/*{cornerRadius}*/; -khtml-border-top-right-radius: 3px/*{cornerRadius}*/; border-top-right-radius: 3px/*{cornerRadius}*/
+}
+
+
+
+/*---标题/工具栏Header类---*/
+
+/*
+----EFGrid工具条所在DIV----
+*/
+
+.ef-header {
+	background: #EEE url(images/effectBg/ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x;
+	font-weight: Bold;
+    color: #004276;
+/*
+line-height: 1.4;
+    border:1px solid #E3A1A1;
+    */
+}
+
+.tableHeader { /**/
+
+    height:30px;
+}
+
+
+/*
+----EFGrid工具条所在DIV----
+*/
+.ef-grid-func { /**/
+	/*background: #DFEFFC url(images/effectBg/ef_bg_glass_1x400.png) 50% 50% repeat-x;*/
+    font-weight: Bold;
+    color: #2E6E9E;
+    line-height: 1.4;
+    height:30px;
+
+    border:solid 0px #D8DCDF;
+    border-top:solid 1px #D8DCDF;
+	border-bottom:solid 1px #D8DCDF;
+    /*
+        font-size: 12px;
+    
+    background:#f0f4f5;
+    */
+}
+
+.ef-grid-functable {
+	height:28px;
+	color:#004276;
+	/*
+	margin-top:1px;
+	margin-bottom:1px;
+	*/
+}
+
+/*EFGrid表头背景*/
+.ef-grid-tableHeader .ef-grid-table {
+
+}
+
+/*formHead样式*/
+.ef-form-head {
+    background-color: white;
+}
+
+.ef-form-head-title {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	height:20px;
+	text-align:left;
+    line-height: 1.7;
+}
+
+/*region整体样式*/
+.ef-region-border  {
+	border: 1px solid #ee4141;
+	
+    -moz-border-radius: 8px; 
+    -webkit-border-radius: 8px; 
+    -khtml-border-radius: 8px; 
+    border-radius: 8px;
+    
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+    
+    margin-top:5px; 
+    margin-bottom:5px;
+    
+}
+
+.ef-region-content {
+	/*
+    padding-left:5px; 
+    padding-right:5px;
+    *有padding的时候，多grid并排会使页面超出页面长度导致换行
+	*/
+	
+	/*
+	background: #fcfdfd url(../Themes/redmond/images/ui-bg_inset-hard_100_fcfdfd_1x100.png) 50% bottom repeat-x;
+	*/
+	
+	background:white;
+	
+}
+
+.ef-region-footer{
+    padding-left:2px; 
+    padding-right:2px;
+    padding-top:2px; 
+    padding-bottom:2px;
+    
+    margin-top:2px;
+    /*
+    border-top:1px solid #DDD;
+    box-shadow:inset 0 1px 0 whiteSmoke;
+    */
+}
+
+.ef-region-head{	
+	/*
+	border-bottom: 1px solid #D5D5D5;
+
+    margin-bottom:2px;
+    */
+
+}
+
+/*EFRegion标题*/
+.ef-region-title{ 
+		font-size:110%;
+	}
+.ef-state-default .ef-region-title{
+	color:#FFFFFF;
+	font-size:12px;
+	font-weight:bold;
+}
+/*EFRegion标题悬浮*/
+.ef-state-hover.ef-region-border > DIV >table.ef-container-header .ef-region-title{
+	/*background:url(Images/effectBg/BgFill-2.png) #f5f8f9;*/
+	color:lightgoldenrodyellow;
+}
+.ef-container-header .ef-state-default > .ef-icon {
+	background-image: url(../../Images/icons/ef-icons_ffffff.png);
+	width: 16px;
+	height: 16px;
+}
+/*EFRegion标题*/
+.ef-region-dummy,
+.ef-state-hover.ef-region-border > DIV >table.ef-container-header .ef-region-title{
+	/*background:url(Images/effectBg/BgFill-2.png) #f5f8f9;*/	
+	font-size:110%;
+	font-weight:bold;
+}
+
+.ef-region-dummy,
+.ef-state-default .ef-region-title {
+	font-size:110%;
+	font-weight:bold;
+}
+/*
+*region标题内按钮
+*/
+.ef-region-headerButton.ui-state-default {
+	background:transparent;
+	}
+.ef-region-headerButton.ui-state-hover {
+
+	}
+	
+/*--EfGrid单元格样式--*/
+
+.ef-grid-table DIV {
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+
+}
+
+.tableRow0 td, .tableRow1 td, .ef-grid-tableRow-Selected td, .ef-grid-tableRow-CurrentRow td, .ef-grid-tableRow-Highlight td {
+	border-right:1px solid #D8DCDF;
+	border-bottom:1px solid #D8DCDF;
+	padding-right:1px;
+	vertical-align:middle;
+	line-height:2;
+}
+/*
+----EFGrid表头单元格---
+*需要放在.ef-grid-table DIV 下面
+*/
+
+/*--EFGrid整体--*/
+.ef-grid-border {
+    
+    	border: 1px solid #D8DCDF;
+	    /*
+    background:white;
+    margin:1px;
+    */
+}
+
+/*--EFGrid单元格--*/
+.ef-grid-tableHeader-tableTR td, .ef-grid-tableHeader-tableTR th {/* ,.columnHighlight td */
+	HEIGHT: 24px;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+	padding-right:1px;
+	vertical-align:middle;
+	line-height:2;
+	
+	border-right:1px solid #D8DCDF;
+	border-bottom:1px solid #D8DCDF;
+	/*border-right:1px solid white;*/
+}
+
+/*treegrid整体样式*/
+.ef_tree_grid_class  {
+	border-top:1px solid #e3a1a1;
+	border-left:1px solid #e3a1a1;
+	
+}
+
+/* 树样式 */
+.ef-tree-item {
+    padding: 0px;
+    margin: 0px;
+    font-family: 微软雅黑,宋体,Arial;
+    color: WindowText;
+    white-space: nowrap;
+}
+
+/*---带有悬浮效果---*/
+
+/*--按钮状态--*/
+/*通常状态*/
+.ef-state-default {
+
+}
+
+/*悬浮状态*/
+.ef-state-hover {
+	border:1px solid #CDD5DA;
+	background-color:#F6F6F6 ;
+}
+
+/*按下状态*/
+.ef-state-active {
+	
+}
+
+/*无效状态*/
+.ef-state-disabled {
+	
+}
+
+
+/*region样式*/
+.ef-state-default.ef-region-border {
+	border: 1px solid #ee4141;
+	cursor:auto;
+}
+
+.ef-state-hover.ef-region-border {
+	/* border: 1px solid #ee4141; */
+	cursor:pointer;
+	background:white;
+	border-color:rgba(205, 213, 218, 0.8);
+	outline:0;
+	box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(205, 213, 218, 0.6);
+}
+
+/*EFRegion标题*/
+.ef-container-header{
+	background: #cc0000;
+	color:#ffffff;
+	font-size:12px;
+	font-weight:bold;
+}
+
+/*
+*region右上角 功能按钮样式
+*/
+.ef-state-default > .ef-region-configMenuSpan {
+
+	}
+.ef-state-hover > .ef-region-configMenuSpan {
+
+	}
+	
+.ef-state-default.ef-region-configMenuDiv a{
+
+	}
+.ef-state-hover.ef-region-configMenuDiv a{
+
+	}
+/*--通常按钮样式--*/
+.ef-state-default.ef-button { 
+    /**/
+    background: url(images/effectBg/ui-bg_highlight-hard_100_eeeeee_1x100.png) #EEE;
+    background-position:0px 0px repeat-x;
+    color: #004276;
+    height:21px;
+    border:1px solid #D8DCDF;
+    line-height:1.4;
+    font-weight:bold;
+    padding: 2px 6px;
+}
+
+/*通常按钮悬停样式*/
+.ef-state-hover.ef-button { 
+    /**/
+    background: url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) #F6F6F6;
+    color: #111 ;
+    border:1px solid #CDD5DA;
+}
+
+/*通常按钮按下样式*/
+.ef-state-active.ef-button { 
+    /*url(../images/effectBg/BgFill-2.png)*/
+    background:  white;
+    color: #C00;
+    border:1px solid #EEE;
+}
+/*EfGrid表头table下的TR样式*/
+.ef-grid-tableHeader-tableTR { /* */
+	height:24px;
+
+    /*
+    background: url(images/effectBg/HeaderBg.png) #5c9ccc;
+    background-position:center;
+    font-family: 微软雅黑, 宋体;*/
+    font-size: 12px;
+    color: #004276;
+    line-height: 160%;
+    font-weight:bold;
+}
+
+	
+/*--EFGrid表头悬浮效果--*/
+ .ef-state-hover.ef-grid-tableHeaderColumn,  .ef-grid-tableHeader-tableTR td.ef-state-hover{
+	
+	background: #F6F6F6 url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+
+    font-size: 12px;
+    font-weight:bold;
+    color: #111;
+
+    
+}
+
+.ef-widget {
+    font-family:微软雅黑,宋体,Arial;
+}
+
+/* shadow效果 */
+.ef-widget-shadow { 
+    box-shadow: 0px 0px 4px #ccc; 
+    -webkit-box-shadow:0px 0px 4px #ccc;
+    -moz-box-shadow:0px 0px 4px #ccc;
+}
+	
+	
+/*--EFGrid数据列样式--*/
+/*EfGrid偶数行样式*/
+.tableRow0 {
+    background-color: white;
+    font-family: Consolas, 微软雅黑, 宋体, arial;
+    font-size: 12px;
+    color: black;
+    rowHeight:29px;/*css中没有rowHeight属性 但efgrid会读取并根据此属性设置各div高度*/
+    /* line-height: 150%;*/
+}
+
+
+/*EfGrid奇数行样式*/
+.tableRow1 {
+    background-color: #FEF1EC;
+    font-family: Consolas, 微软雅黑, 宋体, arial;
+    font-size: 12px;
+    color: black;
+    rowHeight:29px;
+    /* line-height: 150%; */
+}
+
+/*EfGrid鼠标悬浮行样式*/
+.ef-grid-tableRow-Selected {
+	background: #d6505b;
+	color:white;
+	/*url(../images/effectBg/ef_bg_glass_state_hover_1x400.png) 50% 50% repeat-x*/
+}
+
+.ef-grid-tableRow-Selected a {
+	color:white;
+	}
+
+/*EfGrid选中行样式*/
+.ef-grid-tableRow-CurrentRow {
+    background: #F2F2F2;
+    color:#e17009;
+}
+
+/*EFGrid勾选行样式*/
+.ef-grid-tableRow-Highlight {
+	background:#fbd9d9 ;
+}
+
+/*--TAB样式--*/
+.benma_ui_tab {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    position: relative;
+    top: 0px;
+    line-height: 22px;
+    width: 'auto';
+    border-bottom: 2px solid #C00;
+    padding-top: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.benma_ui_tab ul{display:block;list-style:none;padding:0;margin:0}
+.benma_ui_tab li{list-style:none;padding:0;float:left;height:25px;margin:0px;margin-left:1px;cursor:pointer;
+	border: 1px solid #D8DCDF;
+	background: #EEE url(images/effectBg/ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x;
+	font-weight: bold;
+	color: #004276;
+
+	-moz-border-radius-topleft: 3px/*{cornerRadius}*/; -webkit-border-top-left-radius: 3px/*{cornerRadius}*/; -khtml-border-top-left-radius: 3px/*{cornerRadius}*/; border-top-left-radius: 3px/*{cornerRadius}*/;
+	-moz-border-radius-topright: 3px/*{cornerRadius}*/; -webkit-border-top-right-radius: 3px/*{cornerRadius}*/; -khtml-border-top-right-radius: 3px/*{cornerRadius}*/; border-top-right-radius: 3px/*{cornerRadius}*/
+}
+
+
+.benma_ui_tab .tab_item1_mouseover {
+	background: #f6f6f6 url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+	color: #111;
+
+}
+
+
+
+.benma_ui_tab .tab_item1_selected {
+    background: white;
+    color: #c00;
+}
+
+.benma_ui_tab .tab_item2_mouseover {
+	background: #f6f6f6 url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+color: #111;
+}
+
+
+
+.benma_ui_tab .tab_item2_selected {
+    background: white;
+    color: #c00;
+}
+
+
+.benma_ui_tab .tab_item3_mouseover {
+	background: #f6f6f6 url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+color: #111;
+}
+
+.benma_ui_tab .tab_item3_selected {
+    background: white;
+    color: #c00;
+}
+
+/*--flexbox样式--*/
+/*flexbox内容*/
+.ffb .content .row {
+    border-bottom:1px solid #828790;
+    color:#000;
+    height:35px;
+    clear:both;
+}
+/*flexbox行悬浮*/
+.ffb-sel {
+    cursor:pointer;
+    cursor:hand;
+    /*color:#fff !important;*/
+	background: #f6f6f6 url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+	
+}
+/*flexbox箭头*/
+/* Drop-down arrow, with sprited image */
+.ffb-arrow
+{
+    float:left;
+    width:17px;
+    height:24px;
+    background: url(images/efcalendar_drop1.png) 0px 4px no-repeat;
+    border:1px solid #E3A1A1;
+}
+
+.ffb-arrow.out { /* css sprite technique 
+	background-position:0;*/
+    
+}
+.ffb-arrow.over { /* css sprite technique 
+	background-position:-17px 0;*/
+	background-color:#C00;
+}
+.ffb-arrow.active { /* css sprite technique 
+    background-position:-34px 0;*/
+    background-color:#D0E5F5;
+}
+
+/*--EFConfigMenu样式--*/
+/*分隔条*/
+.ef-menuconfig-sep {
+	border-top: 1px solid #BEBEBE;
+	font-size: 0;
+	margin: 10px 0;
+	padding: 0 10px;
+}
+
+/*--EFMenu样式--*/
+/*二级菜单的大背景*/
+.ef-menu {
+    position: absolute;
+    z-index: 100;
+    visibility: hidden;
+    width: 165px;
+    BACKGROUND-COLOR: white;
+    text-align:left;
+    border:solid 1px #E3A1A1;
+	
+	margin-left:5px;
+	margin-top:-2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+		
+    box-shadow: 0px 0px 4px #ccc; 
+    -webkit-box-shadow:0px 0px 4px #ccc;
+    -moz-box-shadow:0px 0px 4px #ccc;
+	
+	border-radius:5px;
+}
+
+
+/*二级菜单正常状态*/
+.ef-menu a,.ef-menu a:visited {
+    display: block;
+    width: 100%;
+
+    overflow: visible;
+    padding: 4px 2px;
+
+    font-family:微软雅黑;
+    font-size:12px;
+    font-weight:normal;
+    font-style:normal;
+    text-decoration:none;
+    color:#1d5987;
+    BACKGROUND-COLOR: white;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid transparent;
+    width:95%;
+
+}
+
+/*二级菜单的悬停状态*/
+.ef-menu a:hover {
+	background: url(images/effectBg/ui-bg_highlight-hard_100_f6f6f6_1x100.png) #f6f6f6;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	color: #E17009;
+}
+
+
+/*一级菜单正常状态*/
+.ef-menu-bar {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	height:25px;
+	text-align:center;
+	background: #EEE url(images/effectBg/ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x;
+    line-height: 1.7;
+	color: #004276;
+	border: 1px solid #D8DCDF;
+}
+
+/*一级菜单的悬浮状态*/
+.ef-menu-hover{
+	color: #f6f6f6;
+	/*
+	background: url(../images/effectBg/ef_bg_glass_state_hover_1x400.png) #d0e5f5;
+	color: #1d5987 ;
+    border:1px solid #79b7e7;*/
+}
+
+/*菜单栏所在DIV的样式*/
+.ef-menu-bar-div{
+	/*width: 100%;*/
+	height: 27px;
+	top: 44px;
+	position:absolute;
+	vertical-align:middle;
+
+}
+
+/*一级菜单点击状态*/
+.ef-menu-bar-onTextClicked{
+	background-color: transparent;
+	font_weight: bold;
+}
+
+
+
+/*一级菜单访问离开后的状态*/
+.ef-menu-bar a,.ef-menu-bar a:visited {
+	color:#2E6E9E;
+}
+
+/*grid工具栏图片按钮*/
+.ef-state-default.ef-grid-funcImgButtonTD {
+	/**/
+	border:1px solid transparent;
+}
+.ef-grid-funcImgButtonTD.ef-state-default.ef-state-hover {
+	/**/
+	border:1px solid #79b7e7;
+	background-color:#f6f6f6;
+}
+
+.ef-grid-funcImgButtonTD span {
+	/*margin-left:4px;
+	margin-right:4px;
+	*/
+	width:16px;
+	height:16px;
+	background-image:url(../../Images/icons/ef-icons_cd0a0a.png); /*for IE8*/
+}
+
+/*EFGrid的导航工具条*/
+.ef-grid-navigationBar {
+
+	margin-right:4px;
+}
+
+
+.ef-grid-navigationBar .ef-state-default {
+	border: 1px solid transparent;
+}
+.ef-grid-navigationBar .ef-state-hover {
+    border:1px solid #79b7e7;
+}
+.ef-grid-navigationBar SPAN {
+	margin:0px;
+}

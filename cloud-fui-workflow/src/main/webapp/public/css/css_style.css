@@ -1,0 +1,101 @@
+#border_table {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+#border_table caption {
+    border:solid #000000 1px;
+    background-color:#CCFF66;
+    padding:5px 0 5px 0;
+}
+#border_table th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+#border_table td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+#border_table tr:hover,#border_table tr.hilite{
+	background-color:#0000CC;
+}
+a:link {
+	font-size: 12px;
+	color: green;
+	text-decoration: none;
+}
+
+a:visited {
+	font-size: 12px;
+	color: gray;
+	text-decoration: underline;
+}
+
+a:hover {
+	font-size: 12px;
+	color: red;
+	text-decoration: underline;
+}
+
+a:active {
+	font-size: 12px;
+	color: #000000;
+	text-decoration: underline;
+}
+
+a.menuLink:link {
+	font-size: 12px;
+	text-decoration: none;
+	color: #000000;
+}
+
+a.menuLink:visited {
+	font-size: 12px;
+	color: gray;
+	text-decoration: none;
+}
+
+a.menuLink:hover {
+	font-size: 12px;
+	color: red;
+	text-decoration: underline;
+}
+
+a.menuLink:active {
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+}
+#addDataDiv{
+     position: relative;
+     display: none;
+     top: 20px;
+     left: 30px;
+     background-color: #ffffff;
+     text-align: center;
+     border:1px solid #666699;
+     padding: 0px;
+	 margin:0px;
+     z-index: 1;
+}
+#addTitleDiv,#updateTitleDiv{
+	 width:98.5%;
+	 height:19%;
+	 text-align:center;
+	 padding:3px;
+	 margin:0px;
+	 font:bold 15px '楷体-GB2312|宋体';
+	 color:#FFFFFF;
+	 border:1px solid #666699;
+	 cursor:move;
+	 background-color:#666699;
+}

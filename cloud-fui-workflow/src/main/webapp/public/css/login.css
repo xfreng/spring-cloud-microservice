@@ -1,0 +1,60 @@
+.background {
+    background: url(../mainframe/images/login/001_git_jzz.jpg) no-repeat center;
+}
+
+.background_blue_sky {
+    background: url(../mainframe/images/login/bg.jpg) top repeat-x;
+}
+
+.login_body {
+    margin: 0 auto;
+    padding-top: 80px;
+    width: 100%;
+    min-width: 1024px;
+}
+
+.box {
+    width: 322px;
+    height: 101px;
+    background: url(../mainframe/images/login/user_text.png) no-repeat;
+    margin: 30px auto 0px;
+}
+
+.icon_rand {
+    width: 322px;
+    height: 81px;
+    background: url(../mainframe/images/login/rand_text.png) no-repeat;
+    margin: 30px auto 0px;
+}
+
+.mg_r_rand {
+    cursor: pointer;
+    margin-right: -100px;
+}
+
+a.login_btn {
+    width: 322px;
+    height: 55px;
+    background: url(../mainframe/images/login/loginBtn.png) no-repeat;
+    display: inline-block;
+    line-height: 55px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+a:hover.login_btn {
+    background: url(../mainframe/images/login/loginBtn_hover.png) no-repeat;
+    width: 322px;
+    height: 55px;
+    color: #fff;
+}
+
+input.fui-password {
+    visibility: hidden;
+    border: 0;
+    padding: 0;
+    height: 21px;
+    width: 125px;
+    border: 0;
+}

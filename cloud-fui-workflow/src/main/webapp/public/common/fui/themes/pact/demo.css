@@ -1,0 +1,46 @@
+h1 {
+	font-size: 20px;
+	font-family: Verdana;
+}
+
+h4 {
+	font-size: 16px;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.description {
+	padding-bottom: 30px;
+	font-family: Verdana;
+}
+
+.description h3 {
+	color: #CC0000;
+	font-size: 16px;
+	margin: 0 30px 10px 0px;
+	padding: 45px 0 8px;
+	border-bottom: solid 1px #888;
+}
+
+.tDescription {
+	width: 100%;
+	border: 1px solid #888;
+	border-bottom: none;
+	border-right: none;
+}
+
+.tDescription thead {
+	background: #e1e1e1;
+	font-weight: bold;
+}
+
+.tDescription td {
+	text-align: center;
+	border: 1px solid #888;
+	border-top: none;
+	border-left: none;
+}
+
+.none, .fui-hidden {
+	display: none;
+}

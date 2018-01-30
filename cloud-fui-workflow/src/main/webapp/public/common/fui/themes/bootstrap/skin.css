@@ -1,0 +1,691 @@
+﻿.fui-button
+{
+    border-radius: 4px; 
+}
+.fui-buttonedit-border,
+.fui-textbox-border
+{
+    border-radius: 4px; 
+}
+.fui-panel-border
+{
+    border-radius:4px;   
+}
+.fui-tab
+{
+    border-radius:4px;   
+}
+.fui-tabs-position-right .fui-tab
+{
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;     
+}
+
+.fui-tabs-position-left .fui-tab
+{
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;     
+}
+.fui-tabs-position-bottom .fui-tab
+{
+    border-top-right-radius:0px;
+    border-top-left-radius:0px;     
+}
+.fui-tabs-position-top .fui-tab
+{
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px; 
+}
+
+
+/*----------------------------------- bgcss ----------------------------------*/
+.bg-toolbar
+{
+    background:#f0f0f0;
+}
+
+
+/*----------------------------------- tools ----------------------------------*/
+/*
+.fui-tools .fui-tools-collapse
+{
+    background:url(images/tools/collapse.gif) no-repeat 50% 50%;
+    width:15px;	
+}
+.fui-tools .fui-tools-expand
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;
+    width:15px;	
+}
+.fui-tools-close
+{
+    background:url(images/tools/close.gif) no-repeat 50% 0px;
+    width:15px;	
+}
+*/
+
+/*----------------------------------- toolbar ----------------------------------*/
+
+.fui-toolbar
+{
+    border:solid 1px #ccc;
+    background:#fafafa;
+}
+.separator
+{
+    border-left:solid 1px #bbb;    
+}
+
+/*----------------------------------- button ----------------------------------*/
+
+.fui-button
+{
+    
+    background: #FFFFFF;
+    border-color: #CCCCCC;
+    color: #333333;
+}
+body a:hover.fui-button
+{
+	color:#333;
+	border-color:#adadad;
+	background:#ebebeb	      
+}
+body .fui-button-pressed, body a:hover.fui-button-pressed,
+body .fui-button-checked, body a:hover.fui-button-checked,
+body a.fui-button-popup, body a:hover.fui-button-popup
+{
+	background:#ebebeb;
+	border-color:#adadad;
+	color:#333333;
+	/*-webkit-box-shadow:inset 0 0 5px 3px #d4d4d4;
+	box-shadow:inset 0 0 5px 3px #d4d4d4	*/
+}
+body a.fui-button-disabled, body a:hover.fui-button-disabled
+{
+	color:#999;
+	border-color:#ccc;	
+	background:none;
+}
+
+
+/*----------------------------------- textbox ----------------------------------*/
+.fui-textbox-border
+{
+    background:white;
+	border-color:#ccc;   
+}
+body .fui-textbox-focus .fui-textbox-border
+{
+    border-color: #adadad;
+}
+
+
+/*----------------------------------- buttonedit ----------------------------------*/
+
+.fui-buttonedit-border
+{
+	background:white;
+	border-color:#CCCCCC;    
+}
+body .fui-buttonedit-focus .fui-buttonedit-border
+{
+    border-color: #adadad;
+    
+}
+.fui-buttonedit-button
+{
+    background: #ffffff;    
+    border-left:solid 1px #ccc;
+    color: #333333;
+	padding:0;
+	margin:0;
+	height:20px;
+}
+.fui-buttonedit-button-hover,
+.fui-buttonedit-hover .fui-buttonedit-button
+{
+	color:#333;		
+	background:#ebebeb;
+	border-width:0px;
+	border-left:solid 1px #adadad;
+}
+.fui-buttonedit-button-pressed,
+.fui-buttonedit-popup .fui-buttonedit-button
+{
+	background:#ebebeb;
+	color:#333333;
+	border-width:0px;
+	border-left:solid 1px #adadad;
+}
+.fui-buttonedit-icon
+{
+    margin-top:2px;
+}
+.fui-popupedit .fui-buttonedit-icon
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat  1px 2px;
+}
+.fui-datepicker .fui-buttonedit-icon
+{
+    background:url(images/buttonedit/date.gif) no-repeat  1px 2px;
+}
+
+
+/*------------------------- panel -----------------------*/
+
+.fui-panel-border
+{    
+    border:1px solid #ccc;     
+}
+.fui-panel-header
+{
+    height:25px;
+    background:#F5F5F5;
+    color:#333;
+    font-weight:normal;
+    border-bottom:solid 1px #ccc;
+}
+.fui-panel-header-inner
+{
+   padding-top:4px;
+}
+.fui-panel-toolbar
+{
+    border-bottom:solid 1px #ccc;
+    background:#fafafa;
+}
+
+.fui-panel-footer
+{
+    border-top:solid 1px #ccc;
+    background:#fafafa;
+}
+
+
+
+
+/*----------------------------- window -------------------------*/
+.fui-window .fui-panel-header
+{    
+    background:#F5F5F5;
+}
+.fui-window .fui-panel-footer
+{
+    background:#fafafa;
+}
+/*.fui-tools-max
+{
+	background:url(images/tools/max.gif) no-repeat;
+}
+.fui-tools-restore
+{
+	background:url(images/tools/restore.gif) no-repeat;
+}*/
+
+
+/*------------------- navbar ------------------*/
+.fui-outlookbar-border
+{
+    border:1px solid #ccc;         
+}
+.fui-outlookbar .fui-outlookbar-groupHeader
+{
+  /*  background:#d9e8fb url(images/navbar/header.gif) repeat-x 0 0;    */
+  background:#F5F5F5;
+    border-color:#ccc;
+}
+.fui-outlookbar .fui-outlookbar-groupTitle
+{
+    font-weight:normal;
+}
+.fui-outlookbar .fui-outlookbar-group 
+{
+    border-color:#ccc;
+}
+.fui-outlookbar .fui-outlookbar-groupBody
+{    
+    border-color:#ccc;
+}
+/* view2 */
+.fui-outlookbar-view2 .fui-outlookbar-groupHeader
+{
+    border:solid 1px #ccc; 
+}
+.fui-outlookbar-view2 .fui-outlookbar-groupBody
+{    
+    background:#fff;
+}
+/* view3 */
+.fui-outlookbar-view3 .fui-outlookbar-group
+{
+    border:solid 1px #ccc; 
+}
+
+.fui-outlookbar .fui-tools-collapse
+{
+    width:15px;	
+}
+/*
+.fui-outlookbar .fui-outlookbar-expand .fui-tools-collapse
+{
+    background:url(images/navbar/expand.gif) no-repeat 50% 50%;   
+}
+.fui-outlookbar .fui-outlookbar-collapse .fui-tools-collapse
+{
+    background:url(images/navbar/collapse.gif) no-repeat 50% 50%;   
+}
+
+*/
+
+
+
+/*----------------------- splitter -----------------------*/
+.fui-splitter-border
+{
+    border:solid 1px #ccc;     
+}
+.fui-splitter .fui-splitter-pane1{
+    border-color:#ccc;
+}
+.fui-splitter .fui-splitter-pane2{
+    border-color:#ccc;
+}
+
+/*----------------------- layout -----------------------*/
+.fui-layout-border
+{
+    border-color:#ccc;
+}
+.fui-layout-region
+{
+    border-color:#ccc;    
+}
+.fui-layout-region-header
+{
+    background:#F5F5F5;
+    border-bottom:solid 1px #dedede;
+}
+.fui-layout-proxy
+{
+    border-color:#ccc;
+    background:#F5F5F5;
+}
+.fui-layout-proxy-hover
+{
+    background:#fafafa;    
+}
+
+
+
+/*------------------------- menu --------------------------------*/
+
+.fui-menu
+{
+	background:#fff;		
+	border-color:#f5f5f5;
+    color:black;    
+}
+.fui-menu-border
+{
+    /*border-radius: 2px; */
+    border-color:#ccc;
+}
+.fui-menuitem
+{
+    line-height:20px;    
+}
+.fui-menuitem-hover,  .fui-menu-popup
+{
+    border-color:#fafafa;
+	background:#f5f5f5;
+}
+
+.fui-menuitem-selected
+{
+    border-color:#fafafa;
+    background:#f5f5f5;
+}
+.fui-menuitem-text, .fui-menuitem-text a
+{
+    color:black;
+}
+.fui-separator
+{
+    border-top:solid 1px #ccc;
+}
+
+/* menu horizontal */
+.fui-menu-horizontal .fui-menu-inner
+{
+    background:#f5f5f5;
+}
+.fui-menu-horizontal .fui-menuitem-hover
+{
+    border:solid 1px #ccc;
+    background:#ebebeb;
+}
+.fui-menu-horizontal  .fui-menu-popup
+{
+    border:solid 1px #ccc;
+    background:#ebebeb;
+    border-bottom:0px;
+}
+
+/*---------------------- listbox -----------------------------*/
+.fui-listbox-border
+{    
+    border:#ccc 1px solid;
+}
+.fui-listbox-border td
+{
+    line-height:20px;       
+}
+.fui-listbox-item td{
+	border-top:white 1px dotted;
+	border-bottom:white 1px dotted;	
+}
+.fui-listbox-item-hover td{
+    background:#fafafa;
+	border-top:#ccc 1px dotted;
+	border-bottom:#ccc 1px dotted;
+}
+.fui-listbox-item-selected td{
+	background:#f5f5f5;
+	border-top:#ccc 1px dotted;
+	border-bottom:#ccc 1px dotted;
+}
+.fui-listbox-header
+{
+    background:#f5f5f5;
+    border-bottom:solid 1px #ccc;
+}
+
+/*------------------- treegrid --------------------*/
+.fui-treegrid-border
+{
+    border-color:#98c0f4;
+}
+
+.fui-treegrid-header
+{
+    border-bottom:none;
+}
+.fui-treegrid-headerInner
+{
+    background:#E7EBEF url(images/treegrid/header.png) repeat-x 0 0;
+}
+.fui-treegrid td
+{
+    border-color:#d0d0d0;    
+}
+.fui-treegrid-header td
+{
+    border-color:#d0d0d0;
+}
+
+.fui-treegrid-selectedNode
+{
+	background:#cbdaf0;
+}
+.fui-treegrid-hoverNode
+{
+    background:#dfe8f6;
+}
+/*
+.fui-treegrid-expand .fui-treegrid-ec-icon
+{
+	background-image:url(images/treegrid/expand.gif);
+	background-position:50% 50%;
+}
+.fui-treegrid-collapse .fui-treegrid-ec-icon
+{
+	background-image:url(images/treegrid/collapse.gif);
+	background-position:50% 50%;
+}*/
+.fui-treegrid-leaf
+{
+    background-image:url(images/treegrid/file.png);
+}
+.fui-treegrid-folder
+{
+    background-image:url(images/treegrid/folder.gif);
+}
+
+/*---------------------- calendar -----------------------------*/
+.fui-calendar
+{    
+    border:1px solid #ccc;       
+}
+.fui-calendar-header
+{   
+    background:#f5f5f5;    
+    border-bottom:solid 1px #ccc;    
+}
+.fui-calendar-footer
+{
+    border-top:solid 1px #ccc;
+    background:#fafafa;    
+}
+.fui-calendar-tadayButton, .fui-calendar-clearButton,
+.fui-calendar-okButton, .fui-calendar-cancelButton
+{
+    background: #FFFFFF;
+    border-color: #CCCCCC;
+    color: #333333;
+}
+.fui-calendar-menu-selected, a:hover.fui-calendar-menu-selected
+{
+    color:#333;
+    background:#fafafa;
+    border:solid 1px #ccc;
+}
+
+.fui-calendar .fui-calendar-selected
+{
+     color:#333;
+    background:#f5f5f5;
+    border:solid 1px #ccc;
+}
+.fui-calendar .fui-calendar-today
+{
+    border:1px solid #C00000;
+}
+.fui-calendar-daysheader td
+{border-bottom:solid 1px #dedede;    
+}
+    
+/*---------------------- tabs -----------------------------*/
+
+.fui-tabs-scrollCt
+{
+    border-color:#ccc;
+    background:#fafafa;
+}
+
+.fui-tabs-leftButton, .fui-tabs-rightButton
+{
+    border:solid 1px #b5afaf;
+    background-color:#EBEBEE;
+}
+a:hover.fui-tabs-leftButton,a:hover.fui-tabs-rightButton
+{
+    border:solid 1px #80a4d0;
+    background-color:#E1E8FD;
+}
+/* top */
+.fui-tabs-bodys
+{
+    border-color:#ccc;
+}
+.fui-tabs-space
+{
+    border-color:#ccc;
+}
+.fui-tabs-space2
+{
+    border-color:#ccc;
+}
+
+.fui-tab
+{
+    background: #fafafa;
+    border: 1px solid #ccc;
+    color: #333;    
+    
+}
+.fui-tab-hover
+{    
+    background:#fff;
+}
+.fui-tab-active
+{
+    border-bottom:solid 1px #f5f5f5;
+    background:#f5f5f5;
+}
+
+/* bottom */
+.fui-tabs-position-bottom .fui-tabs-space,
+.fui-tabs-position-bottom .fui-tabs-space2
+{
+    border:0;
+    border-top: 1px solid #ccc;
+}
+.fui-tabs-position-bottom .fui-tabs-bodys
+{    
+    border:solid 1px #ccc;
+    border-bottom:0;
+}
+.fui-tabs-position-bottom .fui-tab-active
+{
+    border-top:solid 1px white;
+    border-bottom:solid 1px #ccc;
+}
+
+/* left */
+.fui-tabs-position-left .fui-tabs-space,
+.fui-tabs-position-left .fui-tabs-space2
+{
+    border:0;
+    border-right: 1px solid #ccc;
+}
+.fui-tabs-position-left .fui-tabs-bodys
+{
+    border:solid 1px #ccc;
+    border-left:0;
+}
+.fui-tabs-position-left .fui-tab-active
+{    
+    border:solid 1px #ccc;
+    border-right:solid 1px white;
+}
+
+/* right */
+.fui-tabs-position-right .fui-tabs-space,
+.fui-tabs-position-right .fui-tabs-space2
+{
+    border:0;
+    border-left: 1px solid #ccc;
+}
+.fui-tabs-position-right .fui-tabs-bodys
+{    
+    border:solid 1px #ccc;
+    border-right:0;
+}
+.fui-tabs-position-right .fui-tab-active
+{    
+    border:solid 1px #ccc;
+    border-left:solid 1px white;
+}
+
+/*---------------------- tree -----------------------------*/
+
+
+.fui-tree-node-hover .fui-tree-nodeshow
+{
+    background:#fafafa;
+	border:solid 1px #ccc;	
+	border-radius: 4px; 	  
+}
+.fui-tree-selectedNode .fui-tree-nodeshow
+{
+    background:#f5f5f5;
+	border:solid 1px #ccc;	
+	border-radius: 4px; 
+}
+
+.fui-tree-leaf
+{
+    background-image:url(images/tree/leaf.gif);
+}
+.fui-tree-folder
+{
+    background-image:url(images/tree/folder.gif);
+}
+.fui-tree-expand .fui-tree-folder
+{
+    background-image:url(images/tree/folder-open.gif);
+}
+
+/*------------------- grid --------------------*/
+.fui-grid-border
+{
+    border-color:#cccccc;
+}
+.fui-grid-header
+{
+    background:#f5f5f5;
+}
+.fui-grid-headerCell, .fui-grid-topRightCell
+{
+    background:#f5f5f5;
+    border-right:#c5c5c5 1px solid;
+    border-bottom:#c5c5c5 1px solid;
+}
+.fui-grid-cell
+{
+    border-color:#e5e5e5;
+    border-bottom-color:#e5e5e5;
+}
+.fui-grid-filterRow
+{
+    background:#fafafa;
+}
+.fui-grid-footer, .fui-grid-pager
+{
+    border-top:solid 1px #ccc;    
+    background:#fafafa;
+}
+.fui-grid-columnproxy
+{
+    background:#f5f5f5;
+    border:#c5c5c5 1px solid;    
+}
+
+
+body .fui-grid-row-hover, body .fui-grid-row-hover .fui-grid-frozenCell
+{
+    background:#fafafa;    
+}
+html body .fui-grid-row-selected, body .fui-grid-row-selected .fui-grid-frozenCell
+{
+    background:#f5f5f5;		
+}
+
+/*------------------- pager --------------------*/
+.fui-pager-first
+{    
+    background:url(images/pager/first.gif) no-repeat;
+}
+.fui-pager-prev
+{
+    background-image:url(images/pager/prev.gif);
+}
+.fui-pager-next
+{
+    background-image:url(images/pager/next.gif);
+}
+.fui-pager-last
+{
+    background-image:url(images/pager/last.gif);
+}

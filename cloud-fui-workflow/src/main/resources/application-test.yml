@@ -1,0 +1,41 @@
+#服务注册中心配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@192.168.131.150:8761/eureka/
+  instance:
+    # 续约更新时间间隔（默认30秒）
+    lease-renewal-interval-in-seconds: 1
+    # 续约到期时间（默认90秒）
+    lease-expiration-duration-in-seconds: 5
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    type: org.apache.commons.dbcp.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.52.106:3306/activiti?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+    username: root
+    password: admin
+    initialSize: 1
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    connectionProperties: dbcp.stat.mergeSql=true;dbcp.stat.slowSqlMillis=5000
+activiti:
+  databaseType: mysql
+  tablePrefixIsSchema: true
+  databaseSchemaUpdate: true
+  activityFontName: 宋体
+  labelFontName: 宋体
+logging:
+  file: /usr/apps/logs/fui-workflow.log
