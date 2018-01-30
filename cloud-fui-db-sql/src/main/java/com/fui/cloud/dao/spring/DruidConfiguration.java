@@ -1,4 +1,4 @@
-package com.fui.cloud.dao;
+package com.fui.cloud.dao.spring;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;

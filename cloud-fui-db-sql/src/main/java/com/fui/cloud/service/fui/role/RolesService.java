@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @Service("rolesService")
 @Transactional
-public class RolesService extends AbstractSuperImplService {
+public class RolesService extends AbstractSuperImplService<Roles, Long> {
     @Autowired
     private RolesMapper rolesMapper;
 

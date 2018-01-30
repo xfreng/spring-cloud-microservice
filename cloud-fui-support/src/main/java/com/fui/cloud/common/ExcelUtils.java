@@ -54,15 +54,15 @@ public class ExcelUtils {
     private String templateDir;
     private int totalNum;
 
-    private static ThreadLocal<ExcelUtils> currThreadLocal = new ThreadLocal<ExcelUtils>();
+    private static ThreadLocal<ExcelUtils> curThreadLocal = new ThreadLocal<ExcelUtils>();
 
     public static ExcelUtils getInstance(int totalNum, String templateDir) {
-        if (currThreadLocal.get() == null) {
+        if (curThreadLocal.get() == null) {
             ExcelUtils zipExcelUtils = new ExcelUtils(totalNum, templateDir);
-            currThreadLocal.set(zipExcelUtils);
+            curThreadLocal.set(zipExcelUtils);
             return zipExcelUtils;
         } else {
-            return currThreadLocal.get();
+            return curThreadLocal.get();
         }
     }
 
@@ -343,7 +343,7 @@ public class ExcelUtils {
             FileUtils.ZipFiles(srcFile, zip);
         }
         // 操作完后释放当前对象
-        currThreadLocal.remove();
+        curThreadLocal.remove();
         return outZipFilePath;
     }
 

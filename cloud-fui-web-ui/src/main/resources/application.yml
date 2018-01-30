@@ -26,3 +26,7 @@ security:
 logging:
   config: classpath:conf/logback.xml
   level: debug
+fui:
+  quartz:
+    quartzSwitch: true
+    cronExpression: 0/2 * * * * ?

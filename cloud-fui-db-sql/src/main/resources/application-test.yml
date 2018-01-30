@@ -33,6 +33,9 @@ spring:
       filters: stat,wall,log4j
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       useGlobalDataSourceStat: true
+mybatis:
+  databaseType: mysql
+  databaseSchemaUpdate: false
 pagehelper:
   helperDialect: mysql
 logging:

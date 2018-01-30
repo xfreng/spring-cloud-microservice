@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service("permissionsService")
 @Transactional
-public class PermissionsService extends AbstractSuperImplService {
+public class PermissionsService extends AbstractSuperImplService<Permissions, Long> {
     @Autowired
     private PermissionsMapper permissionsMapper;
 
