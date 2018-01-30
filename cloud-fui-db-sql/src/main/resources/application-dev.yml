@@ -1,0 +1,39 @@
+#服务注册中心配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+  instance:
+    # 续约更新时间间隔（默认30秒）
+    lease-renewal-interval-in-seconds: 1
+    # 续约到期时间（默认90秒）
+    lease-expiration-duration-in-seconds: 5
+server:
+  port: 8033
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    fui:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/fui?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+      username: root
+      password: admin
+      initialSize: 1
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+pagehelper:
+  helperDialect: mysql
+logging:
+  file: D:/installed/apache-tomcat-7.0.72/logs/fui-db.log
