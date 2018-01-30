@@ -21,7 +21,7 @@ public class FilterConfiguration {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         String initParameterValue = "/supervisor/login/unAuthorized,/supervisor/login/timeout";
         registration.setFilter(new LoginFilter());
-        registration.addUrlPatterns("/supervisor/**");
+        registration.addUrlPatterns("/supervisor/*");
         registration.addInitParameter("excludedPages", initParameterValue);
         registration.setName("loginFilter");
         registration.setOrder(1);

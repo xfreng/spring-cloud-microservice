@@ -167,18 +167,16 @@ public class ShiroConfiguration {
     private void setShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
-        filterChainDefinitionMap.put("/supervisor/image", "anon");
         filterChainDefinitionMap.put("/supervisor/login/timeout", "anon");
         filterChainDefinitionMap.put("/supervisor/login/unAuthorized", "anon");
         filterChainDefinitionMap.put("/supervisor/login/logout", "anon");
-        filterChainDefinitionMap.put("/" + clientName + "/index", "authc");
         filterChainDefinitionMap.put("/supervisor/login/default", "authc");
         filterChainDefinitionMap.put("/supervisor/login/pact", "authc");
         filterChainDefinitionMap.put("/supervisor/EiService", "authc");
-        filterChainDefinitionMap.put("/supervisor/calendar", "authc, fuiPerms");
+        filterChainDefinitionMap.put("/supervisor/calendar", "authc");
         filterChainDefinitionMap.put("/supervisor/**", "authc, fuiPerms");
         filterChainDefinitionMap.put("/" + clientName + "/callback", "callbackFilter");
-        filterChainDefinitionMap.put("/" + clientName + "/**", "securityFilter, authc");
+        filterChainDefinitionMap.put("/" + clientName + "/**", "securityFilter");
 
         logger.info("shiro 规则配置完毕");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
