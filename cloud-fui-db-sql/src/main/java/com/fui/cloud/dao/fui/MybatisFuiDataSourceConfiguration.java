@@ -1,12 +1,13 @@
 package com.fui.cloud.dao.fui;
 
+import com.fui.cloud.dao.engine.DatabaseEngine;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,6 +23,8 @@ public class MybatisFuiDataSourceConfiguration {
 
     @Autowired
     private DataSource fuiDataSource;
+    @Autowired
+    private DataSource fuiDdlDataSource;
     @Autowired
     private Interceptor mybatisPageInterceptor;
 
@@ -44,7 +47,15 @@ public class MybatisFuiDataSourceConfiguration {
     }
 
     @Bean(name = "fuiSqlSessionTemplate")
-    public SqlSessionTemplate fuiSqlSessionTemplate(@Qualifier("fuiSqlSessionFactory") SqlSessionFactory fuiSqlSessionFactory) {
-        return new SqlSessionTemplate(fuiSqlSessionFactory);
+    @Primary
+    public SqlSessionTemplate fuiSqlSessionTemplate() throws Exception {
+        return new SqlSessionTemplate(fuiSqlSessionFactory());
+    }
+
+
+    @Bean
+    @ConfigurationProperties(prefix = "mybatis")
+    public DatabaseEngine fuiDatabaseEngine() {
+        return new DatabaseEngine(fuiDdlDataSource);
     }
 }

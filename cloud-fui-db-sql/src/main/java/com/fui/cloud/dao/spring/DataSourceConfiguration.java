@@ -1,6 +1,5 @@
 package com.fui.cloud.dao.spring;
 
-import com.fui.cloud.dao.engine.DatabaseEngine;
 import com.github.pagehelper.PageInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -36,9 +35,9 @@ public class DataSourceConfiguration {
         return DataSourceBuilder.create().type(type).build();
     }
 
-    @Bean
-    @ConfigurationProperties(prefix = "mybatis")
-    public DatabaseEngine databaseEngine() {
-        return new DatabaseEngine(fuiDataSource());
+    @Bean(name = "fuiDdlDataSource")
+    @ConfigurationProperties(prefix = "mybatis.datasource")
+    public DataSource fuiDdlDataSource() {
+        return DataSourceBuilder.create().build();
     }
 }
