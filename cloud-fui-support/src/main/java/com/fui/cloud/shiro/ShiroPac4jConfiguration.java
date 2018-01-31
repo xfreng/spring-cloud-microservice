@@ -33,13 +33,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Title Shiro 配置
+ * @Title Shiro Pac4j 配置
  * @Author sf.xiong on 2017/12/23.
  */
 @RefreshScope
 @Configuration
-public class ShiroConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+public class ShiroPac4jConfiguration {
+    private static final Logger logger = LoggerFactory.getLogger(ShiroPac4jConfiguration.class);
 
     @Value("${shiro.cas}")
     private String casServerUrlPrefix;
