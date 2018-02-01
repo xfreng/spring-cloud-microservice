@@ -233,25 +233,29 @@ function remove() {
         });
         return;
     }
-    var deploymentId = row.deploymentId;
-    $.ajax({
-        url: fui.contextPath + "/supervisor/workflow/process/delete",
-        data: {"deploymentId": deploymentId},
-        type: "POST",
-        dataType: "json",
-        success: function (data) {
-            fui.showMessageBox({
-                showModal: false,
-                width: 260,
-                title: "提示信息",
-                iconCls: "fui-messagebox-info",
-                message: data.message,
-                timeout: 3000,
-                x: "right",
-                y: "bottom"
+    fui.confirm("确认要删除选中的数据吗?", '提示信息', function (action) {
+        if (action == "ok") {
+            var deploymentId = row.deploymentId;
+            $.ajax({
+                url: fui.contextPath + "/supervisor/workflow/process/delete",
+                data: {"deploymentId": deploymentId},
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    fui.showMessageBox({
+                        showModal: false,
+                        width: 260,
+                        title: "提示信息",
+                        iconCls: "fui-messagebox-info",
+                        message: data.message,
+                        timeout: 3000,
+                        x: "right",
+                        y: "bottom"
+                    });
+                    process.reload();
+                    process.clearSelect(true);
+                }
             });
-            process.reload();
-            process.clearSelect(true);
         }
     });
 }
@@ -269,12 +273,18 @@ function onFileSelect(e) {
  * @param e
  */
 function onUploadSuccess(e) {
-    fui.confirm(fui.decode(e.serverData).message, '提示信息', function (action) {
-        if (action == "ok") {
-            process.reload();
-            deployWindow.hide();
-        }
+    fui.showMessageBox({
+        showModal: false,
+        width: 260,
+        title: "提示信息",
+        iconCls: "fui-messagebox-info",
+        message: fui.decode(e.serverData).message,
+        timeout: 3000,
+        x: "right",
+        y: "bottom"
     });
+    process.reload();
+    deployWindow.hide();
 }
 
 /**
