@@ -54,9 +54,9 @@ public class ModelController extends AbstractSuperController {
 
 
     @RequestMapping("/index")
-    public ModelAndView index() {
+    public ModelAndView index() throws Exception {
         ModelAndView mv = new ModelAndView("supervisor/workflow/model-list");
-        return mv;
+        return init(mv);
     }
 
     /**

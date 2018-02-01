@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-@WebFilter(filterName = "JSONPFilter", urlPatterns = "/service/*")
 public class JsonpCallbackFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(JsonpCallbackFilter.class);
 
@@ -40,9 +38,9 @@ public class JsonpCallbackFilter implements Filter {
 
             //handles the content-size truncation
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            outputStream.write(new String(parms.get("callback")[0] + "(").getBytes());
+            outputStream.write((parms.get("callback")[0] + "(").getBytes());
             outputStream.write(wrapper.getData());
-            outputStream.write(new String(");").getBytes());
+            outputStream.write(");".getBytes());
             byte jsonpResponse[] = outputStream.toByteArray();
 
             wrapper.setContentType("text/javascript;charset=UTF-8");
