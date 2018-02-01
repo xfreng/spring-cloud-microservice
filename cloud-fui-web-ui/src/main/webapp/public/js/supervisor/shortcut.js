@@ -109,7 +109,7 @@ function onButtonEdit() {
                     btnEdit.setValue(data.text);
                     btnEdit.setText(data.text);
                     grid.updateRow(grid.getSelected(), {
-                        "menuId": data.pid + "@" + data.id,
+                        "menuId": data.pid + data.id,
                         "funcName": data.text
                     });
                 }
