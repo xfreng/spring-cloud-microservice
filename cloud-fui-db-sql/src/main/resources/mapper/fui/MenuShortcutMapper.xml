@@ -135,7 +135,7 @@
       m.NODE_URL AS "funcAction"
     FROM
       fui_menu_shortcut s
-    LEFT JOIN fui_menu m ON s.menu_id = CONCAT( CONCAT( m.TREE_ENAME, '@' ), m.NODE_ENAME )
+    LEFT JOIN fui_menu m ON s.menu_id = CONCAT(m.TREE_ENAME, m.NODE_ENAME)
     LEFT JOIN fui_user u ON s.user_id = u.id
     WHERE
       s.user_id = #{userId}

@@ -35,25 +35,13 @@ spring:
       useGlobalDataSourceStat: true
 mybatis:
   databaseType: mysql
-  databaseSchemaUpdate: true
+  databaseSchemaUpdate: false
   datasource:
     type: org.apache.commons.dbcp.BasicDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
     username: root
     password: admin
-    initialSize: 1
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    connectionProperties: dbcp.stat.mergeSql=true;dbcp.stat.slowSqlMillis=5000
 pagehelper:
   helperDialect: mysql
 logging:

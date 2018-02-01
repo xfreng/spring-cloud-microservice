@@ -12,8 +12,8 @@
 		  p.id              as "id"
 	    FROM 
 	    fui_menu m
-		left join fui_permissions p on CONCAT( CONCAT( m.tree_ename, '.' ), m.node_ename ) = p.code
-	    WHERE 1=1
+		left join fui_permissions p on CONCAT(m.tree_ename, m.node_ename) = p.code
+	    WHERE 1=1 and p.node_type = 0
       	<if test="node != null and node != ''">
         	and m.tree_ename = #{node}
         </if>
