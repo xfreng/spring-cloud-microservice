@@ -22,14 +22,14 @@ public class ServletConfiguration {
     }
 
     @Bean
-    public ServletRegistrationBean restServlet() {
+    public ServletRegistrationBean actRestServlet() {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.scan("org.activiti.rest");
-        DispatcherServlet restServlet = new DispatcherServlet(applicationContext);
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(restServlet);
-        registrationBean.setLoadOnStartup(2);
+        DispatcherServlet actRestServlet = new DispatcherServlet(applicationContext);
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(actRestServlet);
+        registrationBean.setLoadOnStartup(1);
         registrationBean.addUrlMappings("/rest/*");
-        registrationBean.setName("RestServlet");
+        registrationBean.setName("ActRestServlet");
         return registrationBean;
     }
 }

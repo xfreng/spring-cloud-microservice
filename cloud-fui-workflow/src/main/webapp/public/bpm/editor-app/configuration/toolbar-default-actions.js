@@ -350,12 +350,6 @@ var SaveModelCtrl = ['$rootScope', '$scope', '$http', '$route', '$location',
         var json = $scope.editor.getJSON();
         json = JSON.stringify(json);
 
-        var params = {
-            modeltype: modelMetaData.model.modelType,
-            json_xml: json,
-            name: 'model'
-        };
-
         $scope.status = {
             loading: false
         };
@@ -390,9 +384,6 @@ var SaveModelCtrl = ['$rootScope', '$scope', '$http', '$route', '$location',
 
             modelMetaData.name = $scope.saveDialog.name;
             modelMetaData.description = $scope.saveDialog.description;
-
-            var json = $scope.editor.getJSON();
-            json = JSON.stringify(json);
 
             var selection = $scope.editor.getSelection();
             $scope.editor.setSelection([]);
@@ -433,7 +424,7 @@ var SaveModelCtrl = ['$rootScope', '$scope', '$http', '$route', '$location',
                 ignoreErrors: true,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
                 },
                 transformRequest: function (obj) {
                     var str = [];
@@ -443,42 +434,39 @@ var SaveModelCtrl = ['$rootScope', '$scope', '$http', '$route', '$location',
                     return str.join("&");
                 },
                 url: KISBPM.URL.putModel(modelMetaData.modelId)
-            })
-
-                .success(function (data, status, headers, config) {
-                    $scope.editor.handleEvents({
-                        type: ORYX.CONFIG.EVENT_SAVED
-                    });
-                    $scope.modelData.name = $scope.saveDialog.name;
-                    $scope.modelData.lastUpdated = data.lastUpdated;
-
-                    $scope.status.loading = false;
-                    $scope.$hide();
-
-                    // Fire event to all who is listening
-                    var saveEvent = {
-                        type: KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED,
-                        model: params,
-                        modelId: modelMetaData.modelId,
-                        eventType: 'update-model'
-                    };
-                    KISBPM.eventBus.dispatch(KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED, saveEvent);
-
-                    // Reset state
-                    $scope.error = undefined;
-                    $scope.status.loading = false;
-
-                    // Execute any callback
-                    if (successCallback) {
-                        successCallback();
-                    }
-
-                })
-                .error(function (data, status, headers, config) {
-                    $scope.error = {};
-                    console.log('Something went wrong when updating the process model:' + JSON.stringify(data));
-                    $scope.status.loading = false;
+            }).success(function (data, status, headers, config) {
+                $scope.editor.handleEvents({
+                    type: ORYX.CONFIG.EVENT_SAVED
                 });
+                $scope.modelData.name = $scope.saveDialog.name;
+                $scope.modelData.lastUpdated = data.lastUpdated;
+
+                $scope.status.loading = false;
+                $scope.$hide();
+
+                // Fire event to all who is listening
+                var saveEvent = {
+                    type: KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED,
+                    model: params,
+                    modelId: modelMetaData.modelId,
+                    eventType: 'update-model'
+                };
+                KISBPM.eventBus.dispatch(KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED, saveEvent);
+
+                // Reset state
+                $scope.error = undefined;
+                $scope.status.loading = false;
+
+                // Execute any callback
+                if (successCallback) {
+                    successCallback();
+                }
+
+            }).error(function (data, status, headers, config) {
+                $scope.error = {};
+                console.log('Something went wrong when updating the process model:' + JSON.stringify(data));
+                $scope.status.loading = false;
+            });
         };
 
     }];

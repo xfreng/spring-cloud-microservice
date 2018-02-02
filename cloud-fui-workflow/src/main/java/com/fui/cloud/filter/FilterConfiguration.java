@@ -11,7 +11,7 @@ public class FilterConfiguration {
     public FilterRegistrationBean jsonpCallbackFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean(new JsonpCallbackFilter());
         registration.setName("JSONPFilter");
-        registration.addUrlPatterns("/*");
+        registration.addUrlPatterns("/service/*");
         return registration;
     }
 }
