@@ -1,5 +1,6 @@
 package com.fui.cloud;
 
+import com.fui.cloud.task.StartupRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -35,5 +36,15 @@ public class ServiceWebUiApplication extends SpringBootServletInitializer {
     @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    /**
+     * 项目启动后执行一次
+     *
+     * @return StartupRunner
+     */
+    @Bean
+    public StartupRunner startupRunner() {
+        return new StartupRunner();
     }
 }

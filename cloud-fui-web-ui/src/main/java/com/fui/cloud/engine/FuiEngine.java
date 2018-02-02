@@ -15,7 +15,7 @@ public class FuiEngine {
     private String cronExpression;
     private FuiTask fuiTask;
     private SchedulerFactoryBean schedulerFactoryBean;
-    private ThreadLocal<ScheduleJob> curScheduleJob = new ThreadLocal<ScheduleJob>();
+    public static ThreadLocal<ScheduleJob> curScheduleJob = new ThreadLocal<ScheduleJob>();
 
     public FuiEngine(FuiTask fuiTask, SchedulerFactoryBean schedulerFactoryBean) {
         this.fuiTask = fuiTask;
@@ -37,8 +37,6 @@ public class FuiEngine {
                 curScheduleJob.set(scheduleJob);
             }
             QuartzManager.addJob(schedulerFactoryBean, scheduleJob, fuiTask.getClass());
-        } else {
-            fuiTask.runTask();
         }
     }
 
