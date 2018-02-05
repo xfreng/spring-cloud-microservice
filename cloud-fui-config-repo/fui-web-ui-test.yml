@@ -1,6 +1,5 @@
 shiro:
-  contentPath: /cas
-  cas: http://192.168.131.150:9090
+  cas: http://192.168.131.150:9090/cas
   server: http://192.168.131.150:9090
 pac4j:
   clientName: fui
