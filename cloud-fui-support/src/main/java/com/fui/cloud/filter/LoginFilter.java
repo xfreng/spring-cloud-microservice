@@ -60,12 +60,9 @@ public class LoginFilter implements Filter {
         if (RequestContext.isAjaxRequest(request)) {
             response.getWriter().write("timeout");
             return;
-        } else {
-            /**
-             *  TODO  登录超时或session失效跳转到登录页面
-             */
-            response.sendRedirect(request.getContextPath() + "/supervisor/login/timeout");
         }
+        //登录超时或session失效跳转到登录页面
+        response.sendRedirect(request.getContextPath() + "/index");
     }
 
     @Override

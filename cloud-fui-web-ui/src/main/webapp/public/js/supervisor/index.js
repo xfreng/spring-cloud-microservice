@@ -156,7 +156,7 @@ function save() {
         success: function (text) {
             fui.confirm(text.message, "提示信息", function () {
                 if (text.result == "1") {
-                    window.location.href = fui.contextPath + "/supervisor/login/logout";
+                    window.location.href = fui.contextPath + "/logout";
                 }
             });
         }

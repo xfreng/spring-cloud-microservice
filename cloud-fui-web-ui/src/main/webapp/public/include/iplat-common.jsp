@@ -44,20 +44,10 @@
 <link rel="stylesheet" type="text/css" href="${path}/public/EF/Themes/styleApple/${iPlatStyle}/iplat-ui-theme-2.0.css"/>
 <link rel="stylesheet" type="text/css" href="${path}/public/EP/indexReal-${iPlatStyle}-3.0.css"/>
 <script type="text/javascript">
-    /** Ajax请求异常处理全局设置 */
-    $(document).ajaxComplete(function (evt, request, settings) {
-        var text = request.responseText;
-        if(text.indexOf("权限不足") != -1){
-            alert("权限不足!");
-        } else if (text == "timeout") { //判断返回的数据内容，如果是超时，则跳转到登陆页面
-            alert("未登录或登录超时!");
-            var win = window.parent || window;
-            win.location.href = fui.contextPath + '/supervisor/login/index';
-        }
-    });
     /**
      * 自动layout高度
      * @param layoutId
+     * @param minus
      */
     function autoLayoutSize(layoutId, minus) {
         var layout = fui.get(layoutId);
@@ -66,14 +56,14 @@
             pageHeadHeight = 0;
         }
         var minusHeight = 0;
-        if (minus != undefined) {
+        if (typeof(minus) != "undefined") {
             minusHeight = minus;
         }
         layout.setHeight($(window).height() - pageHeadHeight - minusHeight);
         $(window).resize(function () {
             layout.setHeight($(window).height() - pageHeadHeight - minusHeight);
         });
-    };
+    }
     /**
      * 关闭所有子窗口(IE下有效)
      */
@@ -96,5 +86,5 @@
                 closeSonWindow();
             }
         }
-    };
+    }
 </script>

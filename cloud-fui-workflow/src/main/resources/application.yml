@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: fui-workflow
   mvc:
     view:
       prefix: /WEB-INF/views/

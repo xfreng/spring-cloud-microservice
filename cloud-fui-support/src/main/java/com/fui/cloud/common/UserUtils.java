@@ -2,6 +2,7 @@ package com.fui.cloud.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.model.ManageToken;
+import io.buji.pac4j.subject.Pac4jPrincipal;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -43,7 +44,11 @@ public class UserUtils {
      * @return 当前用户信息
      */
     public static JSONObject getCurrent() {
-        return (JSONObject) getSubject().getPrincipal();
+        Pac4jPrincipal principal = (Pac4jPrincipal) getSubject().getPrincipal();
+        if (principal != null) {
+            return JSONObject.parseObject(JSONObject.toJSONString(principal.getProfile().getAttributes()));
+        }
+        return null;
     }
 
     /**

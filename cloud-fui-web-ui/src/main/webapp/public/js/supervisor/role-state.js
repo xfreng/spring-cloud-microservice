@@ -18,7 +18,7 @@ function doSaveRole() {
         success: function (text) {
             text = fui.decode(text);
             if (text.message != null && text.message != undefined) {
-                fui.confirm(text.message, "提示信息", function () {
+                fui.alert(text.message, "提示信息", function () {
                     if (action == "ok") {
                         if (text.result == "0") {
                             return;

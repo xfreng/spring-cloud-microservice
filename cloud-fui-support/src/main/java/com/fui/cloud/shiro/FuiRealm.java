@@ -18,6 +18,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.pac4j.core.profile.CommonProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +52,7 @@ public class FuiRealm extends Pac4jRealm {
         logger.info("doGetAuthenticationInfo: {}", authenticationToken.toString());
         final Pac4jToken token = (Pac4jToken) authenticationToken;
         final LinkedHashMap<String, CommonProfile> profiles = token.getProfiles();
-        final Pac4jPrincipal principal = new Pac4jPrincipal(profiles);
+        final Pac4jPrincipal principal = new Pac4jPrincipal(profiles, this.getPrincipalNameAttribute());
         //从cas获取当前用户的认证信息
         Map<String, Object> attributes = principal.getProfile().getAttributes();
         if (attributes != null) {
@@ -62,7 +63,8 @@ public class FuiRealm extends Pac4jRealm {
                 if (user.getBoolean("erased")) {
                     logger.info("用户 {} 登录认证通过", username);
                     userService.login(user.getLong("id"));
-                    return new SimpleAuthenticationInfo(user, profiles.hashCode(), getName());
+                    PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, this.getName());
+                    return new SimpleAuthenticationInfo(principalCollection, profiles.hashCode());
                 }
             } catch (Exception e) {
                 logger.error("login Exception: {}", e);
@@ -74,7 +76,8 @@ public class FuiRealm extends Pac4jRealm {
     //实现用户的授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        JSONObject user = (JSONObject) principals.getPrimaryPrincipal();
+        final Pac4jPrincipal principal = ((Pac4jPrincipal) principals.getPrimaryPrincipal());
+        JSONObject user = JSONObject.parseObject(JSONObject.toJSONString(principal.getProfile().getAttributes()));
         List<JSONObject> permissionsList;
         //从DB获取当前用户的权限信息
         if (CommonConstants.SUPER_USER_ID.equals(user.getString("ename"))) {  //超级管理员拥有所有权限

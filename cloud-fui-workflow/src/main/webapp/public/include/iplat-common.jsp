@@ -52,7 +52,7 @@
         } else if (text == "timeout") { //判断返回的数据内容，如果是超时，则跳转到登陆页面
             alert("未登录或登录超时!");
             var win = window.parent || window;
-            win.location.href = fui.contextPath + '/supervisor/login/index';
+            win.location.href = fui.contextPath + '/index';
         }
     });
     /**

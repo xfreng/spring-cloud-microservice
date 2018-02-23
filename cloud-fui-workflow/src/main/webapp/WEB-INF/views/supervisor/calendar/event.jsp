@@ -188,6 +188,7 @@
     </form>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/common/fui/common.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$(".datepicker").datepicker({minDate: -3,maxDate: 3,dateFormat: 'yy-mm-dd'});

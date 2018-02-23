@@ -127,9 +127,6 @@ eiTreeModel.prototype.getChildren = function(p,tree){
 			 host.status(-1);
 			 if (status != -2){
 				 console.log("ERROR");
-                 alert("未登录或登录超时!");
-                 var win = window.parent || window;
-                 win.location.href = fui.contextPath + '/supervisor/login/index';
 			 }
 		 } //异常处理待改进
     }; 

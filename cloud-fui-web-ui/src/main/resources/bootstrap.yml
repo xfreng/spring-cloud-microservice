@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: fui-web-ui
   profiles:
     active: dev
 server:

@@ -2,27 +2,20 @@ function reload() {
     window.location.reload();
 }
 
-function help(msg) {
-    alert('欢迎使用' + msg);
-}
-
-function to(url) {
-    window.location.href = url;
-}
-
-function back() {
-    history.go(-1);
-}
-
-function save(url) {
-    alert('保存成功！');
-    to(url);
-}
-
-function add(url) {
-    alert('新建成功！');
-    to(url);
-}
+/** Ajax请求异常处理全局设置 */
+$(document).ajaxComplete(function (evt, request, settings) {
+    var text = request.responseText;
+    if (typeof(text) == "undefined") {
+        return;
+    }
+    if (text.indexOf("权限不足") != -1) {
+        alert("权限不足!");
+    } else if (text == "timeout") { //判断返回的数据内容，如果是超时，则跳转到登陆页面
+        alert("未登录或登录超时!");
+        var win = window.parent || window;
+        win.location.href = fui.contextPath + '/index';
+    }
+});
 
 var timerObj = "";
 

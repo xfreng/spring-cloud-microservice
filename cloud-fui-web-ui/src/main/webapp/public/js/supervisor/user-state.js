@@ -16,7 +16,7 @@ function doSaveUser() {
         success: function (text) {
             text = fui.decode(text);
             if (text.message != null && text.message != undefined) {
-                fui.confirm(text.message, "提示信息", function (action) {
+                fui.alert(text.message, "提示信息", function (action) {
                     if (action == "ok") {
                         if (text.result == "0") {
                             return;

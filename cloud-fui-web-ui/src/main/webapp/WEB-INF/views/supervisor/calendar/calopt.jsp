@@ -29,6 +29,7 @@
 	<script src='${pageContext.request.contextPath}/public/js/fullcalendar.min.js'></script>
 	<script src='${pageContext.request.contextPath}/public/js/jquery.fancybox.pack.js'></script>
 	<script src='${pageContext.request.contextPath}/public/js/jquery.colorpicker.js'></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/public/common/fui/common.js"></script>
 	<script type="text/javascript">
 	$(function() {
 		$('#calendar').fullCalendar({

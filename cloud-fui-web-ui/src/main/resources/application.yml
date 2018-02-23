@@ -3,8 +3,6 @@ eureka:
     healthcheck:
       enabled: true
 spring:
-  application:
-    name: fui-web-ui
   mvc:
     view:
       prefix: /WEB-INF/views/

@@ -1,7 +1,6 @@
 #服务端口
 server:
   port: 8082
-
 #服务注册中心配置
 eureka:
   client:

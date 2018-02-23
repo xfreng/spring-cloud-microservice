@@ -50,7 +50,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if (RequestContext.isAjaxRequest(request)) {
                 response.getWriter().write("timeout");
             } else {
-                response.sendRedirect(request.getContextPath() + "/supervisor/login/timeout");
+                response.sendRedirect(request.getContextPath() + "/index");
             }
             return false;
         } else {

@@ -1,5 +1,6 @@
 package com.fui.cloud.fastdfs.pools;
 
+import org.apache.commons.lang.StringUtils;
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -178,10 +180,17 @@ public class FastDfsConnectionPool {
      */
     private void initClientGlobal() throws Exception {
         /** 客户端连接配置文件 */
-        ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
-        String path = classLoader.getResource(clientConf).getPath();
-        logger.info("加载FastDFS Path = {}", path);
-        ClientGlobal.init(path);
+        if (StringUtils.isNotBlank(clientConf)) {
+            ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
+            URL url = classLoader.getResource(clientConf);
+            if (url != null) {
+                String path = url.getPath();
+                logger.info("加载FastDFS Path = {}", path);
+                ClientGlobal.init(path);
+            }
+        } else {
+            logger.info("未发现FastDFS[fastdfs_client.conf]文件,clientConf = {}", clientConf);
+        }
     }
 
 

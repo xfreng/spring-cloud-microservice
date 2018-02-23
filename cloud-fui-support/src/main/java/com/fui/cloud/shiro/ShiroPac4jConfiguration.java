@@ -13,8 +13,8 @@ import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.config.CasConfiguration;
-import org.pac4j.core.client.Clients;
 import org.pac4j.core.config.Config;
+import org.pac4j.core.context.session.J2ESessionStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -26,8 +26,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
-import java.net.URLEncoder;
 import java.util.EventListener;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,28 +41,59 @@ import java.util.Map;
 public class ShiroPac4jConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(ShiroPac4jConfiguration.class);
 
-    @Value("${shiro.cas}")
-    private String casServerUrlPrefix;
-    @Value("${shiro.server}")
-    private String shiroServerUrlPrefix;
-    @Value("${pac4j.clientName}")
-    private String clientName;
+    @Value("${sso.cas.server.prefixUrl}")
+    private String casServerPrefixUrl;
+    @Value("${sso.cas.server.loginUrl}")
+    private String casServerLoginUrl;
+    @Value("${sso.cas.client.name}")
+    private String casClientName;
+    @Value("${sso.cas.client.callbackUrl}")
+    private String callbackUrl;
+    @Value("${sso.cas.client.successUrl}")
+    private String successUrl;
 
+    /**
+     * 请求cas服务端配置
+     *
+     * @return casConfiguration
+     */
+    @Bean
+    public CasConfiguration casConfiguration() {
+        CasConfiguration configuration = new CasConfiguration(casServerLoginUrl, casServerPrefixUrl);
+        configuration.setAcceptAnyProxy(true);
+        configuration.setLogoutHandler(casLogoutHandler());
+        return configuration;
+    }
+
+    /**
+     * shiro登出处理器，销毁session及登录状态等
+     *
+     * @return casLogoutHandler
+     */
+    @Bean
+    public ShiroCasLogoutHandler casLogoutHandler() {
+        ShiroCasLogoutHandler casLogoutHandler = new ShiroCasLogoutHandler();
+        casLogoutHandler.setDestroySession(true);
+        return casLogoutHandler;
+    }
+
+    /**
+     * cas客户端配置
+     *
+     * @return casClient
+     */
     @Bean
     public CasClient casClient() {
-        CasConfiguration configuration = new CasConfiguration(casServerUrlPrefix + "/login", casServerUrlPrefix);
-        configuration.setAcceptAnyProxy(true);
-        CasClient casClient = new CasClient(configuration);
-        casClient.setCallbackUrl(shiroServerUrlPrefix + "/" + clientName + "/callback?client_name=" + clientName);
-        casClient.setName(clientName);
+        CasClient casClient = new CasClient(casConfiguration());
+        casClient.setName(casClientName);
+        casClient.setCallbackUrl(callbackUrl);
         return casClient;
     }
 
     @Bean
     public Config casConfig() {
-        Config config = new Config();
-        Clients clients = new Clients(shiroServerUrlPrefix + "/" + clientName + "/callback?client_name=" + clientName, casClient());
-        config.setClients(clients);
+        Config config = new Config(casClient());
+        config.setSessionStore(new J2ESessionStore());
         return config;
     }
 
@@ -92,27 +123,13 @@ public class ShiroPac4jConfiguration {
         return bean;
     }
 
-    /**
-     * 注册单点登出filter
-     */
-    @Bean
-    public FilterRegistrationBean singleSignOutFilter() {
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setName("singleSignOutFilter");
-        bean.addInitParameter("casServerUrlPrefix", casServerUrlPrefix);
-        bean.setFilter(new SingleSignOutFilter());
-        bean.addUrlPatterns("/*");
-        bean.setEnabled(true);
-        return bean;
-    }
-
     @Bean
     public FuiPermissionResolver fuiPermissionResolver() {
         return new FuiPermissionResolver();
     }
 
-    @Bean(name = "authorizer")
-    public ModularRealmAuthorizer getModularRealmAuthorizer() {
+    @Bean
+    public ModularRealmAuthorizer authorizer() {
         ModularRealmAuthorizer resolver = new ModularRealmAuthorizer();
         resolver.setPermissionResolver(fuiPermissionResolver());
         return resolver;
@@ -128,6 +145,7 @@ public class ShiroPac4jConfiguration {
         filterRegistration.addInitParameter("targetFilterLifecycle", "true");
         filterRegistration.setEnabled(true);
         filterRegistration.addUrlPatterns("/*");
+        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR);
         return filterRegistration;
     }
 
@@ -144,12 +162,11 @@ public class ShiroPac4jConfiguration {
     }
 
     @Bean(name = "securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager() {
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-        manager.setAuthorizer(getModularRealmAuthorizer());
+        manager.setAuthorizer(authorizer());
         manager.setRealm(fuiRealm());
         manager.setSubjectFactory(subjectFactory());
-        // 用户授权/认证信息Cache, 采用EhCache 缓存
         manager.setCacheManager(ehCacheManager());
         return manager;
     }
@@ -157,7 +174,7 @@ public class ShiroPac4jConfiguration {
     @Bean
     public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-        advisor.setSecurityManager(getDefaultWebSecurityManager());
+        advisor.setSecurityManager(securityManager());
         return advisor;
     }
 
@@ -167,18 +184,17 @@ public class ShiroPac4jConfiguration {
     private void setShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
-        filterChainDefinitionMap.put("/supervisor/login/timeout", "anon");
+        filterChainDefinitionMap.put("/index", "signOutFilter, securityFilter");
+        filterChainDefinitionMap.put("/logout", "logoutFilter");
+        filterChainDefinitionMap.put("/callback", "callbackFilter");
         filterChainDefinitionMap.put("/supervisor/login/unAuthorized", "anon");
-        filterChainDefinitionMap.put("/supervisor/login/logout", "anon");
         filterChainDefinitionMap.put("/supervisor/login/default", "authc");
         filterChainDefinitionMap.put("/supervisor/login/pact", "authc");
         filterChainDefinitionMap.put("/supervisor/EiService", "authc");
         filterChainDefinitionMap.put("/supervisor/calendar", "authc");
         filterChainDefinitionMap.put("/supervisor/**", "authc, fuiPerms");
-        filterChainDefinitionMap.put("/" + clientName + "/callback", "callbackFilter");
-        filterChainDefinitionMap.put("/" + clientName + "/**", "securityFilter");
 
-        logger.info("shiro 规则配置完毕");
+        logger.info("shiro pac4j规则配置完毕");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
@@ -187,38 +203,36 @@ public class ShiroPac4jConfiguration {
      */
     private void setShiroFilters(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
-        filters.put("fuiPerms", new FuiPermsFilter());
+        SingleSignOutFilter signOutFilter = new SingleSignOutFilter();
+        signOutFilter.setCasServerUrlPrefix(casServerPrefixUrl);
+        filters.put("signOutFilter", signOutFilter);
+        SecurityFilter securityFilter = new SecurityFilter();
+        securityFilter.setConfig(casConfig());
+        securityFilter.setClients(casClientName);
+        filters.put("securityFilter", securityFilter);
         CallbackFilter callbackFilter = new CallbackFilter();
         callbackFilter.setConfig(casConfig());
-        callbackFilter.setDefaultUrl("/" + clientName + "/index");
+        callbackFilter.setDefaultUrl(successUrl);
         filters.put("callbackFilter", callbackFilter);
-        SecurityFilter securityFilter = new SecurityFilter();
-        securityFilter.setClients(clientName);
-        securityFilter.setConfig(casConfig());
-        filters.put("securityFilter", securityFilter);
         LogoutFilter logoutFilter = new LogoutFilter();
+        logoutFilter.setCentralLogout(true);
+        logoutFilter.setLocalLogout(false);
         logoutFilter.setConfig(casConfig());
+        logoutFilter.setDefaultUrl(successUrl);
         filters.put("logoutFilter", logoutFilter);
+        filters.put("fuiPerms", new FuiPermsFilter());
         shiroFilterFactoryBean.setFilters(filters);
+        setShiroFilterChain(shiroFilterFactoryBean);
     }
 
     /**
      * shiroFilter
      */
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean() throws Exception {
+    public ShiroFilterFactoryBean shiroFilter() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        // 必须设置 SecurityManager
-        shiroFilterFactoryBean.setSecurityManager(getDefaultWebSecurityManager());
-        // 设置登录页面
-        String clientUrl = shiroServerUrlPrefix + "/" + clientName + "/callback?client_name=" + clientName;
-        String loginUrl = casServerUrlPrefix + "/login?service=" + URLEncoder.encode(clientUrl, "utf-8");
-        shiroFilterFactoryBean.setLoginUrl(loginUrl);
-        // 配置无权限跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/supervisor/login/unAuthorized");
-        shiroFilterFactoryBean.setSuccessUrl("/" + clientName + "/index");
+        shiroFilterFactoryBean.setSecurityManager(securityManager());
         setShiroFilters(shiroFilterFactoryBean);
-        setShiroFilterChain(shiroFilterFactoryBean);
         return shiroFilterFactoryBean;
     }
 }

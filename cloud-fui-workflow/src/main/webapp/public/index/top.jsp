@@ -67,7 +67,7 @@
 	function logout(e) {
 	    fui.confirm("确定注销吗？","提示信息",function (action) {
             if(action == "ok"){
-                window.location.href = fui.contextPath + "/supervisor/login/logout";
+                window.location.href = fui.contextPath + "/logout";
             }
         })
 	}

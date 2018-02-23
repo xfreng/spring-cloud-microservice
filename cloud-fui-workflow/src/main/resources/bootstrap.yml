@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: fui-workflow
   profiles:
     active: dev
 server:

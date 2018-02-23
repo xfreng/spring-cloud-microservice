@@ -12,7 +12,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
     @Bean
     public HandlerInterceptor loginInterceptor() {
         LoginInterceptor loginInterceptor = new LoginInterceptor();
-        String[] allowUrls = new String[]{"/supervisor/login/unAuthorized", "/supervisor/login/timeout"};
+        String[] allowUrls = new String[]{"/supervisor/login/unAuthorized"};
         loginInterceptor.setAllowUrls(allowUrls);
         return loginInterceptor;
     }
