@@ -1,8 +1,12 @@
-shiro:
-  cas: http://192.168.131.150:9090/cas
-  server: http://192.168.131.150:9090
-pac4j:
-  clientName: fui
+sso:
+  cas:
+    server:
+      prefixUrl: http://192.168.131.150:9090/cas
+      loginUrl: ${sso.cas.server.prefixUrl}/login
+    client:
+      name: fui
+      callbackUrl: http://192.168.131.150:8088/callback?client_name=${sso.cas.client.name}
+      successUrl: http://192.168.131.150:8088/index
 fastdfs:
   clientConf: conf/fastdfs_client.conf
   heartbeatTime: 3600000
