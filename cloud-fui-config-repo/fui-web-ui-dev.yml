@@ -1,7 +1,7 @@
 sso:
   cas:
     server:
-      prefixUrl: http://127.0.0.1:9090/cas
+      prefixUrl: http://localhost:9090/cas
       loginUrl: ${sso.cas.server.prefixUrl}/login
     client:
       name: fui
