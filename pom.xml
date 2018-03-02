@@ -9,6 +9,7 @@
     <modules>
         <module>cloud-fui-discovery-eureka</module>
         <module>cloud-fui-config</module>
+        <module>cloud-fui-config-client</module>
         <module>cloud-fui-web-ui</module>
         <module>cloud-fui-db-sql</module>
         <module>cloud-fui-workflow</module>

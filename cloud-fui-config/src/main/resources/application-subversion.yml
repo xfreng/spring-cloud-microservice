@@ -15,10 +15,13 @@ eureka:
 spring:
   cloud:
     config:
+      enabled: true
       server:
-        git:
-          uri: https://github.com/xfreng/spring-cloud-microservice.git
-          searchPaths: cloud-fui-config-repo
+        svn:
+          uri: svn://192.168.131.150/cloud-fui-config-repo
+          username: xiongshifeng
+          password: xiongshifeng
+        default-label: config
     bus:
       enabled: true
   rabbitmq:

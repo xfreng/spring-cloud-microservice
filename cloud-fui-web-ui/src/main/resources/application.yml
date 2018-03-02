@@ -12,6 +12,11 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
+  rabbitmq:
+    host: 192.168.131.150
+    port: 5672
+    username: ${security.user.name}
+    password: ${security.user.password}
 info:
   version: @project.version@
 management:

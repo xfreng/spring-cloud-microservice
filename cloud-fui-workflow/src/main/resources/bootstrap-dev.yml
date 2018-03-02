@@ -4,7 +4,7 @@ spring:
       #配置中心服务器地址配置
       uri: http://localhost:8082/
       profile: dev
-      label: master
+      label: config
       retry:
         # 配置重试次数，默认为6
         max-attempts: 6

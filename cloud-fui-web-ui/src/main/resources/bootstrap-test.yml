@@ -4,7 +4,7 @@ spring:
       #配置中心服务器地址配置
       uri: http://192.168.131.150:8082/
       profile: test
-      label: master
+      label: config
       retry:
         # 配置重试次数，默认为6
         max-attempts: 6

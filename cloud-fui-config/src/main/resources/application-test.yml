@@ -1,7 +1,6 @@
 #服务端口
 server:
   port: 8082
-
 #服务注册中心配置
 eureka:
   client:
@@ -15,5 +14,12 @@ spring:
         git:
           uri: https://github.com/xfreng/spring-cloud-microservice.git
           searchPaths: cloud-fui-config-repo
+    bus:
+      enabled: true
+  rabbitmq:
+    host: 192.168.131.150
+    port: 5672
+    username: ${security.user.name}
+    password: ${security.user.password}
 logging:
   file: /usr/apps/logs/fui-config.log
