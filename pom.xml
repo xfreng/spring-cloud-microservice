@@ -15,6 +15,7 @@
         <module>cloud-fui-workflow</module>
         <module>cloud-fui-boot-admin-server</module>
         <module>cloud-fui-support</module>
+        <module>cloud-fui-consul-client</module>
     </modules>
 
 
