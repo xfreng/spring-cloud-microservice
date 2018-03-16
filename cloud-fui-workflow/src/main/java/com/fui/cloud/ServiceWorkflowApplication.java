@@ -20,8 +20,8 @@ import org.springframework.web.client.RestTemplate;
 public class ServiceWorkflowApplication extends SpringBootServletInitializer {
 
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(ServiceWorkflowApplication.class);
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(ServiceWorkflowApplication.class);
     }
 
     public static void main(String[] args) {
