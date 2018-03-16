@@ -73,7 +73,7 @@
 	}
 	
 	function toIndex(e) {
-		window.location.href = fui.contextPath + "/supervisor/login/default";
+		window.location.href = fui.contextPath + "/index";
 	}
 </script>
 </html>
