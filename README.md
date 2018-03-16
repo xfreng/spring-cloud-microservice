@@ -13,12 +13,13 @@ Eureka服务发现
 jcoffee框架项目视图（fui-maven移植）
 ### war包部署到tomcat说明：
 #### 1、改变启动方式，添加如下代码：
-`    @Override
+```java 
+     @Override
      protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
          return builder.sources(ServiceWebUiApplication.class);
      }
      //ServiceWebUiApplication继承SpringBootServletInitializer
-`
+```
 #### 2、删除所有跟tomcat相关的jar包
 ## 七、cloud-fui-boot-admin-server
 SpringBoot监控中心
