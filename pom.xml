@@ -58,13 +58,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.fui.cloud</groupId>
-                <artifactId>cloud-fui-support</artifactId>
-                <version>V1.0.0</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.fui.cloud</groupId>
+            <artifactId>cloud-fui-support</artifactId>
+            <version>V1.0.0</version>
+        </dependency>
+    </dependencies>
     <!--资源管理中心-->
     <repositories>
         <repository>
