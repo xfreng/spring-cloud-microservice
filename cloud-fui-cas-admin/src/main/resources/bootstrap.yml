@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: fui-cas-admin
+  profiles:
+    active: dev
+server:
+  tomcat:
+    uri-encoding: UTF-8
