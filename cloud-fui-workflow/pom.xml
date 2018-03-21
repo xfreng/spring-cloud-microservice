@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.fui.cloud</groupId>
             <artifactId>cloud-fui-support</artifactId>
-            <version>V1.0.0</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

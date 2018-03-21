@@ -55,6 +55,7 @@
             win.location.href = fui.contextPath + '/index';
         }
     });
+
     /**
      * 自动layout高度
      * @param layoutId
@@ -73,7 +74,8 @@
         $(window).resize(function () {
             layout.setHeight($(window).height() - pageHeadHeight - minusHeight);
         });
-    };
+    }
+
     /**
      * 关闭所有子窗口(IE下有效)
      */
@@ -96,5 +98,5 @@
                 closeSonWindow();
             }
         }
-    };
+    }
 </script>

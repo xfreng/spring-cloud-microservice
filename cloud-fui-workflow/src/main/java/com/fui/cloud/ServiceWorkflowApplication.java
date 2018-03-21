@@ -19,6 +19,12 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 public class ServiceWorkflowApplication extends SpringBootServletInitializer {
 
+    /**
+     * 用于部署到外部tomcat运行
+     *
+     * @param builder 资源加载
+     * @return SpringApplicationBuilder
+     */
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(ServiceWorkflowApplication.class);
