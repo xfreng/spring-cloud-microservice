@@ -154,7 +154,7 @@
 </nav>
 <div class="down-main">
     <div class="left-main left-full">
-        <div class="sidebar-fold"><span class="glyphicon glyphicon-menu-hamburger" style="margin-left:16px;margin-right:112px;"></span></div>
+        <div class="sidebar-fold"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
         <div class="subNavBox">
             <div class="sBox">
                 <div class="subNav sublist-down"><span class="title-icon glyphicon glyphicon-chevron-down"></span><span class="sublist-title">用户中心</span>

@@ -32,7 +32,7 @@ body{font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragin
 
 /*左侧导航栏*/
 .down-main{position: absolute;width: 100%;top: 50px;bottom: 0px;z-index: 100;}
-.left-full{ width:160px; display:block;}
+.left-full{ width:148px; display:block;}
 .right-full{ left:160px;}
 .left-off{ width:48px; display:block;}
 .right-off{ left:48px;}
