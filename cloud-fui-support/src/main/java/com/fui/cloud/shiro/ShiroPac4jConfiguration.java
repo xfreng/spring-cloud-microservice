@@ -184,8 +184,8 @@ public class ShiroPac4jConfiguration {
     private void setShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
-        filterChainDefinitionMap.put("/index", "signOutFilter, securityFilter");
-        filterChainDefinitionMap.put("/logout", "logoutFilter");
+        filterChainDefinitionMap.put("/index", "securityFilter");
+        filterChainDefinitionMap.put("/logout", "signOutFilter, logoutFilter");
         filterChainDefinitionMap.put("/callback", "callbackFilter");
         filterChainDefinitionMap.put("/supervisor/login/unAuthorized", "anon");
         filterChainDefinitionMap.put("/supervisor/login/default", "authc");
