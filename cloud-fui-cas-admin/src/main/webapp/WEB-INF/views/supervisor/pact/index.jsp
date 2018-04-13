@@ -7,6 +7,6 @@
 </head>
 
 <body>
-    <%@include file="/public/include/index-common.jsp" %>
+    <%@include file="/public/include/index-iframe-common.jsp" %>
 </body>
 </html>

@@ -52,12 +52,12 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator targetPackage="com.fui.cloud.dao.${mybatis.project.name}.su"
+        <javaClientGenerator targetPackage="com.fui.cloud.dao.${mybatis.project.name}.logs"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="fui_short_url" domainObjectName="ShortUrl"
+        <table tableName="fui_system_logs" domainObjectName="SystemLogs"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>

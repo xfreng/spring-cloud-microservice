@@ -14,9 +14,11 @@
 <link title="orange" href="${path}/public/css/dermaorange.css" rel="stylesheet" type="text/css" disabled="disabled"/>
 <link title="black" href="${path}/public/css/dermablack.css" rel="stylesheet" type="text/css"/>
 <link href="${path}/public/css/templatecss.css" rel="stylesheet" title="" type="text/css"/>
-<script src="${path}/public/script/jquery-1.11.1.min.js" type="text/javascript"></script>
-<script src="${path}/public/script/jquery.cookie.js" type="text/javascript"></script>
+<link href="${path}/public/layui/css/layui.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="${path}/public/scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="${path}/public/scripts/jquery.cookie.js" type="text/javascript"></script>
 <script src="${path}/public/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${path}/public/layui/layui.js" type="text/javascript"></script>
 <%
     JSONObject user = UserUtils.getCurrent();
     Calendar cal = Calendar.getInstance();
@@ -65,7 +67,6 @@
             } else {
                 oCtl.innerHTML = "<span style='color:" + color + "'>" + timeString + "</span>";
             }
-            console.log("timeString:" + oCtl.innerHTML);
             setTimeout("setCurTime('" + timerObjId + "','" + color + "');", 1000);
         }
     }

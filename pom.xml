@@ -36,7 +36,6 @@
         <java.version>1.8</java.version>
         <spring.boot.admin.server.version>1.5.6</spring.boot.admin.server.version>
         <spring.boot.admin.client.version>1.5.6</spring.boot.admin.client.version>
-        <alibaba.druid.version>1.1.9</alibaba.druid.version>
         <jdbc.driver.groupId>mysql</jdbc.driver.groupId>
         <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
         <jdbc.driver.version>5.1.39</jdbc.driver.version>
