@@ -4,7 +4,7 @@ sso:
       prefixUrl: http://192.168.131.150:9090/cas
       loginUrl: ${sso.cas.server.prefixUrl}/login
     client:
-      name: portal
+      name: fui-portal
       callbackUrl: http://192.168.131.150:9090/callback?client_name=${sso.cas.client.name}
       successUrl: http://192.168.131.150:9090/index
 fastdfs:
