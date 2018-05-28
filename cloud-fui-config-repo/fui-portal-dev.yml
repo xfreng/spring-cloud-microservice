@@ -1,12 +1,12 @@
 sso:
   cas:
     server:
-      prefixUrl: http://192.168.131.150:9090/cas
+      prefixUrl: http://localhost:9090/cas
       loginUrl: ${sso.cas.server.prefixUrl}/login
     client:
-      name: fui
-      callbackUrl: http://192.168.131.150:9090/callback?client_name=${sso.cas.client.name}
-      successUrl: http://192.168.131.150:9090/index
+      name: portal
+      callbackUrl: http://localhost:8034/callback?client_name=${sso.cas.client.name}
+      successUrl: http://localhost:8034/index
 fastdfs:
   clientConf: conf/fastdfs_client.conf
   heartbeatTime: 3600000
