@@ -17,6 +17,7 @@
         <module>cloud-fui-support</module>
         <module>cloud-fui-consul-client</module>
         <module>cloud-fui-cas-admin</module>
+        <module>spring-fui-portal</module>
     </modules>
 
 
