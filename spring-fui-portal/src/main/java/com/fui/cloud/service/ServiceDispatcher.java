@@ -1,7 +1,8 @@
-package com.fui.cloud.portal.service;
+package com.fui.cloud.service;
 
-import com.fui.cloud.portal.service.appservice.common.*;
-import com.fui.cloud.portal.service.appservice.message.APPMessage;
+import com.fui.cloud.fastdfs.FastDfsUtils;
+import com.fui.cloud.service.appservice.common.*;
+import com.fui.cloud.service.appservice.message.APPMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class ServiceDispatcher {
 
     @Autowired
     private AppServiceProvider serviceConfig;
+    @Autowired
+    private FastDfsUtils fastDfsUtils;
 
 
     /**
@@ -74,7 +77,7 @@ public class ServiceDispatcher {
          *              具体请参考 applicationContext-bean.xml 文件中   --   App接口服务注册
          *
          */
-        AbstractSuperService appService =
+        AbstractAppSuperService appService =
                 serviceConfig.getServiceConfigInstance(transCode);
         if (appService == null) {
             logger.error("transCode error: " + transCode);
@@ -118,7 +121,7 @@ public class ServiceDispatcher {
     public String appUploadServiceHandle(MultipartHttpServletRequest request) {
         String transCode = request.getParameter("transcode"); //接口交易码
         APPMessage responseMsg = new APPMessage(transCode);
-        AbstractSuperService appService =
+        AbstractAppSuperService appService =
                 serviceConfig.getServiceConfigInstance(transCode);
         if (appService == null) {
             logger.error("transCode error: " + transCode);
@@ -130,7 +133,7 @@ public class ServiceDispatcher {
                 return responseMsg.toJson();
             }
         }
-
+        //appService.setFastDfsUtils(fastDfsUtils);
         try {
             appService.handleRequest(request, responseMsg);
         } catch (Exception e) {

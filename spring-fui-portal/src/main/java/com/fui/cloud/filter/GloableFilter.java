@@ -4,7 +4,7 @@
  * Date: 2015/1/30
  * Version: 1.0
  */
-package com.fui.cloud.portal.filter;
+package com.fui.cloud.filter;
 
 import com.fui.cloud.common.CommonConstants;
 import org.slf4j.Logger;

@@ -15,5 +15,3 @@ spring:
         initial-interval: 1000
         # 最大间隔时间，默认2000ms
         max-interval: 2000
-server:
-  port: 8087

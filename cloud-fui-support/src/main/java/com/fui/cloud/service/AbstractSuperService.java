@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 public abstract class AbstractSuperService {
-    protected static Logger logger = LoggerFactory.getLogger(AbstractSuperService.class);
+    protected Logger logger = LoggerFactory.getLogger(getClass());
     private static final String DB_SERVICE_NAME$PREFIX_MAPPING = CommonConstants.DB_SERVICE_NAME + CommonConstants.DB_SERVICE_PREFIX_MAPPING;
 
     @Autowired

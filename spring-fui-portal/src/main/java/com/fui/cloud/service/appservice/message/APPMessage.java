@@ -1,10 +1,10 @@
-package com.fui.cloud.portal.service.appservice.message;
+package com.fui.cloud.service.appservice.message;
 
 import com.fui.cloud.common.CommonConstants;
-import com.fui.cloud.portal.service.appservice.common.DES3EncryptAndEdcrypt;
-import com.fui.cloud.portal.service.appservice.common.DigestUtils;
-import com.fui.cloud.portal.service.appservice.common.ErrCodeAndMsg;
-import com.fui.cloud.portal.service.appservice.common.GsonUtils;
+import com.fui.cloud.service.appservice.common.DES3EncryptAndEdcrypt;
+import com.fui.cloud.service.appservice.common.DigestUtils;
+import com.fui.cloud.service.appservice.common.ErrCodeAndMsg;
+import com.fui.cloud.service.appservice.common.GsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;

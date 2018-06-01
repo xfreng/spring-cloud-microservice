@@ -1,11 +1,11 @@
-package com.fui.cloud.portal.interceptors;
+package com.fui.cloud.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fui.cloud.portal.service.appservice.common.DES3EncryptAndEdcrypt;
-import com.fui.cloud.portal.service.appservice.common.DigestUtils;
-import com.fui.cloud.portal.service.appservice.common.GsonUtils;
-import com.fui.cloud.portal.service.appservice.common.PortalConstants;
-import com.fui.cloud.portal.service.appservice.message.APPMessage;
+import com.fui.cloud.service.appservice.common.DES3EncryptAndEdcrypt;
+import com.fui.cloud.service.appservice.common.DigestUtils;
+import com.fui.cloud.service.appservice.common.GsonUtils;
+import com.fui.cloud.service.appservice.common.PortalConstants;
+import com.fui.cloud.service.appservice.message.APPMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

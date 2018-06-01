@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.filter;
+package com.fui.cloud.filter;
 
 import com.fui.cloud.common.CommonConstants;
 import org.apache.commons.lang3.StringUtils;

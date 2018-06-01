@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class AbstractSuperController {
-    protected static Logger logger = LoggerFactory.getLogger(AbstractSuperController.class);
+    protected Logger logger = LoggerFactory.getLogger(getClass());
     // 系统默认字符集
     protected static final String DEFAULT_CHARACTER = "UTF-8";
 

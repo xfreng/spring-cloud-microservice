@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class AbstractSuperImplService<T, P> implements AbstractSuperService<T, P> {
-    protected Logger logger = LoggerFactory.getLogger(AbstractSuperImplService.class);
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     protected BaseMapper<T, P> baseMapper;
 

@@ -10,14 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-fui-portal</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>spring-fui-portal</name>
     <!-- FIXME change it to the project's website -->
     <url>http://maven.apache.org</url>
 
     <properties>
+        <main.basedir>${basedir}/../..</main.basedir>
+        <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
@@ -47,9 +51,8 @@
             <artifactId>jolokia-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.1.23</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -75,6 +78,10 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
+                    <jvmArguments>
+                        -Dfile.encoding=UTF-8
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+                    </jvmArguments>
                     <includeSystemScope>true</includeSystemScope>
                     <mainClass>com.fui.cloud.ServicePortalApplication</mainClass>
                 </configuration>

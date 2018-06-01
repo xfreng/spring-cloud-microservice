@@ -1,6 +1,5 @@
-package com.fui.cloud.portal.controller;
+package com.fui.cloud.controller;
 
-import com.fui.cloud.portal.common.AbstractSuperController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

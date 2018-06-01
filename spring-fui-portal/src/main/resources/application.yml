@@ -1,8 +1,4 @@
 spring:
-  application:
-    name: fui-portal
-  profiles:
-    active: dev
   http:
     encoding:
       force: true

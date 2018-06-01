@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: fui-portal
+  profiles:
+    active: dev
+server:
+  tomcat:
+    uri-encoding: UTF-8

@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.service.appservice.common;
+package com.fui.cloud.service.appservice.common;
 
 /**
  * @Title 前段常量

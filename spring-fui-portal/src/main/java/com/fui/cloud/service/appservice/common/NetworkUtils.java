@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.service.appservice.common;
+package com.fui.cloud.service.appservice.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

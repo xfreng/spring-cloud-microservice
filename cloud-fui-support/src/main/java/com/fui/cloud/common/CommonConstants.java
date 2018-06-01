@@ -66,4 +66,13 @@ public interface CommonConstants {
     // 流程过滤类型
     String CATEGORY_NOT_EQUALS = "99";
 
+    // 上传文件最大容量
+    long FILE_LIMIT_SIZE = 5048576L;
+
+    // 压缩图片质量
+    float OUTPUT_QUALITY = 0.8F;
+
+    // 压缩图片比例
+    float SCALE = 1.0F;
+
 }

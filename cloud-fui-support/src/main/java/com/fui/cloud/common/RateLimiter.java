@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.service.appservice.common;
+package com.fui.cloud.common;
 
 import com.google.common.collect.EvictingQueue;
 
@@ -22,12 +22,12 @@ public class RateLimiter {
     private long timeSpan; //频率控制时段长度，以微妙计算
     private int maxRequests; //时段内最多请求次数
 
-    public RateLimiter(long tSpan, int maxReqs) {
-        this.maxRequests = maxReqs;
+    public RateLimiter(long timeSpan, int maxRequests) {
+        this.maxRequests = maxRequests;
         if (evictingQueue == null) {
-            evictingQueue = EvictingQueue.create(maxReqs);
+            evictingQueue = EvictingQueue.create(maxRequests);
         }
-        this.timeSpan = tSpan;
+        this.timeSpan = timeSpan;
     }
 
     public long getTimeSpan() {

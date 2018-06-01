@@ -4,26 +4,36 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.CommonConstants;
 import com.fui.cloud.common.GsonUtils;
+import com.fui.cloud.common.RateLimiter;
 import com.fui.cloud.common.StringUtils;
 import com.fui.cloud.fastdfs.FastDfsUtils;
 import com.fui.cloud.service.menu.MenuService;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import net.coobird.thumbnailator.Thumbnails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractSuperController {
-    protected static Logger logger = LoggerFactory.getLogger(AbstractSuperController.class);
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     protected HttpServletRequest request;
@@ -105,7 +115,7 @@ public abstract class AbstractSuperController {
     }
 
     /**
-     * 根据上传文件标识,处理上传文件
+     * 处理上传文件
      *
      * @param file 上传文件
      * @return 返回保存文件的相对路径
@@ -131,20 +141,16 @@ public abstract class AbstractSuperController {
     }
 
     /**
-     * 根据上传文件标识,处理上传文件
+     * 处理上传文件
      *
-     * @param file 上传文件
+     * @param bytes 上传文件
      * @return 返回保存文件的相对路径
      */
-    private String fileHandleFastDfs(File file) {
-        //文件扩展名
-        String fileExtName = getFileExtName(file.getName());
-        //原文件名
-        String originName = file.getName();
+    private String fileHandleFastDfs(byte[] bytes, long fileSize, String fileExtName, String originName) {
         //上传后的文件URL
         String fileUrl = "";
 
-        JSONObject result = fastDfsUtils.uploadFastDfs("", file, fileExtName, originName);
+        JSONObject result = fastDfsUtils.uploadFastDfs("", bytes, fileSize, fileExtName, originName);
         if (result.getInteger("error") != null && 0 == result.getInteger("error")) {
             fileUrl = result.getString("url");
         }
@@ -173,23 +179,93 @@ public abstract class AbstractSuperController {
      * @return filePath
      */
     protected String reduceImage(MultipartFile multipartFile) {
-        String tempDir = System.getProperty("user.dir") + File.separator;
-        logger.info("压缩临时文件目录：{}", tempDir);
-        File file = new File(tempDir + multipartFile.getOriginalFilename());
+        StringBuilder filePathStr = new StringBuilder();
+        long fileSize = multipartFile.getSize();
+        if (CommonConstants.FILE_LIMIT_SIZE <= fileSize) {
+            String tempDir = System.getProperty("user.home") + File.separator;
+            String targetFilePath = tempDir + multipartFile.getOriginalFilename();
+            logger.info("压缩临时文件目录：{}", targetFilePath);
+            File file = new File(targetFilePath);
+            //文件扩展名
+            String fileExtName = getFileExtName(file.getName());
+            //原文件名
+            String originName = file.getName();
+            try {
+                multipartFile.transferTo(file);
+                BufferedImage image = Thumbnails.of(file)
+                        .scale(CommonConstants.SCALE)
+                        .outputQuality(CommonConstants.OUTPUT_QUALITY)
+                        .asBufferedImage();
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                ImageIO.write(image, getFileExtName(file.getName()), os);
+                filePathStr.append(fileHandleFastDfs(os.toByteArray(), os.size(), fileExtName, originName));
+                os.close();
+            } catch (IOException e) {
+                logger.error("图片压缩失败 {}", e);
+            }
+        } else {
+            filePathStr.append(fileHandleFastDfs(multipartFile));
+        }
+        return filePathStr.toString();
+    }
+
+    /**
+     * 非开发环境下；设置频繁操作限制 1分钟只能操作一次
+     *
+     * @param key
+     * @param rateLimiterCache
+     * @return boolean
+     */
+    public boolean exceedsRateLimit(String key, LoadingCache<String, RateLimiter> rateLimiterCache) {
+        return exceedsRateLimit(key, rateLimiterCache, 60000, 1);
+    }
+
+    /**
+     * 频度操作控制 基于本地缓存
+     *
+     * @param id               key值
+     * @param rateLimiterCache 缓存对象
+     * @param timeSpan         时间秒为单位
+     * @param times            次数
+     * @return boolean
+     */
+    public boolean exceedsRateLimit(String id, LoadingCache<String, RateLimiter> rateLimiterCache, int timeSpan, int times) {
+        RateLimiter rl = null;
         try {
-            multipartFile.transferTo(file);
-            Thumbnails.of(tempDir + multipartFile.getOriginalFilename())
-                    .scale(1f)
-                    .outputQuality(0.5f)
-                    .toFile(tempDir + multipartFile.getOriginalFilename());
-        } catch (IOException e) {
-            logger.error("图片压缩失败 {}", e);
+            rl = rateLimiterCache.get(id);
+        } catch (Exception e) {
+            logger.warn("根据 ID = {} 没有获取到访问频次信息；", id, e.getMessage());
         }
-        File uploadFile = new File(tempDir + multipartFile.getOriginalFilename());
-        String filePathStr = fileHandleFastDfs(uploadFile);
-        if (org.apache.commons.lang.StringUtils.isNotBlank(filePathStr)) {
-            uploadFile.delete();//删除临时压缩后的文件
+        if (rl == null) {
+            rl = new RateLimiter(timeSpan, times);//一分钟内最多访问10次
+            rl.getEvictingQueue().add(System.currentTimeMillis());
+            rateLimiterCache.put(id, rl);
+            return false;
         }
-        return filePathStr;
+        Assert.isNull(rl.getEvictingQueue(), "rl.getEvictingQueue() is null.");
+        long oldestRequestTime = rl.getEvictingQueue().peek();
+        long nowTimeSpan = System.currentTimeMillis();
+        boolean exceeded = nowTimeSpan - oldestRequestTime < rl.getTimeSpan()
+                && rl.getEvictingQueue().size() == rl.getMaxRequests();
+        if (!exceeded) {
+            rl.getEvictingQueue().add(System.currentTimeMillis());
+            rateLimiterCache.put(id, rl);
+        }
+        return exceeded;
+    }
+
+    @Bean
+    public LoadingCache<String, RateLimiter> timeLimiterCache() {
+        return CacheBuilder.newBuilder()
+                .expireAfterAccess(30, TimeUnit.MINUTES) // cache will expire after 30 minutes of access
+                .build(new CacheLoader<String, RateLimiter>() { // build the cacheloader
+                    @Override
+                    public RateLimiter load(String key) throws Exception {
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("params empId value is:{}", key);
+                        }
+                        return null;
+                    }
+                });
     }
 }

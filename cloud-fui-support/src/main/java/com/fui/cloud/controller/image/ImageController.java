@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 
 @Controller
@@ -57,18 +56,8 @@ public class ImageController extends AbstractSuperController {
     public String uploadImages(MultipartHttpServletRequest multipartRequest) {
         JSONObject json = new JSONObject();
         MultipartFile multipartFile = multipartRequest.getFile(CommonConstants.UPLOADS);
-        String filePath = request.getSession().getServletContext().getRealPath("/upload") + File.separator;
         if (multipartFile != null) {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            filePath += multipartFile.getOriginalFilename();
-            try {
-                multipartFile.transferTo(new File(filePath));
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
+            String filePath = fileHandleFastDfs(multipartFile);
             json.put("imageUrl", filePath);
             if (logger.isDebugEnabled()) {
                 logger.debug("filePath = {}", filePath);

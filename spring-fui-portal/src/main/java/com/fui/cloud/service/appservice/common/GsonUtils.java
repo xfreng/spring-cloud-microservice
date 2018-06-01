@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.service.appservice.common;
+package com.fui.cloud.service.appservice.common;
 
 import com.fui.cloud.common.DateUtils;
 import com.google.gson.Gson;

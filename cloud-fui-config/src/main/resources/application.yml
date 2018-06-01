@@ -2,7 +2,7 @@ spring:
   application:
     name: config-server
   profiles:
-    active: subversion
+    active: dev
 info:
   version: @project.version@
 management:

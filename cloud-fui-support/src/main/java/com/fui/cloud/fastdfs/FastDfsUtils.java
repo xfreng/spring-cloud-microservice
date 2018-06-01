@@ -52,21 +52,6 @@ public class FastDfsUtils {
     }
 
     /**
-     * FastDfs系统自动分配组名 文件上传
-     *
-     * @param fileBytes  文件字节数组
-     * @param extName    文件扩展名：如png
-     * @param linkUrl    访问地址：http://image.xxx.com
-     * @param fileName   原文件名
-     * @param fileLength 文件大小
-     * @return 图片上传成功后地址
-     */
-    public JSONObject upload(byte[] fileBytes, String extName, String linkUrl,
-                             String fileName, Long fileLength) {
-        return upload(null, extName, linkUrl, fileName, fileLength);
-    }
-
-    /**
      * 指定组名 文件上传
      *
      * @param groupName  组名如group0
@@ -119,7 +104,7 @@ public class FastDfsUtils {
             /** 上传完毕及时释放连接 */
             connectionPool.checkin(trackerServer, logId);
 
-            logger.info("[上传文件（upload）-fastdfs服务器相应结果][logId={}][result：results={}", logId, result);
+            logger.info("[上传文件（upload）-fastdfs服务器相应结果][logId={}][result：results={}/{}", logId, uploadFileHost, result);
             jsonObject.put("extName", extName);
             jsonObject.put("fileName", fileName);
             jsonObject.put("fileSize", fileLength);

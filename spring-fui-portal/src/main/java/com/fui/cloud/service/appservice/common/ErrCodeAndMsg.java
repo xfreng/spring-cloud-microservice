@@ -1,4 +1,4 @@
-package com.fui.cloud.portal.service.appservice.common;
+package com.fui.cloud.service.appservice.common;
 
 /**
  * @Title APP接口错误码及错误描述

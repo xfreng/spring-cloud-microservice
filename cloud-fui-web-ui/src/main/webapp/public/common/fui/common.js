@@ -5,15 +5,15 @@ function reload() {
 /** Ajax请求异常处理全局设置 */
 $(document).ajaxComplete(function (evt, request, settings) {
     var text = request.responseText;
-    if (typeof(text) == "undefined") {
+    if (typeof(text) === "undefined") {
         return;
     }
-    if (text.indexOf("权限不足") != -1) {
+    if (text.indexOf("权限不足") !== -1) {
         alert("权限不足!");
-    } else if (text == "timeout") { //判断返回的数据内容，如果是超时，则跳转到登陆页面
+    } else if (text === "timeout") { //判断返回的数据内容，如果是超时，则跳转到登陆页面
         alert("未登录或登录超时!");
         var win = window.parent || window;
-        win.location.href = fui.contextPath + '/index';
+        win.location.href = fui.contextPath + '/logout';
     }
 });
 
@@ -36,13 +36,12 @@ function setCurTime(objID, color) {
         if (hours < 10) hours = "0" + hours;
         if (minutes < 10) minutes = "0" + minutes;
         if (seconds < 10) seconds = "0" + seconds;
-        var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-        week = arr_week[day];
-        var timeString = "";
-        timeString = year + "年" + month + "月" + date + "日 " + week + " " + hours + ":" + minutes + ":" + seconds;
+        var arr_week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        var week = arr_week[day];
+        var timeString = year + "年" + month + "月" + date + "日 " + week + " " + hours + ":" + minutes + ":" + seconds;
         var oCtl = document.getElementById(timerObj);
-        if (color != "") {
-            oCtl.innerHTML = "<font color='blue'>" + timeString + "</font>";
+        if (color !== "") {
+            oCtl.innerHTML = "<span style='color:blue;'>" + timeString + "</span>";
         } else {
             oCtl.innerHTML = timeString;
         }
@@ -61,9 +60,8 @@ function setCurTimeTop(objID) {
 
         if (date < 10) date = "0" + date;
         var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-        week = arr_week[day];
-        var timeString = "";
-        timeString = year + "年" + month + "月" + date + "日 " + " " + week;
+        var week = arr_week[day];
+        var timeString = year + "年" + month + "月" + date + "日 " + " " + week;
         var oCtl = document.getElementById(timerObj);
         oCtl.innerHTML = timeString;
     }
@@ -92,8 +90,8 @@ function selectAllOrNotNoFlag() {
     var myselect = document.getElementsByTagName("input");
     for (var i = 0; i < myselect.length; i++) {
         var itemElement = myselect[i];
-        if (itemElement.type == "checkbox") {
-            if (count % 2 == 0) {
+        if (itemElement.type === "checkbox") {
+            if (count % 2 === 0) {
                 itemElement.checked = false;
             } else {
                 itemElement.checked = true;
@@ -111,7 +109,7 @@ function selectAllOrNotNoFlag() {
  */
 function formatDate(e) {
     var dateString = e.value;
-    if (typeof(dateString) != "undefined" && dateString.trim() != "") {
+    if (typeof(dateString) !== "undefined" && dateString.trim() !== "") {
         var pattern = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/;
         dateString = dateString.replace(pattern, "$1-$2-$3 $4:$5:$6");
     }
@@ -126,7 +124,7 @@ function formatDate(e) {
  */
 function formatJsonDate(e) {
     var dateString = e.value;
-    if (typeof(dateString) != "undefined" && dateString.toString().trim() != "") {
+    if (typeof(dateString) !== "undefined" && dateString.toString().trim() !== "") {
         dateString = fui.formatDate(new Date(dateString), "yyyy-MM-dd HH:mm:ss");
     }
     return dateString;
@@ -145,7 +143,7 @@ function formatJsonDate(e) {
  *
  */
 function formatterDate(val, size, iscst) {
-    if (typeof(val) == "undefined" && val.trim() != "") {
+    if (typeof(val) === "undefined" && val.trim() !== "") {
         return "";
     }
     var date = new Date(val);
@@ -172,13 +170,13 @@ function formatterDate(val, size, iscst) {
     minutes = minutes < 10 ? ("0" + minutes) : minutes;
     var seconds = date.getSeconds();
     seconds = seconds < 10 ? ("0" + seconds) : seconds;
-    if (size == 8) {
+    if (size === 8) {
         formaterDataStr = year + "" + month + day;
-    } else if (size == 10) {
+    } else if (size === 10) {
         formaterDataStr = year + "-" + month + "-" + day;
-    } else if (size == 14) {
+    } else if (size === 14) {
         formaterDataStr = year + "" + month + day + hours + minutes + seconds;
-    } else if (size == 19) {
+    } else if (size === 19) {
         formaterDataStr = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
     }
     return formaterDataStr;

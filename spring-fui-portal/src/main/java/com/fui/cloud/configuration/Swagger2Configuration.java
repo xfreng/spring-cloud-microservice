@@ -17,7 +17,7 @@ public class Swagger2Configuration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.fui.cloud.portal.service.appservice"))
+                .apis(RequestHandlerSelectors.basePackage("com.fui.cloud.service.appservice"))
                 .paths(PathSelectors.any())
                 .build();
     }
