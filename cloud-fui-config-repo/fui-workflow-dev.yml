@@ -14,4 +14,4 @@ fastdfs:
   minPoolSize: 10
   maxPoolSize: 30
   waitTime: 200
-  uploadFileHost: http://192.168.131.150:8686/
+  uploadFileHost: http://192.168.131.150:8686
