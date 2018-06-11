@@ -268,7 +268,7 @@ if (typeof JSON !== 'object') {
 
                 // If the value is a boolean or null, convert it to a string. Note:
                 // typeof null does not produce 'null'. The case is included here in
-                // the remote chance that this gets fixed someday.
+                // the com.fui.cloud.remote chance that this gets fixed someday.
 
                 return String(value);
 

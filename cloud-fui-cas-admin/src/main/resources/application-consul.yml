@@ -1,7 +1,6 @@
 spring:
-  application:
-    name: consul-client
   cloud:
+    #配置consul服务注册中心
     consul:
       host: 192.168.131.150
       port: 8500
@@ -9,5 +8,5 @@ spring:
       discovery:
         enabled: true
         prefer-ip-address: true
-server:
-  port: 8092
+logging:
+  file: D:/installed/apache-tomcat-7.0.72/logs/cas-admin.log

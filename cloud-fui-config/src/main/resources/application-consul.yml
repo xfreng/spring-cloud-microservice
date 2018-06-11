@@ -1,0 +1,28 @@
+#服务端口
+server:
+  port: 8082
+#spring设置
+spring:
+  cloud:
+    #配置consul服务注册中心
+    consul:
+      host: 192.168.131.150
+      port: 8500
+      enabled: true
+      discovery:
+        enabled: true
+        prefer-ip-address: true
+    config:
+      server:
+        git:
+          uri: https://gitee.com/xfreng/spring-cloud-microservice.git
+          searchPaths: cloud-fui-config-repo
+    bus:
+      enabled: true
+  rabbitmq:
+    host: 192.168.131.150
+    port: 5672
+    username: ${security.user.name}
+    password: ${security.user.password}
+logging:
+  file: D:/installed/apache-tomcat-7.0.72/logs/fui-config.log

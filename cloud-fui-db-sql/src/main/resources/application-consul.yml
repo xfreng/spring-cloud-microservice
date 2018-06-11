@@ -1,0 +1,47 @@
+server:
+  port: 8033
+spring:
+  cloud:
+    #配置consul服务注册中心
+    consul:
+      host: 192.168.131.150
+      port: 8500
+      enabled: true
+      discovery:
+        enabled: true
+        prefer-ip-address: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    fui:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.52.106:3306/fui?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+      username: root
+      password: admin
+      initialSize: 1
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+mybatis:
+  databaseType: mysql
+  databaseSchemaUpdate: false
+  datasource:
+    type: org.apache.commons.dbcp.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.52.106:3306/test?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+    username: root
+    password: admin
+pagehelper:
+  helperDialect: mysql
+logging:
+  file: /usr/apps/logs/fui-db.log

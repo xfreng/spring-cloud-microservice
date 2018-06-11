@@ -3,7 +3,7 @@
     <parent>
         <artifactId>spring-cloud-microservice</artifactId>
         <groupId>com.fui.cloud</groupId>
-        <version>V1.0.0</version>
+        <version>v1.0.8</version>
         <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -20,6 +20,10 @@
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -30,6 +34,11 @@
         <dependency>
             <groupId>org.jolokia</groupId>
             <artifactId>jolokia-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.23</version>
         </dependency>
     </dependencies>
     <build>

@@ -20,7 +20,7 @@ spring:
           uri: https://github.com/xfreng/spring-cloud-microservice.git
           searchPaths: cloud-fui-config-repo
           username: xiong_jx@foxmail.com
-          password: ***************
+          password: f382766352
     bus:
       enabled: true
   rabbitmq:

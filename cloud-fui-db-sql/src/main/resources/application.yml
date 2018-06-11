@@ -2,16 +2,9 @@ spring:
   application:
     name: fui-db-sql
   profiles:
-    active: dev
+    active: consul
 info:
   version: @project.version@
-management:
-  security:
-    enabled: false
-security:
-  user:
-    name: xfreng
-    password: passw0rd
 logging:
   config: classpath:conf/logback.xml
   level: debug

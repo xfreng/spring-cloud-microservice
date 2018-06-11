@@ -2,7 +2,8 @@ spring:
   application:
     name: config-server
   profiles:
-    active: dev
+#    active: dev
+    active: consul
 info:
   version: @project.version@
 management:
