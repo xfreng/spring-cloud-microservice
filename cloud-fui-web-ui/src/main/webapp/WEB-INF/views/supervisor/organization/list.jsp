@@ -57,5 +57,5 @@
 </div>
 <ul id="treeMenu" class="fui-contextmenu" onbeforeopen="onBeforeOpen"></ul>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/organization.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/organization.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

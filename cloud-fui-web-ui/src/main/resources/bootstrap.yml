@@ -2,7 +2,8 @@ spring:
   application:
     name: fui-web-ui
   profiles:
-    active: dev
+#    active: dev
+    active: consul
 server:
   tomcat:
     uri-encoding: UTF-8

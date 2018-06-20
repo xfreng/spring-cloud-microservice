@@ -9,7 +9,7 @@ var scrolltotop = {
 		scrollduration : 80,
 		fadeduration : [ 500, 100 ]
 	},
-	controlHTML : '<img src="/public/EF/Images/gotop2.png" style="width:31px; height:31px;" />', // HTML
+	controlHTML : '<img src="webjars/public/EF/Images/gotop2.png" style="width:31px; height:31px;" />', // HTML
 	// for control, which is auto wrapped in DIV w/ ID="topcontrol"
 	controlattrs : {
 		offsetx : 20,

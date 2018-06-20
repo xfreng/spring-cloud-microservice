@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>webuploader</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/public/webuploader/css/webuploader.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/public/webuploader/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/public/webuploader/css/custom.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath }/public/common/fui/jquery/jquery-1.8.1.min.js" contextPath="${pageContext.request.contextPath}"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/public/webuploader/js/webuploader.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/public/webuploader/js/upload.js"></script>
+    <link rel="stylesheet" type="text/css" href="webjars/fui/public/webuploader/css/webuploader.css"/>
+    <link rel="stylesheet" type="text/css" href="webjars/fui/public/webuploader/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="webjars/fui/public/webuploader/css/custom.css">
+    <script type="text/javascript" src="webjars/fui/public/common/fui/jquery/jquery-1.8.1.min.js" contextPath="${pageContext.request.contextPath}"></script>
+    <script type="text/javascript" src="webjars/fui/public/webuploader/js/webuploader.js"></script>
+    <script type="text/javascript" src="webjars/fui/public/webuploader/js/upload.js"></script>
 </head>
 <body>
 <div id="wrapper">

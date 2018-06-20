@@ -9,4 +9,4 @@ spring:
         enabled: true
         prefer-ip-address: true
 logging:
-  file: D:/installed/apache-tomcat-7.0.72/logs/cas-admin.log
+  file: /usr/apps/logs/cas-admin.log

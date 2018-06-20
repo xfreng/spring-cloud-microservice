@@ -42,6 +42,6 @@
       </tr>
     </table>
 </div>
-<script type="text/javascript" src="${path}/public/js/supervisor/style.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/style.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

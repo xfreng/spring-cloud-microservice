@@ -2,8 +2,8 @@ spring:
   cloud:
     config:
       #配置中心服务器地址配置
-      uri: http://localhost:8082/
-      profile: dev
+      uri: http://192.168.131.150:8082/
+      profile: consul
       label: master
       retry:
         # 配置重试次数，默认为6

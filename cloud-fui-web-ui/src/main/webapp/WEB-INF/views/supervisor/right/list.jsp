@@ -71,5 +71,5 @@
     </c:choose>
 </ul>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/right.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/right.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

@@ -5,12 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="EF" uri="http://jcoffee.fui.com/jsp/ef" %>
 <c:set value="${pageContext.request.contextPath}" var="path" scope="page"/>
-<script type="text/javascript" src="${path}/public/EF/jQuery/jquery-1.7.2.min.js" contextPath="${path}"></script>
-<script type="text/javascript" src="${path}/public/EF/iplat-ui-2.0.js"></script>
-<script type="text/javascript" src="${path}/public/EF/jQuery/iplat.ui.accordionx.js"></script>
-<script type="text/javascript" src="${path}/public/EP/index.menuTree.js"></script>
+<script type="text/javascript" src="${path}/webjars/fui/public/EF/jQuery/jquery-1.7.2.min.js" contextPath="${path}"></script>
+<script type="text/javascript" src="${path}/webjars/fui/public/EF/iplat-ui-2.0.js"></script>
+<script type="text/javascript" src="${path}/webjars/fui/public/EF/jQuery/iplat.ui.accordionx.js"></script>
+<script type="text/javascript" src="${path}/webjars/fui/public/EP/index.menuTree.js"></script>
 
-<link rel="stylesheet" type="text/css" href="${path}/public/EF/iplat-ui-2.0.css"/>
+<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EF/iplat-ui-2.0.css"/>
 <%
     JSONObject user = UserUtils.getCurrent();
     String menuType = "pact";
@@ -40,9 +40,9 @@
     request.setAttribute("logo", logo);
     request.setAttribute("dev", dev);
 %>
-<link rel="stylesheet" type="text/css" href="${path}/public/EF/Themes/styleApple/${iPlatStyle}/jquery-ui.custom.css"/>
-<link rel="stylesheet" type="text/css" href="${path}/public/EF/Themes/styleApple/${iPlatStyle}/iplat-ui-theme-2.0.css"/>
-<link rel="stylesheet" type="text/css" href="${path}/public/EP/indexReal-${iPlatStyle}-3.0.css"/>
+<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EF/Themes/styleApple/${iPlatStyle}/jquery-ui.custom.css"/>
+<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EF/Themes/styleApple/${iPlatStyle}/iplat-ui-theme-2.0.css"/>
+<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EP/indexReal-${iPlatStyle}-3.0.css"/>
 <script type="text/javascript">
     /**
      * 自动layout高度

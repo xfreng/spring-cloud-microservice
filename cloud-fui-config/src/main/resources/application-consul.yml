@@ -25,4 +25,4 @@ spring:
     username: ${security.user.name}
     password: ${security.user.password}
 logging:
-  file: D:/installed/apache-tomcat-7.0.72/logs/fui-config.log
+  file: /usr/apps/logs/fui-config.log

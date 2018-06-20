@@ -53,5 +53,5 @@
     </c:if>
 </form>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/role-state.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/role-state.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

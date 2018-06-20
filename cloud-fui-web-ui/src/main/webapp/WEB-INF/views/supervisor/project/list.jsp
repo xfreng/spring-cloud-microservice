@@ -33,5 +33,5 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/project.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/project.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

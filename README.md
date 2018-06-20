@@ -29,3 +29,7 @@ Shiro、cas、pac4j权限认证、单点登录通用模块
 配置中心获取示例
 ## 十、cloud-fui-consul-client
 consul作为服务发现示例（需要安装consul服务端）
+```bat
+启动consul
+consul agent -server -bootstrap-expect=1 -data-dir /tmp/consul -node=consul-150 -bind=192.168.131.150 -enable-script-checks=true -config-dir=/etc/consul.d -client=0.0.0.0 -ui -join 192.168.131.150
+```

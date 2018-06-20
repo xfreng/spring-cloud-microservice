@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<title>日历——展示数据操作</title>
 	<meta name="keywords" content="日程安排,日历,JSON,jquery">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/public/css/fc-main.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/public/css/fullcalendar.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/public/css/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/fui/public/css/fc-main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/fui/public/css/fullcalendar.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/fui/public/css/jquery.fancybox.css">
 	<style type="text/css">
 		#calendar{width:99%;height:100%;margin:20px auto 10px auto;overflow-x:hidden}
 		.fancy{width:460px;height:auto}
@@ -23,13 +23,13 @@
 		.sub_btn{height:32px;line-height:32px;padding-top:6px;border-top:1px solid #f0f0f0;text-align:right;position:relative}
 		.sub_btn .del{position:absolute;left:2px}
 	</style>
-	<script src='${pageContext.request.contextPath}/public/js/jquery-1.9.1.js'></script>
-	<script src='${pageContext.request.contextPath}/public/js/jquery-ui.js'></script>
-	<script src='${pageContext.request.contextPath}/public/js/jquery-ui.datepicker-zh-CN.js'></script>
-	<script src='${pageContext.request.contextPath}/public/js/fullcalendar.min.js'></script>
-	<script src='${pageContext.request.contextPath}/public/js/jquery.fancybox.pack.js'></script>
-	<script src='${pageContext.request.contextPath}/public/js/jquery.colorpicker.js'></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/public/common/fui/common.js"></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/jquery-1.9.1.js'></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/jquery-ui.js'></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/jquery-ui.datepicker-zh-CN.js'></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/fullcalendar.min.js'></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/jquery.fancybox.pack.js'></script>
+	<script type="text/javascript" src='${pageContext.request.contextPath}/webjars/fui/public/scripts/jquery.colorpicker.js'></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/fui/public/common/fui/common.js"></script>
 	<script type="text/javascript">
 	$(function() {
 		$('#calendar').fullCalendar({

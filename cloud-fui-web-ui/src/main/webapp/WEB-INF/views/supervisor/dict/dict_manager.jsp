@@ -131,5 +131,5 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/dict.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/dict.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>
