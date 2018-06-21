@@ -2,7 +2,8 @@ spring:
   application:
     name: fui-workflow
   profiles:
-    active: dev
+#    active: dev
+    active: consul
 server:
   tomcat:
     uri-encoding: UTF-8

@@ -29,5 +29,5 @@
 	    </div>
 	</div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/activiti-tree-modeler.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/activiti-tree-modeler.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

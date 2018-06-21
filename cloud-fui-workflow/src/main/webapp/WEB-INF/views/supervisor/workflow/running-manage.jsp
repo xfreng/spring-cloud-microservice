@@ -56,10 +56,10 @@
 			</div>
 		</div>
 	</div>
-</div>	
+</div>
 </body>
 <link href="${path}/public/bpm/module/qtip/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="${path}/public/js/supervisor/activiti-running.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/activiti-running.js?v=<%=System.currentTimeMillis()%>"></script>
 <script type="text/javascript" src="${path}/public/bpm/module/qtip/jquery.qtip.pack.js"></script>
 <script type="text/javascript" src="${path}/public/bpm/module/activiti/workflow.js"></script>
 </html>

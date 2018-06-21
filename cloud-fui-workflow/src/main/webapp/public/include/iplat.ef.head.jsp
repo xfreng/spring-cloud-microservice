@@ -6,7 +6,7 @@
 	String close = "关闭当前页面";
 	String fullScreen = "全屏显示当前页面";
 %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/public/EF/Form/iplat.ef.head.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/fui/public/EF/Form/iplat.ef.head.js"></script>
 
 <input type="hidden" id="efFormEname" name="efFormEname" value="${efFormEname}">
 <input type="hidden" id="efFormCname" name="efFormCname" value="${efFormCname}">

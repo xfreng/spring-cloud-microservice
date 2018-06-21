@@ -22,15 +22,15 @@
             background-image: url('${path}/public/EF/Themes/styleApple/ModernBlack/images/ui-icons_454545_256x240.png');
         }
     </style>
-    <script type="text/javascript" src="${path}/public/js/supervisor/default-index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
+    <script type="text/javascript" src="${path}/public/scripts/supervisor/default-index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
 </head>
 <body id="cache" onload="setCurTime('cy','blue');">
 <div class="fui-layout" style="width:100%;height:100%;">
     <div region="north" class="header" bodyStyle="overflow:hidden;" showHeader="false" showSplit="false">
-        <%@include file="/public/index/top.jsp"%>
+        <%@include file="/public/include/top.jsp"%>
     </div>
     <div showHeader="false" region="south" class="foot" height="39px" style="border:1;text-align:center;" showSplit="false">
-        <%@include file="/public/index/footer.jsp"%>
+        <%@include file="/public/include/footer.jsp"%>
     </div>
     <div region="west" showHeader="false" style="cursor: hand;" showHeader="true" bodyStyle="padding-left:0px;" showSplitIcon="true" width="230" maxWidth="530">
         <!--左侧菜单-->
@@ -95,5 +95,5 @@
     </form>
 </div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
 </html>

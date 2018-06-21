@@ -106,5 +106,5 @@
 	</form>
 </div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/activiti-model.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/activiti-model.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

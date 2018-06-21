@@ -98,5 +98,5 @@
 	</form>
 </div>
 </body>
-<script type="text/javascript" src="${path}/public/js/supervisor/activiti-process.js?v=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="${path}/public/scripts/supervisor/activiti-process.js?v=<%=System.currentTimeMillis()%>"></script>
 </html>

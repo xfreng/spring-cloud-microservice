@@ -5,7 +5,8 @@
     <parent>
         <artifactId>spring-cloud-microservice</artifactId>
         <groupId>com.fui.cloud</groupId>
-        <version>v1.0.8</version>
+        <version>${project.version}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
