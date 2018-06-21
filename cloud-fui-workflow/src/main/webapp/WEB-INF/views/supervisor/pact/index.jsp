@@ -39,7 +39,7 @@
 	    	<div class="top">
 	        	<!--logo-->
 	            <div class="logo">
-	                <a href="${path}/supervisor/login/pact" class="bak_logo mg_b-4"></a>
+	                <a href="${path}/index" class="bak_logo mg_b-4"></a>
 	                <a href="javascript:void(0)" class="title-line mg_t_15 mg_l_10"></a>
 	                <span class="white font_18 font_b pd_l_10" style="position:absolute;top:20px;">
 						${projectName}&nbsp;<span style="font-size:12px;">${dev} </span>
@@ -52,7 +52,7 @@
 	               			<span class="mg_l_10 font_14" style="top:50px;">欢迎您！${user.ename}&nbsp;&nbsp;&nbsp;</span>
 	                	</li>
 	                	<li>
-	                        <a href="${path}/supervisor/pact"><img src="${path}/webjars/fui/public/mainframe/images/login/home.png" /><span class="mg_l_10 font_14">首页</span></a>
+	                        <a href="${path}/index"><img src="${path}/webjars/fui/public/mainframe/images/login/home.png" /><span class="mg_l_10 font_14">首页</span></a>
 	                    </li>
 	                	<li>
 	                        <a href="javascript:void(0)" onclick="changeOpenWindow()"><img src="${path}/webjars/fui/public/mainframe/images/login/pop_up_window.png" /><span class="mg_l_10 font_14">窗口切换</span></a>
