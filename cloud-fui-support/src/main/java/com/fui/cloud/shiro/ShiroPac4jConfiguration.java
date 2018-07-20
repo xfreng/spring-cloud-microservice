@@ -12,9 +12,16 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.pac4j.cas.client.CasClient;
+import org.pac4j.cas.client.rest.CasRestFormClient;
 import org.pac4j.cas.config.CasConfiguration;
+import org.pac4j.core.client.Clients;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.context.session.J2ESessionStore;
+import org.pac4j.http.client.direct.ParameterClient;
+import org.pac4j.jwt.config.encryption.SecretEncryptionConfiguration;
+import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
+import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator;
+import org.pac4j.jwt.profile.JwtGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -24,6 +31,8 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.DispatcherType;
@@ -51,6 +60,26 @@ public class ShiroPac4jConfiguration {
     private String callbackUrl;
     @Value("${sso.cas.client.successUrl}")
     private String successUrl;
+    @Value("${sso.cas.jwt.salt}")
+    private String salt;
+
+    /**
+     * JWT Token 生成器，对CommonProfile生成然后每次携带token访问
+     *
+     * @return JwtGenerator
+     */
+    @Bean
+    protected JwtGenerator jwtGenerator() {
+        return new JwtGenerator(new SecretSignatureConfiguration(salt), new SecretEncryptionConfiguration(salt));
+    }
+
+    @Bean
+    protected JwtAuthenticator jwtAuthenticator() {
+        JwtAuthenticator jwtAuthenticator = new JwtAuthenticator();
+        jwtAuthenticator.addSignatureConfiguration(new SecretSignatureConfiguration(salt));
+        jwtAuthenticator.addEncryptionConfiguration(new SecretEncryptionConfiguration(salt));
+        return jwtAuthenticator;
+    }
 
     /**
      * 请求cas服务端配置
@@ -63,6 +92,19 @@ public class ShiroPac4jConfiguration {
         configuration.setAcceptAnyProxy(true);
         configuration.setLogoutHandler(casLogoutHandler());
         return configuration;
+    }
+
+    /**
+     * 通过rest接口可以获取tgt，获取service ticket，甚至可以获取CasProfile
+     *
+     * @return CasRestFormClient
+     */
+    @Bean
+    protected CasRestFormClient casRestFormClient() {
+        CasRestFormClient casRestFormClient = new CasRestFormClient();
+        casRestFormClient.setConfiguration(casConfiguration());
+        casRestFormClient.setName("rest");
+        return casRestFormClient;
     }
 
     /**
@@ -90,9 +132,25 @@ public class ShiroPac4jConfiguration {
         return casClient;
     }
 
+    /**
+     * token校验相关
+     *
+     * @return Clients
+     */
+    @Bean
+    protected Clients clients() {
+        Clients clients = new Clients();
+        ParameterClient parameterClient = new ParameterClient("token", jwtAuthenticator());
+        parameterClient.setSupportGetRequest(true);
+        parameterClient.setName("jwt");
+        clients.setClients(casClient(), casRestFormClient(), parameterClient);
+        return clients;
+    }
+
     @Bean
     public Config casConfig() {
         Config config = new Config(casClient());
+        config.setClients(clients());
         config.setSessionStore(new J2ESessionStore());
         return config;
     }
@@ -119,6 +177,26 @@ public class ShiroPac4jConfiguration {
     public ServletListenerRegistrationBean<EventListener> singleSignOutHttpSessionListener() {
         ServletListenerRegistrationBean<EventListener> bean = new ServletListenerRegistrationBean<EventListener>();
         bean.setListener(new SingleSignOutHttpSessionListener());
+        bean.setEnabled(true);
+        return bean;
+    }
+
+    /**
+     * 单点登出filter
+     *
+     * @return FilterRegistrationBean
+     */
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public FilterRegistrationBean singleSignOutFilter() {
+        FilterRegistrationBean bean = new FilterRegistrationBean();
+        bean.setName("singleSignOutFilter");
+        SingleSignOutFilter singleSignOutFilter = new SingleSignOutFilter();
+        singleSignOutFilter.setCasServerUrlPrefix(casServerPrefixUrl);
+        singleSignOutFilter.setIgnoreInitConfiguration(true);
+        bean.setFilter(singleSignOutFilter);
+        //bean.addUrlPatterns("/logout");
+        bean.addUrlPatterns("/*");
         bean.setEnabled(true);
         return bean;
     }
@@ -171,6 +249,11 @@ public class ShiroPac4jConfiguration {
         return manager;
     }
 
+    /**
+     * 开启 shiro aop注解支持
+     *
+     * @return AuthorizationAttributeSourceAdvisor
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
@@ -185,7 +268,7 @@ public class ShiroPac4jConfiguration {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 
         filterChainDefinitionMap.put("/index", "securityFilter");
-        filterChainDefinitionMap.put("/logout", "signOutFilter, logoutFilter");
+        filterChainDefinitionMap.put("/logout", "logoutFilter");
         filterChainDefinitionMap.put("/callback", "callbackFilter");
         filterChainDefinitionMap.put("/supervisor/login/unAuthorized", "anon");
         filterChainDefinitionMap.put("/supervisor/login/default", "authc");
@@ -203,12 +286,9 @@ public class ShiroPac4jConfiguration {
      */
     private void setShiroFilters(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
-        SingleSignOutFilter signOutFilter = new SingleSignOutFilter();
-        signOutFilter.setCasServerUrlPrefix(casServerPrefixUrl);
-        filters.put("signOutFilter", signOutFilter);
         SecurityFilter securityFilter = new SecurityFilter();
+        securityFilter.setClients(casClientName + ",rest,jwt");
         securityFilter.setConfig(casConfig());
-        securityFilter.setClients(casClientName);
         filters.put("securityFilter", securityFilter);
         CallbackFilter callbackFilter = new CallbackFilter();
         callbackFilter.setConfig(casConfig());
@@ -231,6 +311,8 @@ public class ShiroPac4jConfiguration {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setLoginUrl(casServerLoginUrl);
+        shiroFilterFactoryBean.setSuccessUrl(successUrl);
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         setShiroFilters(shiroFilterFactoryBean);
         return shiroFilterFactoryBean;
