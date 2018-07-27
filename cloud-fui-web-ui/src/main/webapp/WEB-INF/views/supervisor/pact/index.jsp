@@ -25,7 +25,7 @@
 			color:#595959;
 		}
 		.searchbox .fui-buttonedit-icon{
-	        background:url('${path}/public/mainframe/images/search.gif') no-repeat 50% 50%;
+	        background:url('webjars/fui/public/mainframe/images/search.gif') no-repeat 50% 50%;
 	    }
 	</style>
 	<script type="text/javascript" src="${path}/public/scripts/supervisor/pact-index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>

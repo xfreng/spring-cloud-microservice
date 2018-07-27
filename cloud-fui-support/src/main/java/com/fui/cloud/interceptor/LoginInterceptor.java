@@ -1,20 +1,26 @@
 package com.fui.cloud.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.RequestContext;
+import com.fui.cloud.common.TokenUtils;
 import com.fui.cloud.common.UserUtils;
 import com.fui.cloud.model.ManageToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
     private String[] allowUrls;
+    @Autowired
+    private TokenUtils tokenUtil;
 
     public void setAllowUrls(String[] allowUrls) {
         this.allowUrls = allowUrls;
@@ -45,17 +51,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         }
 
         ManageToken manageToken = UserUtils.getManageToken();
-        if (manageToken == null) {
-            logger.trace("Interceptor：跳转到login页面！");
-            if (RequestContext.isAjaxRequest(request)) {
-                response.getWriter().write("timeout");
-            } else {
-                response.sendRedirect(request.getContextPath() + "/index");
+        if (manageToken != null) {  //session未超时且存在token
+            JSONObject res = tokenUtil.checkManageToken(manageToken);
+            if (res.getInteger("status").equals(1)) {  //token验证通过
+                return true;
             }
-            return false;
-        } else {
-            return true;
         }
+        logger.trace("Interceptor：跳转到login页面！");
+        if (RequestContext.isAjaxRequest(request)) {
+            response.getWriter().write("timeout");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/index");
+        }
+        return false;
     }
 
     /**

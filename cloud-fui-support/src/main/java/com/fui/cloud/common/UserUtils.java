@@ -9,6 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class UserUtils {
 
@@ -29,8 +30,8 @@ public class UserUtils {
     /**
      * 更换主题后刷新当前用户信息
      *
-     * @param style
-     * @param menuType
+     * @param style    样式
+     * @param menuType 类型
      */
     public static void updateCurrent(String style, String menuType) {
         JSONObject user = getCurrent();
@@ -44,11 +45,21 @@ public class UserUtils {
      * @return 当前用户信息
      */
     public static JSONObject getCurrent() {
-        Pac4jPrincipal principal = (Pac4jPrincipal) getSubject().getPrincipal();
-        if (principal != null) {
-            return JSONObject.parseObject(JSONObject.toJSONString(principal.getProfile().getAttributes()));
+        JSONObject user = new JSONObject();
+        HttpSession session = getCurrentRequest().getSession(false);
+        if (session != null) {
+            Subject subject = getSubject();
+            Pac4jPrincipal principal = (Pac4jPrincipal) subject.getPrincipal();
+            if (principal != null) {
+                user = JSONObject.parseObject(JSONObject.toJSONString(principal.getProfile().getAttributes()));
+            }
+        } else {
+            String menuType = "pact";
+            String menuStyle = "black";
+            user.put("menuType", menuType);
+            user.put("menuStyle", menuStyle);
         }
-        return null;
+        return user;
     }
 
     /**
@@ -67,6 +78,7 @@ public class UserUtils {
      * @return ManageToken
      */
     public static ManageToken getManageToken() {
-        return (ManageToken) getCurrentRequest().getSession().getAttribute(CommonConstants.USER_SESSION_ID);
+        HttpSession session = getCurrentRequest().getSession(false);
+        return session != null ? (ManageToken) session.getAttribute(CommonConstants.USER_SESSION_ID) : null;
     }
 }
