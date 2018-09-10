@@ -46,9 +46,8 @@ public class UserUtils {
      */
     public static JSONObject getCurrent() {
         JSONObject user = new JSONObject();
-        HttpSession session = getCurrentRequest().getSession(false);
-        if (session != null) {
-            Subject subject = getSubject();
+        Subject subject = getSubject();
+        if (subject != null) {
             Pac4jPrincipal principal = (Pac4jPrincipal) subject.getPrincipal();
             if (principal != null) {
                 user = JSONObject.parseObject(JSONObject.toJSONString(principal.getProfile().getAttributes()));

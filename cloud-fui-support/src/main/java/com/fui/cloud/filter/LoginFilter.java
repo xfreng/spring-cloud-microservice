@@ -1,7 +1,6 @@
 package com.fui.cloud.filter;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fui.cloud.common.RequestContext;
 import com.fui.cloud.common.TokenUtils;
 import com.fui.cloud.common.UserUtils;
 import com.fui.cloud.model.ManageToken;
@@ -55,13 +54,8 @@ public class LoginFilter implements Filter {
             logger.debug("请求 url = {} 超时。", request.getRequestURL().toString());
         }
 
-        //以下为session超时或非法登录（token不存在，或者token验证不通过）
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        if (RequestContext.isAjaxRequest(request)) {
-            response.getWriter().write("timeout");
-            return;
-        }
         //登录超时或session失效跳转到登录页面
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.sendRedirect(request.getContextPath() + "/index");
     }
 

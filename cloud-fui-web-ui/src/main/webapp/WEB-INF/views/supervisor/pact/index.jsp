@@ -5,10 +5,10 @@
     <%@include file="/public/include/iplat-common.jsp"%>
 	<%@include file="/public/include/fui-iplat-common.jsp"%>
 	<title>欢迎使用 ${projectName}[${dev}]</title>
-	<link rel="stylesheet" type="text/css" href="webjars/fui/public/EP/indexReal-${iPlatStyle}-3.0.css">
-    <link rel="stylesheet" type="text/css" href="webjars/fui/public/EU/Font-Awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="webjars/fui/public/EU/Font-Awesome/css/font-awesome-${menuStyle}.css">
-	<link rel="stylesheet" type="text/css" href="webjars/fui/public/EU/Font-Awesome/css/font-awesome.jquery.css">
+	<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EP/indexReal-${iPlatStyle}-3.0.css">
+    <link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EU/Font-Awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EU/Font-Awesome/css/font-awesome-${menuStyle}.css">
+	<link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EU/Font-Awesome/css/font-awesome.jquery.css">
     <style type="text/css">
 		html, body {
 			margin: 0;
@@ -24,9 +24,6 @@
 		.color_a{
 			color:#595959;
 		}
-		.searchbox .fui-buttonedit-icon{
-	        background:url('webjars/fui/public/mainframe/images/search.gif') no-repeat 50% 50%;
-	    }
 	</style>
 	<script type="text/javascript" src="${path}/public/scripts/supervisor/pact-index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
 </head>

@@ -1,11 +1,15 @@
-package com.fui.cloud.shiro;
+package com.fui.cloud.shiro.config;
 
+import com.fui.cloud.shiro.filter.FuiPermsFilter;
+import com.fui.cloud.shiro.filter.ShiroPac4jLogoutFilter;
+import com.fui.cloud.shiro.perms.FuiPermissionResolver;
+import com.fui.cloud.shiro.realm.FuiRealm;
 import io.buji.pac4j.filter.CallbackFilter;
-import io.buji.pac4j.filter.LogoutFilter;
 import io.buji.pac4j.filter.SecurityFilter;
 import io.buji.pac4j.subject.Pac4jSubjectFactory;
 import org.apache.shiro.authz.ModularRealmAuthorizer;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -14,6 +18,7 @@ import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.client.rest.CasRestFormClient;
 import org.pac4j.cas.config.CasConfiguration;
+import org.pac4j.cas.logout.DefaultCasLogoutHandler;
 import org.pac4j.core.client.Clients;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.context.session.J2ESessionStore;
@@ -31,6 +36,7 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.DelegatingFilterProxy;
@@ -60,6 +66,8 @@ public class ShiroPac4jConfiguration {
     private String callbackUrl;
     @Value("${sso.cas.client.successUrl}")
     private String successUrl;
+    @Value("${sso.cas.client.unauthorizedUrl}")
+    private String unauthorizedUrl;
     @Value("${sso.cas.jwt.salt}")
     private String salt;
 
@@ -113,8 +121,8 @@ public class ShiroPac4jConfiguration {
      * @return casLogoutHandler
      */
     @Bean
-    public ShiroCasLogoutHandler casLogoutHandler() {
-        ShiroCasLogoutHandler casLogoutHandler = new ShiroCasLogoutHandler();
+    public DefaultCasLogoutHandler casLogoutHandler() {
+        DefaultCasLogoutHandler casLogoutHandler = new DefaultCasLogoutHandler();
         casLogoutHandler.setDestroySession(true);
         return casLogoutHandler;
     }
@@ -195,7 +203,6 @@ public class ShiroPac4jConfiguration {
         singleSignOutFilter.setCasServerUrlPrefix(casServerPrefixUrl);
         singleSignOutFilter.setIgnoreInitConfiguration(true);
         bean.setFilter(singleSignOutFilter);
-        //bean.addUrlPatterns("/logout");
         bean.addUrlPatterns("/*");
         bean.setEnabled(true);
         return bean;
@@ -222,7 +229,7 @@ public class ShiroPac4jConfiguration {
         filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
         filterRegistration.addInitParameter("targetFilterLifecycle", "true");
         filterRegistration.setEnabled(true);
-        filterRegistration.addUrlPatterns("/*");
+        filterRegistration.addUrlPatterns("/supervisor/*");
         filterRegistration.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR);
         return filterRegistration;
     }
@@ -254,6 +261,20 @@ public class ShiroPac4jConfiguration {
      *
      * @return AuthorizationAttributeSourceAdvisor
      */
+    @Bean
+    @DependsOn("lifecycleBeanPostProcessor")
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        // 强制使用cglib，防止重复代理和可能引起代理出错的问题
+        defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+        return defaultAdvisorAutoProxyCreator;
+    }
+
+    @Bean
+    public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
     @Bean
     public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
@@ -294,9 +315,9 @@ public class ShiroPac4jConfiguration {
         callbackFilter.setConfig(casConfig());
         callbackFilter.setDefaultUrl(successUrl);
         filters.put("callbackFilter", callbackFilter);
-        LogoutFilter logoutFilter = new LogoutFilter();
+        ShiroPac4jLogoutFilter logoutFilter = new ShiroPac4jLogoutFilter();
         logoutFilter.setCentralLogout(true);
-        logoutFilter.setLocalLogout(false);
+        logoutFilter.setLocalLogout(true);
         logoutFilter.setConfig(casConfig());
         logoutFilter.setDefaultUrl(successUrl);
         filters.put("logoutFilter", logoutFilter);
@@ -313,6 +334,7 @@ public class ShiroPac4jConfiguration {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setLoginUrl(casServerLoginUrl);
         shiroFilterFactoryBean.setSuccessUrl(successUrl);
+        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         setShiroFilters(shiroFilterFactoryBean);
         return shiroFilterFactoryBean;

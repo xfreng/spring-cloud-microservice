@@ -17,8 +17,8 @@
     <properties>
         <ehcache.version>3.4.0</ehcache.version>
         <shiro.version>1.4.0</shiro.version>
-        <pac4j-cas.version>2.2.1</pac4j-cas.version>
-        <buji-pac4j.version>3.0.0</buji-pac4j.version>
+        <pac4j-cas.version>3.0.2</pac4j-cas.version>
+        <buji-pac4j.version>4.0.0</buji-pac4j.version>
         <poi.version>3.15</poi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

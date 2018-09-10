@@ -1,4 +1,4 @@
-package com.fui.cloud.shiro;
+package com.fui.cloud.shiro.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.CommonConstants;

@@ -1,4 +1,4 @@
-package com.fui.cloud.shiro;
+package com.fui.cloud.shiro.perms;
 
 import com.fui.cloud.common.StringUtils;
 import org.apache.shiro.authz.Permission;
