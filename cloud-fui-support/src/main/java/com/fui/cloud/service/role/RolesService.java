@@ -2,8 +2,9 @@ package com.fui.cloud.service.role;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.UserUtils;
-import com.fui.cloud.enums.AppId;
 import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.remote.user.UserRemote;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,15 +18,18 @@ import java.util.Map;
 @Service("rolesService")
 public class RolesService extends AbstractSuperService {
 
+    @Autowired
+    private UserRemote userRemote;
+
     public JSONObject selectByPrimaryKey(Long id) {
-        return getResult(AppId.getName(1), "/role/selectByPrimaryKey/{id}", JSONObject.class, id);
+        return userRemote.selectRoleByPrimaryKey(id);
     }
 
-    public List getUserRights() {
-        return getResult(AppId.getName(1), "/role/getUserRights/{userId}", List.class, UserUtils.getCurrent().getLong("id"));
+    public List<String> getUserRights() {
+        return userRemote.getUserRights(UserUtils.getCurrent().getLong("id"));
     }
 
-    public List getRolesList(Map<String, Object> params) {
-        return getResult(AppId.getName(1), "/role/getRolesList", List.class, params);
+    public List<JSONObject> getRolesList(Map<String, Object> params) {
+        return userRemote.getRolesList(params);
     }
 }

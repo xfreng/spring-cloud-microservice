@@ -84,12 +84,12 @@ public class FuiRealm extends Pac4jRealm {
             permissionsList = permissionsService.selectAllRight();
         } else {  //其他用户根据角色获取权限
             permissionsList = new ArrayList<JSONObject>();
-            List<Integer> roleIdList = userRolesService.selectRolesByUserId(user.getLong("id"));
+            List<Long> roleIdList = userRolesService.selectRolesByUserId(user.getLong("id"));
             String[] rolePermissions;
             List<String> permissionIdList = new ArrayList<String>();
             JSONObject permission;
-            for (Integer roleId : roleIdList) {
-                rolePermissions = rolesService.selectByPrimaryKey(roleId.longValue()).getString("permissions").split(",");
+            for (Long roleId : roleIdList) {
+                rolePermissions = rolesService.selectByPrimaryKey(roleId).getString("permissions").split(",");
                 for (String rolePermission : rolePermissions) {
                     if (!permissionIdList.contains(rolePermission)) {
                         permissionIdList.add(rolePermission);

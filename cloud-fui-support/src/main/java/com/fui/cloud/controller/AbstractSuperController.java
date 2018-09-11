@@ -54,7 +54,7 @@ public abstract class AbstractSuperController {
         String servletPath = request.getServletPath();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("nodeUrl", servletPath);
-        List<Map<String, Object>> menuList = menuService.queryMenuNodeBySelective(params);
+        List<JSONObject> menuList = menuService.queryMenuNodeBySelective(params);
         if (menuList != null && menuList.size() > 0 && menuList.size() == 1) {
             Map<String, Object> menu = menuList.get(0);
             mv.addObject("efFormEname", menu.get("id"));

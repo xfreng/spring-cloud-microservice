@@ -34,14 +34,4 @@ public class ServiceWorkflowApplication extends SpringBootServletInitializer {
         SpringApplication.run(ServiceWorkflowApplication.class, args);
     }
 
-    /**
-     * Spring提供的用于访问Rest服务的客户端
-     *
-     * @return RestTemplate
-     */
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

@@ -1,44 +1,49 @@
 package com.fui.cloud.service.calendar;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fui.cloud.enums.AppId;
 import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.remote.calendar.CalendarRemote;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("calendarService")
 public class CalendarService extends AbstractSuperService {
 
-    public List query() {
-        return getResult(AppId.getName(1), "/calendar/query", List.class);
+    @Autowired
+    private CalendarRemote calendarRemote;
+
+    public List<Map<String, Object>> query() {
+        return calendarRemote.query();
     }
 
     /**
      * @param id
      */
     public JSONObject getCalendarById(String id) {
-        return getResult(AppId.getName(1), "/calendar/getCalendarById/{id}", JSONObject.class, id);
+        return calendarRemote.getCalendarById(id);
     }
 
     /**
      * @param data
      */
     public boolean addCalendar(JSONObject data) {
-        return postResult(AppId.getName(1), "/calendar/addCalendar/{data}", Boolean.class, data.toJSONString());
+        return calendarRemote.addCalendar(data.toJSONString());
     }
 
     /**
      * @param id
      */
     public boolean deleteCalendarById(String id) {
-        return postResult(AppId.getName(1), "/calendar/deleteCalendarById/{id}", Boolean.class, id);
+        return calendarRemote.deleteCalendarById(id);
     }
 
     /**
      * @param data
      */
     public boolean updateCalendarById(JSONObject data) {
-        return postResult(AppId.getName(1), "/calendar/updateCalendarById/{id}", Boolean.class, data.toJSONString());
+        return calendarRemote.updateCalendarById(data.toJSONString());
     }
 }

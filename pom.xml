@@ -134,6 +134,7 @@
         <activiti.version>5.21.0</activiti.version>
         <guava.version>17.0</guava.version>
         <xmlgraphics.version>1.7</xmlgraphics.version>
+        <swagger.version>2.8.0</swagger.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>

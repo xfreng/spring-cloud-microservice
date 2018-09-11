@@ -1,8 +1,9 @@
 package com.fui.cloud.service.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fui.cloud.enums.AppId;
 import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.remote.user.UserRemote;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +16,18 @@ import java.util.List;
 @Service("userRolesService")
 public class UserRolesService extends AbstractSuperService {
 
-    public List selectRolesByUserId(Long userId) {
-        return getResult(AppId.getName(1), "/user/role/selectRolesByUserId/{userId}", List.class, userId);
+    @Autowired
+    private UserRemote userRemote;
+
+    public List<Long> selectRolesByUserId(Long userId) {
+        return userRemote.selectRolesByUserId(userId);
     }
 
     public int insert(JSONObject data) {
-        return postResult(AppId.getName(1), "/user/role/insert/{data}", Integer.class, data.toJSONString());
+        return userRemote.insertRole(data.toJSONString());
     }
 
-    public void deleteByUserId(Long userId) {
-        deleteResult(AppId.getName(1), "/user/role/deleteByUserId/{userId}", userId);
+    void deleteByUserId(Long userId) {
+        userRemote.deleteByUserId(userId);
     }
 }

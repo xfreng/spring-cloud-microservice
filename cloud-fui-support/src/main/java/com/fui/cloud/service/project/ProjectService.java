@@ -1,7 +1,8 @@
 package com.fui.cloud.service.project;
 
-import com.fui.cloud.enums.AppId;
 import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.remote.project.ProjectRemote;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,10 @@ import java.util.List;
 @Service("projectService")
 public class ProjectService extends AbstractSuperService {
 
+    @Autowired
+    private ProjectRemote projectRemote;
+
     public List selectAll() {
-        return getResult(AppId.getName(1), "/project/selectAll", List.class);
+        return projectRemote.selectAll();
     }
 }

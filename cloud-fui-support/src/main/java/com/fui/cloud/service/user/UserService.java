@@ -5,6 +5,7 @@ import com.fui.cloud.common.*;
 import com.fui.cloud.enums.AppId;
 import com.fui.cloud.model.ManageToken;
 import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.remote.user.UserRemote;
 import com.fui.cloud.service.role.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,8 @@ public class UserService extends AbstractSuperService {
     private RolesService rolesService;
     @Autowired
     private UserRolesService userRolesService;
+    @Autowired
+    private UserRemote userRemote;
 
     public void login(Long userId) {
         //设置token
@@ -58,15 +61,15 @@ public class UserService extends AbstractSuperService {
      * @return 用户信息列表
      */
     public JSONObject getUserList(Integer pageNum, Integer pageSize, String key, Map<String, Object> params) {
-        return getResult(AppId.getName(1), "/user/getUserList/{pageNum}/{pageSize}/{key}/{params}", JSONObject.class, pageNum, pageSize, key, JSONObject.toJSONString(params));
+        return userRemote.getUserList(pageNum, pageSize, key, JSONObject.toJSONString(params));
     }
 
     private void updateByPrimaryKeySelective(JSONObject user) {
-        putResult(AppId.getName(1), "/user/updateByPrimaryKeySelective/{data}", user.toJSONString());
+        userRemote.updateUserByPrimaryKeySelective(user.toJSONString());
     }
 
     private int insert(JSONObject user) {
-        return postResult(AppId.getName(1), "/user/insert/{data}", Integer.class, user.toJSONString());
+        return userRemote.insertUser(user.toJSONString());
     }
 
     /**
@@ -76,7 +79,7 @@ public class UserService extends AbstractSuperService {
      * @return User
      */
     public JSONObject findUserByCode(String userCode) {
-        return getResult(AppId.getName(1), "/user/findUserByCode/{userCode}", JSONObject.class, userCode);
+        return userRemote.findUserByCode(userCode);
     }
 
     /**
@@ -140,9 +143,9 @@ public class UserService extends AbstractSuperService {
      */
     public List<JSONObject> getUserRoles(Long userId) {
         List<JSONObject> userRoles = new ArrayList<JSONObject>();
-        List<Integer> roleIdList = userRolesService.selectRolesByUserId(userId);
-        for (Integer roleId : roleIdList) {
-            JSONObject roles = rolesService.selectByPrimaryKey(roleId.longValue());
+        List<Long> roleIdList = userRolesService.selectRolesByUserId(userId);
+        for (Long roleId : roleIdList) {
+            JSONObject roles = rolesService.selectByPrimaryKey(roleId);
             userRoles.add(roles);
         }
         return userRoles;
