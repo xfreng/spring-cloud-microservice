@@ -2,7 +2,6 @@ package com.fui.cloud.service.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.*;
-import com.fui.cloud.enums.AppId;
 import com.fui.cloud.model.ManageToken;
 import com.fui.cloud.service.AbstractSuperService;
 import com.fui.cloud.service.remote.user.UserRemote;
