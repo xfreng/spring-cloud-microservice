@@ -2,8 +2,8 @@ package com.fui.cloud.dao.spring;
 
 import com.github.pagehelper.PageInterceptor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -38,6 +38,6 @@ public class DataSourceConfiguration {
     @Bean(name = "fuiDdlDataSource")
     @ConfigurationProperties(prefix = "mybatis.datasource")
     public DataSource fuiDdlDataSource() {
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().type(type).build();
     }
 }

@@ -12,6 +12,7 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.AbstractShiroWebFilterConfiguration;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
@@ -33,7 +34,6 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -51,9 +51,8 @@ import java.util.Map;
  * @Title Shiro Pac4j 配置
  * @Author sf.xiong on 2017/12/23.
  */
-@RefreshScope
 @Configuration
-public class ShiroPac4jConfiguration {
+public class ShiroPac4jConfiguration extends AbstractShiroWebFilterConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(ShiroPac4jConfiguration.class);
 
     @Value("${sso.cas.server.prefixUrl}")
@@ -228,7 +227,6 @@ public class ShiroPac4jConfiguration {
         FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
         filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
         filterRegistration.addInitParameter("targetFilterLifecycle", "true");
-        filterRegistration.setEnabled(true);
         filterRegistration.addUrlPatterns("/supervisor/*");
         filterRegistration.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR);
         return filterRegistration;
@@ -298,7 +296,7 @@ public class ShiroPac4jConfiguration {
         filterChainDefinitionMap.put("/supervisor/calendar", "authc");
         filterChainDefinitionMap.put("/supervisor/**", "authc, fuiPerms");
 
-        logger.info("shiro pac4j规则配置完毕");
+        logger.info("shiro 规则配置完毕");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
@@ -331,7 +329,7 @@ public class ShiroPac4jConfiguration {
      */
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter() {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        ShiroFilterFactoryBean shiroFilterFactoryBean = super.shiroFilterFactoryBean();
         shiroFilterFactoryBean.setLoginUrl(casServerLoginUrl);
         shiroFilterFactoryBean.setSuccessUrl(successUrl);
         shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);

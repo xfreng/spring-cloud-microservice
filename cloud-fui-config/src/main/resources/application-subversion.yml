@@ -5,7 +5,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/
   instance:
     # 续约更新时间间隔（默认30秒）
     lease-renewal-interval-in-seconds: 1
@@ -27,7 +27,7 @@ spring:
   rabbitmq:
     host: 192.168.131.150
     port: 5672
-    username: ${security.user.name}
-    password: ${security.user.password}
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 logging:
   file: D:/installed/apache-tomcat-7.0.72/logs/fui-config.log

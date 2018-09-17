@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
         <relativePath/><!-- lookup parent from repository -->
     </parent>
 
@@ -37,7 +37,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Edgware.RELEASE</version>
+                <version>Finchley.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -121,8 +121,7 @@
     <properties>
         <project.version>v1.0.8</project.version>
         <java.version>1.8</java.version>
-        <spring.boot.admin.server.version>1.5.6</spring.boot.admin.server.version>
-        <spring.boot.admin.client.version>1.5.6</spring.boot.admin.client.version>
+        <spring.boot.admin.version>2.0.1</spring.boot.admin.version>
         <jdbc.driver.groupId>mysql</jdbc.driver.groupId>
         <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
         <jdbc.driver.version>5.1.39</jdbc.driver.version>

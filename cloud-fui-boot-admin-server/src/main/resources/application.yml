@@ -1,17 +1,5 @@
-spring:
-  application:
-    name: service-admin
-  profiles:
-    active: dev
 info:
-  version: @project.version@
-management:
-  security:
-    enabled: false
-security:
-  user:
-    name: xfreng
-    password: passw0rd
+  version: "@project.version@"
 logging:
   config: classpath:conf/logback.xml
-  level: debug
+  file: D:/installed/apache-tomcat-7.0.72/logs/boot-admin-server

@@ -7,4 +7,3 @@ info:
   version: @project.version@
 logging:
   config: classpath:conf/logback.xml
-  level: debug

@@ -1,16 +1,21 @@
 server:
   port: 8091
 management:
-  security:
-    enabled: false
-security:
-  user:
-    name: xfreng
-    password: passw0rd
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
 spring:
   application:
     #本项目名称
     name: config-client
+  security:
+    user:
+      name: xfreng
+      password: passw0rd
   cloud:
     config:
       #配置中心服务器地址配置
@@ -29,13 +34,13 @@ spring:
   rabbitmq:
     host: 192.168.131.150
     port: 5672
-    username: ${security.user.name}
-    password: ${security.user.password}
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 #服务发现配置
 eureka:
   client:
     service-url:
-      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/
   instance:
     # 续约更新时间间隔（默认30秒）
     lease-renewal-interval-in-seconds: 1

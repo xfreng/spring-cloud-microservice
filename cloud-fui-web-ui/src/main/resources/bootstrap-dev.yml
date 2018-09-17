@@ -1,10 +1,10 @@
 spring:
   cloud:
     config:
-      #配置中心服务器地址配置
+      # 配置中心服务器地址配置
       uri: http://localhost:8082/
       profile: dev
-#      label: config
+      # label: config
       label: master
       retry:
         # 配置重试次数，默认为6

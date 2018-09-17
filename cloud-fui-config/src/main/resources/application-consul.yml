@@ -22,7 +22,7 @@ spring:
   rabbitmq:
     host: 192.168.131.150
     port: 5672
-    username: ${security.user.name}
-    password: ${security.user.password}
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 logging:
   file: /usr/apps/logs/fui-config.log

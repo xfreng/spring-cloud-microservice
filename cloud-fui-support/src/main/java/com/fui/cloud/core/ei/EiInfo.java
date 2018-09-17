@@ -3,7 +3,8 @@ package com.fui.cloud.core.ei;
 import com.fui.cloud.core.BaseObject;
 import com.fui.cloud.core.LangUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class EiInfo extends BaseObject {
     private static final long serialVersionUID = -2486717908846610128L;
-    private static final Logger logger = Logger.getLogger(EiInfo.class);
+    private static final Logger logger = LoggerFactory.getLogger(EiInfo.class);
     private String name;
     private String descName;
     private String msg = "";

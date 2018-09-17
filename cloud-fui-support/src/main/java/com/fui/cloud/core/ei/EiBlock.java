@@ -2,7 +2,8 @@ package com.fui.cloud.core.ei;
 
 import com.fui.cloud.core.BaseObject;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EiBlock extends BaseObject {
-    private static final Logger logger = Logger.getLogger(EiBlock.class);
+    private static final Logger logger = LoggerFactory.getLogger(EiBlock.class);
     private static final long serialVersionUID = 9011789204436838197L;
     private EiBlockMeta blockMeta;
     private List rows = new ArrayList();

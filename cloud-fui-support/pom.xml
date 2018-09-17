@@ -15,9 +15,9 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <ehcache.version>3.4.0</ehcache.version>
+        <ehcache.version>3.6.0</ehcache.version>
         <shiro.version>1.4.0</shiro.version>
-        <pac4j-cas.version>3.0.2</pac4j-cas.version>
+        <pac4j-cas.version>3.1.0</pac4j-cas.version>
         <buji-pac4j.version>4.0.0</buji-pac4j.version>
         <poi.version>3.15</poi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -96,17 +96,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
             <version>${shiro.version}</version>
         </dependency>
         <dependency>
@@ -118,6 +108,12 @@
             <groupId>io.buji</groupId>
             <artifactId>buji-pac4j</artifactId>
             <version>${buji-pac4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.pac4j</groupId>
+                    <artifactId>pac4j-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>

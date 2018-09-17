@@ -15,13 +15,13 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <alibaba.druid.version>1.1.9</alibaba.druid.version>
+        <alibaba.druid.version>1.1.10</alibaba.druid.version>
     </properties>
 
     <dependencies>
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -51,7 +51,7 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>${alibaba.druid.version}</version>
         </dependency>
         <!-- jdbc driver -->

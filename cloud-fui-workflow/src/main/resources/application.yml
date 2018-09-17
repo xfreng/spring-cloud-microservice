@@ -18,7 +18,7 @@ spring:
     username: ${security.user.name}
     password: ${security.user.password}
 info:
-  version: @project.version@
+  version: "@project.version@"
 management:
   security:
     enabled: false

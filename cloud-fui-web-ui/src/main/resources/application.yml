@@ -3,6 +3,10 @@ eureka:
     healthcheck:
       enabled: true
 spring:
+  security:
+    user:
+      name: xfreng
+      password: passw0rd
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -15,20 +19,14 @@ spring:
   rabbitmq:
     host: 192.168.131.150
     port: 5672
-    username: ${security.user.name}
-    password: ${security.user.password}
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
+  aop:
+    proxy-target-class: true
 info:
-  version: @project.version@
-management:
-  security:
-    enabled: false
-security:
-  user:
-    name: xfreng
-    password: passw0rd
+  version: "@project.version@"
 logging:
   config: classpath:conf/logback.xml
-  level: debug
 fui:
   quartz:
     quartzSwitch: false
