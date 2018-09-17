@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Author sf.xiong on 2018-05-23.
  */
 @Configuration
-public class AppServiceConfiguration extends WebMvcConfigurerAdapter {
+public class AppServiceConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
     private AppUserLoginService appUserLoginService;

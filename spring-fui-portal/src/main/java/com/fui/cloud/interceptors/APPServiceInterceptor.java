@@ -1,6 +1,7 @@
 package com.fui.cloud.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fui.cloud.common.CommonConstants;
 import com.fui.cloud.service.appservice.common.DES3EncryptAndEdcrypt;
 import com.fui.cloud.service.appservice.common.DigestUtils;
 import com.fui.cloud.service.appservice.common.GsonUtils;
@@ -36,7 +37,7 @@ public class APPServiceInterceptor extends HandlerInterceptorAdapter {
         String reqJsonEncrypt = request.getParameter("data");//H5的jQuery Ajax接收请求数据
         if (StringUtils.isBlank(reqJsonEncrypt)) {//原生app或非jQuery Ajax的H5接收请求数据
             StringBuilder requestJsonBuilder = new StringBuilder();
-            BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream(), CommonConstants.DEFAULT_CHARACTER));
             String inputLine = null;
             while ((inputLine = in.readLine()) != null) {
                 requestJsonBuilder.append(inputLine);

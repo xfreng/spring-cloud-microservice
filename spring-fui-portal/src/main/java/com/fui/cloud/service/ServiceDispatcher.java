@@ -1,6 +1,5 @@
 package com.fui.cloud.service;
 
-import com.fui.cloud.fastdfs.FastDfsUtils;
 import com.fui.cloud.service.appservice.common.*;
 import com.fui.cloud.service.appservice.message.APPMessage;
 import org.apache.commons.lang3.StringUtils;
@@ -27,9 +26,6 @@ public class ServiceDispatcher {
 
     @Autowired
     private AppServiceProvider serviceConfig;
-    @Autowired
-    private FastDfsUtils fastDfsUtils;
-
 
     /**
      * APP接口服务处理
@@ -133,7 +129,6 @@ public class ServiceDispatcher {
                 return responseMsg.toJson();
             }
         }
-        //appService.setFastDfsUtils(fastDfsUtils);
         try {
             appService.handleRequest(request, responseMsg);
         } catch (Exception e) {
