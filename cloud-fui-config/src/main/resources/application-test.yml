@@ -12,7 +12,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/xfreng/spring-cloud-microservice.git
+          uri: https://gitee.com/xfreng/spring-cloud-microservice.git
           searchPaths: cloud-fui-config-repo
     bus:
       enabled: true
