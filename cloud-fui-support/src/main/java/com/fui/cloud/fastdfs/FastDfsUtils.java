@@ -40,15 +40,22 @@ public class FastDfsUtils {
     private String uploadFileHost;
 
     /**
+     * 是否开启连接fdfs
+     */
+    private boolean enable;
+
+    /**
      * 初始化线程池
      */
     @PostConstruct
     public void init() {
-        String logId = UUID.randomUUID().toString();
-        logger.info("[初始化线程池(Init)][logId = {} ][默认参数：minPoolSize={},maxPoolSize={},waitTimes={}]"
-                , logId, new Object[]{connectionPool.getMinPoolSize(), connectionPool.getMaxPoolSize(), connectionPool.getWaitTimes()});
-        /** 初始化连接池 */
-        connectionPool.poolInit(logId);
+        if (isEnable()) {
+            String logId = UUID.randomUUID().toString();
+            logger.info("[初始化线程池(Init)][logId = {} ][默认参数：minPoolSize={},maxPoolSize={},waitTimes={}]"
+                    , logId, new Object[]{connectionPool.getMinPoolSize(), connectionPool.getMaxPoolSize(), connectionPool.getWaitTimes()});
+            /** 初始化连接池 */
+            connectionPool.poolInit(logId);
+        }
     }
 
     /**
@@ -301,5 +308,13 @@ public class FastDfsUtils {
 
     public void setNowPoolSize(long nowPoolSize) {
         this.nowPoolSize = nowPoolSize;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }

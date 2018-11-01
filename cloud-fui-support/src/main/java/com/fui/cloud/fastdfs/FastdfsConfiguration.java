@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FastdfsConfiguration {
 
+    @Value("${fastdfs.enable:false}")
+    private boolean enable;
+
     @Value("${fastdfs.clientConf:conf/fastdfs_client.conf}")
     private String clientConf;
     /**
@@ -47,7 +50,9 @@ public class FastdfsConfiguration {
         HeartBeat beat = new HeartBeat(connectionPool());
         beat.setAhour(heartbeatTime);
         beat.setWaitTime(heartbeatWaitTime);
-        beat.beat();
+        if (enable) {
+            beat.beat();
+        }
         return beat;
     }
 
@@ -65,6 +70,7 @@ public class FastdfsConfiguration {
     public FastDfsUtils fastDfsUtils() {
         FastDfsUtils fastDfsUtils = new FastDfsUtils();
         fastDfsUtils.setUploadFileHost(uploadFileHost);
+        fastDfsUtils.setEnable(enable);
         fastDfsUtils.setConnectionPool(connectionPool());
         return fastDfsUtils;
     }
