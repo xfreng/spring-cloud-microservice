@@ -3,7 +3,12 @@ spring:
     name: fui-db-sql
   profiles:
     active: consul
+#    active: dev
+  security:
+    user:
+      name: xfreng
+      password: passw0rd
 info:
   version: @project.version@
 logging:
-  config: classpath:conf/logback.xml
+  config: classpath:conf/log4j2.xml

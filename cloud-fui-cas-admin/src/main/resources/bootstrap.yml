@@ -2,8 +2,8 @@ spring:
   application:
     name: fui-cas-admin
   profiles:
-#    active: dev
-    active: consul
+    active: dev
+#    active: consul
 server:
   tomcat:
     uri-encoding: UTF-8

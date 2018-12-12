@@ -6,7 +6,7 @@
     <%@include file="/public/include/fui-iplat-common.jsp"%>
 </head>
 <body>
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div id="layout" class="fui-layout" style="width:100%;">
     <div region="north" showHeader="false" bodyStyle="overflow:hidden;" showSplit="false" showCollapseButton="false" style="border:0;">
         <div class="fui-panel" title="查询条件" bodyStyle="overflow:hidden;" style="width:100%;">

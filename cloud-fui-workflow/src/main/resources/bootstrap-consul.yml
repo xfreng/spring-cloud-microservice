@@ -1,5 +1,13 @@
 spring:
   cloud:
+    #配置consul服务注册中心
+    consul:
+      host: 192.168.131.150
+      port: 8500
+      enabled: true
+      discovery:
+        enabled: true
+        prefer-ip-address: true
     config:
       #配置中心服务器地址配置
       uri: http://192.168.131.150:8082/
@@ -14,3 +22,6 @@ spring:
         initial-interval: 1000
         # 最大间隔时间，默认2000ms
         max-interval: 2000
+feign:
+  httpclient:
+    connection-timeout: 10000

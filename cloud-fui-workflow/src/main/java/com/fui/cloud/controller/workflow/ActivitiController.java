@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.zip.ZipInputStream;
 
@@ -110,7 +111,7 @@ public class ActivitiController extends AbstractSuperController {
         List<ProcessDefinition> processDefinitionList = processDefinitionQuery
                 .processDefinitionCategoryNotEquals(CommonConstants.CATEGORY_NOT_EQUALS).orderByDeploymentId().desc()
                 .listPage(currPage, pageSize);
-        List<ProcessDefinitionModel> processDefinitionEntityList = new ArrayList<ProcessDefinitionModel>();
+        List<ProcessDefinitionModel> processDefinitionEntityList = new ArrayList<>();
         for (ProcessDefinition processDefinition : processDefinitionList) {
             String deploymentId = processDefinition.getDeploymentId();
             Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
@@ -130,13 +131,17 @@ public class ActivitiController extends AbstractSuperController {
      *
      * @param processDefinitionId 流程定义
      * @param resourceType        资源类型(xml|image)
-     * @throws Exception
+     * @throws IOException
      */
     @RequestMapping(value = "/resource/read")
     public void loadByDeployment(@RequestParam("processDefinitionId") String processDefinitionId,
-                                 @RequestParam("resourceType") String resourceType, HttpServletResponse response) throws Exception {
+                                 @RequestParam("resourceType") String resourceType, HttpServletResponse response) throws IOException {
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                 .processDefinitionId(processDefinitionId).singleResult();
+        outResource(resourceType, processDefinition, response);
+    }
+
+    private void outResource(String resourceType, ProcessDefinition processDefinition, HttpServletResponse response) throws IOException {
         String resourceName = "";
         if (resourceType.equals("image")) {
             resourceName = processDefinition.getDiagramResourceName();
@@ -145,9 +150,13 @@ public class ActivitiController extends AbstractSuperController {
         }
         InputStream resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(),
                 resourceName);
+        outResourceAsStream(resourceAsStream, response);
+    }
+
+    private void outResourceAsStream(InputStream in, HttpServletResponse response) throws IOException {
         byte[] b = new byte[1024];
-        int len = -1;
-        while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+        int len;
+        while ((len = in.read(b, 0, 1024)) != -1) {
             response.getOutputStream().write(b, 0, len);
         }
     }
@@ -158,29 +167,17 @@ public class ActivitiController extends AbstractSuperController {
      * @param resourceType      资源类型(xml|image)
      * @param processInstanceId 流程实例ID
      * @param response
-     * @throws Exception
+     * @throws IOException
      */
     @RequestMapping(value = "/resource/process-instance")
     public void loadByProcessInstance(@RequestParam("type") String resourceType,
-                                      @RequestParam("pid") String processInstanceId, HttpServletResponse response) throws Exception {
-        InputStream resourceAsStream = null;
+                                      @RequestParam("pid") String processInstanceId, HttpServletResponse response) throws IOException {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processInstanceId).singleResult();
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                 .processDefinitionId(processInstance.getProcessDefinitionId()).singleResult();
 
-        String resourceName = "";
-        if (resourceType.equals("image")) {
-            resourceName = processDefinition.getDiagramResourceName();
-        } else if (resourceType.equals("xml")) {
-            resourceName = processDefinition.getResourceName();
-        }
-        resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), resourceName);
-        byte[] b = new byte[1024];
-        int len = -1;
-        while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
-            response.getOutputStream().write(b, 0, len);
-        }
+        outResource(resourceType, processDefinition, response);
     }
 
     /**
@@ -191,7 +188,7 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/delete", produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String delete(@RequestParam("deploymentId") String deploymentId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             repositoryService.deleteDeployment(deploymentId, true);
             data.put("message", "删除成功，流程部署ID=" + deploymentId);
@@ -211,8 +208,7 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/trace")
     @ResponseBody
     public List<Map<String, Object>> traceProcess(@RequestParam("pid") String processInstanceId) throws Exception {
-        List<Map<String, Object>> activityInfos = traceService.traceProcess(processInstanceId);
-        return activityInfos;
+        return traceService.traceProcess(processInstanceId);
     }
 
     /**
@@ -231,22 +227,18 @@ public class ActivitiController extends AbstractSuperController {
 
         DefaultProcessDiagramGenerator diagramGenerator = new DefaultProcessDiagramGenerator();
         InputStream imageStream = diagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds,
-                Collections.<String>emptyList(),
+                Collections.emptyList(),
                 processEngineConfiguration.getProcessEngineConfiguration().getActivityFontName(),
                 processEngineConfiguration.getProcessEngineConfiguration().getLabelFontName(), null, null, 1.0);
         // 输出资源内容到相应对象
-        byte[] b = new byte[1024];
-        int len;
-        while ((len = imageStream.read(b, 0, 1024)) != -1) {
-            response.getOutputStream().write(b, 0, len);
-        }
+        outResourceAsStream(imageStream, response);
     }
 
     @RequestMapping(value = "/deploy", produces = CommonConstants.MediaType_APPLICATION_HTML)
     @ResponseBody
     public String deploy(@RequestParam(value = "category", required = false) String category,
                          @RequestParam(value = "file", required = false) MultipartFile file) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         String fileName = file.getOriginalFilename();
         try {
             if (StringUtils.isNotBlank(fileName) && StringUtils.isNotBlank(category)) {
@@ -293,14 +285,14 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/convert-to-model/{processDefinitionId}", produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String convertToModel(@PathVariable("processDefinitionId") String processDefinitionId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                     .processDefinitionId(processDefinitionId).singleResult();
             InputStream bpmnStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(),
                     processDefinition.getResourceName());
             XMLInputFactory xif = XMLInputFactory.newInstance();
-            InputStreamReader in = new InputStreamReader(bpmnStream, "UTF-8");
+            InputStreamReader in = new InputStreamReader(bpmnStream, StandardCharsets.UTF_8);
             XMLStreamReader xtr = xif.createXMLStreamReader(in);
             BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(xtr);
 
@@ -319,7 +311,7 @@ public class ActivitiController extends AbstractSuperController {
 
             repositoryService.saveModel(modelData);
 
-            repositoryService.addModelEditorSource(modelData.getId(), modelNode.toString().getBytes("utf-8"));
+            repositoryService.addModelEditorSource(modelData.getId(), modelNode.toString().getBytes(StandardCharsets.UTF_8));
 
             data.put("message", "转换成功。");
         } catch (Exception e) {
@@ -335,7 +327,7 @@ public class ActivitiController extends AbstractSuperController {
     @ResponseBody
     public String updateState(@PathVariable("state") String state,
                               @PathVariable("processDefinitionId") String processDefinitionId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         if ("active".equals(state)) {
             data.put("message", "已激活ID为[" + processDefinitionId + "]的流程定义。");
             repositoryService.activateProcessDefinitionById(processDefinitionId, true, null);
@@ -354,7 +346,7 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/export/diagrams")
     @ResponseBody
     public List<String> exportDiagrams() throws IOException {
-        List<String> files = new ArrayList<String>();
+        List<String> files = new ArrayList<>();
         List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
 
         for (ProcessDefinition processDefinition : list) {
@@ -376,8 +368,7 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/bpmn/model/{processDefinitionId}")
     @ResponseBody
     public BpmnModel queryBpmnModel(@PathVariable("processDefinitionId") String processDefinitionId) {
-        BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinitionId);
-        return bpmnModel;
+        return repositoryService.getBpmnModel(processDefinitionId);
     }
 
     @Autowired

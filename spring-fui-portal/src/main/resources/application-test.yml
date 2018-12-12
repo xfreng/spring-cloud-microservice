@@ -10,5 +10,3 @@ eureka:
     lease-expiration-duration-in-seconds: 5
 server:
   port: 8034
-logging:
-  file: /usr/apps/logs/fui-portal.log

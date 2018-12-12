@@ -6,7 +6,7 @@
 	<%@include file="/public/include/fui-iplat-common.jsp"%>
 </head>
 <body style="overflow-x:hidden;">
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div id="layout" class="fui-layout" style="width:100%;">
 	<div showHeader="false" region="center" bodyStyle="overflow:hidden;" style="border:0;">
 		<div class="fui-toolbar" style="border-bottom:0;">

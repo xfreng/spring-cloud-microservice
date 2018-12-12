@@ -3,7 +3,8 @@ package com.fui.cloud.common;
 import org.apache.commons.beanutils.Converter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,7 @@ import java.util.Date;
 
 public class DateConverter implements Converter {
 
-    private static final Logger logger = Logger.getLogger(DateConverter.class);
+    private static final Logger logger = LoggerFactory.getLogger(DateConverter.class);
 
     private static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 

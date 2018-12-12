@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: cloud-fui-consul-config
+  cloud:
+    consul:
+      host: 192.168.131.150
+      port: 8500
+      discovery:
+        healthCheckInterval: 15s
+        instance-id: ${spring.application.name}
+        enabled: true
+        prefer-ip-address: true
+      config:
+        enabled: true
+        prefix: config
+        data-key: data
+        format: YAML
+        defaultContext: ${spring.application.name}

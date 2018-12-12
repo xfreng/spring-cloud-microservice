@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div id="layout" class="fui-layout" style="width:100%;">
     <div region="west" title="组织机构树" showHeader="false" style="cursor:hand;" bodyStyle="padding-left:0px;" showSplitIcon="true" width="230" maxWidth="530">
         <ul id="leftTree" class="fui-tree" url="${path}/supervisor/organization/selectByKey" style="width:100%;margin-top:5px;"

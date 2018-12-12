@@ -8,5 +8,3 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     # 续约到期时间（默认90秒）
     lease-expiration-duration-in-seconds: 5
-logging:
-  file: /usr/apps/logs/cas-admin.log

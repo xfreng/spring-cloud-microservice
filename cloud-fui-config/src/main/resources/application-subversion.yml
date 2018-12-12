@@ -29,5 +29,3 @@ spring:
     port: 5672
     username: ${spring.security.user.name}
     password: ${spring.security.user.password}
-logging:
-  file: D:/installed/apache-tomcat-7.0.72/logs/fui-config.log

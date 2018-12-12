@@ -6,7 +6,7 @@
     <%@include file="/public/include/fui-iplat-common.jsp"%>
 </head>
 <body style="overflow-x:hidden;">
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div id="form1" class="fui-panel" title="布局样式设置" width="100%" height="100%">
     <table border="0" width="100%" >
       <tr>

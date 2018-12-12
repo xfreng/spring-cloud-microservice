@@ -14,7 +14,7 @@ public class DruidConfiguration {
      */
     @Bean
     public ServletRegistrationBean druidStatViewServlet() {
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+        ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
         servletRegistrationBean.addInitParameter("allow", "127.0.0.1");//白名单
         servletRegistrationBean.addInitParameter("deny", "192.168.100.189");//黑名单
         servletRegistrationBean.addInitParameter("loginUsername", "admin");
@@ -28,7 +28,7 @@ public class DruidConfiguration {
      */
     @Bean
     public FilterRegistrationBean druidStatFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
+        FilterRegistrationBean<WebStatFilter> filterRegistrationBean = new FilterRegistrationBean<>(new WebStatFilter());
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;

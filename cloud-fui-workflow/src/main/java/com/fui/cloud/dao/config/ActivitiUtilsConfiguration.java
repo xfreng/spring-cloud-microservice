@@ -33,11 +33,15 @@ public class ActivitiUtilsConfiguration {
         StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter(Charset.defaultCharset());
         stringHttpMessageConverter.setWriteAcceptCharset(false);
         //设置中文编码格式
-        List<MediaType> list = new ArrayList<MediaType>();
+        stringHttpMessageConverter.setSupportedMediaTypes(setMediaTypes());
+        return stringHttpMessageConverter;
+    }
+
+    private List<MediaType> setMediaTypes() {
+        List<MediaType> list = new ArrayList<>();
         list.add(MediaType.APPLICATION_JSON_UTF8);
         list.add(MediaType.APPLICATION_FORM_URLENCODED);
-        stringHttpMessageConverter.setSupportedMediaTypes(list);
-        return stringHttpMessageConverter;
+        return list;
     }
 
     @Bean
@@ -49,10 +53,7 @@ public class ActivitiUtilsConfiguration {
         objectMapper.setDateFormat(smt);
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
         //设置中文编码格式
-        List<MediaType> list = new ArrayList<MediaType>();
-        list.add(MediaType.APPLICATION_JSON_UTF8);
-        list.add(MediaType.APPLICATION_FORM_URLENCODED);
-        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(setMediaTypes());
         return mappingJackson2HttpMessageConverter;
     }
 

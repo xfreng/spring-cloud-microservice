@@ -14,7 +14,7 @@ public class ServletConfiguration {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.scan("org.activiti.rest.editor", "org.activiti.rest.diagram");
         DispatcherServlet modelRestServlet = new DispatcherServlet(applicationContext);
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(modelRestServlet);
+        ServletRegistrationBean<DispatcherServlet> registrationBean = new ServletRegistrationBean<>(modelRestServlet);
         registrationBean.setLoadOnStartup(1);
         registrationBean.addUrlMappings("/service/*");
         registrationBean.setName("ModelRestServlet");
@@ -26,7 +26,7 @@ public class ServletConfiguration {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.scan("org.activiti.rest");
         DispatcherServlet actRestServlet = new DispatcherServlet(applicationContext);
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(actRestServlet);
+        ServletRegistrationBean<DispatcherServlet> registrationBean = new ServletRegistrationBean<>(actRestServlet);
         registrationBean.setLoadOnStartup(1);
         registrationBean.addUrlMappings("/rest/*");
         registrationBean.setName("ActRestServlet");

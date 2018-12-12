@@ -69,10 +69,29 @@ function resourceRenderer(e) {
     var id = row.id;
     var showValue = e.value;
     var url = '<a target="_blank" href="' + fui.contextPath + '/supervisor/workflow/process/resource/read?processDefinitionId=' + id + '&resourceType=xml">' + showValue + '</a>';
-    if (e.field == 'diagramResourceName') {
-        url = '<a target="_blank" href="' + fui.contextPath + '/supervisor/workflow/process/resource/read?processDefinitionId=' + id + '&resourceType=image">' + showValue + '</a>';
+    if (e.field === 'diagramResourceName') {
+        url = '<a target="_blank" href="javascript:void(0);" onclick="openDiagramResourceDialog(\'' + id + '\');">' + showValue + '</a>';
     }
     return url;
+}
+
+function openDiagramResourceDialog(id) {
+    var imageUrl = fui.contextPath + '/supervisor/workflow/process/resource/read?processDefinitionId=' + id + '&resourceType=image';
+    if ($('#diagramResourceDialog').length === 0) {
+        $('<div/>', {
+            id: 'workflowTraceDialog',
+            title: '查看图片',
+            html: "<div><img src='" + imageUrl + "' style='position:absolute; left:10px; top:10px;' /></div>"
+        }).appendTo('body').dialog({
+            modal: true,
+            resizable: false,
+            dragable: false,
+            width: document.documentElement.clientWidth * 0.95,
+            height: document.documentElement.clientHeight * 0.95
+        });
+    } else {
+        $('#diagramResourceDialog img').attr('src', imageUrl);
+    }
 }
 
 /**

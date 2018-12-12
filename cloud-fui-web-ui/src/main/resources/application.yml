@@ -16,17 +16,17 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
-  rabbitmq:
-    host: 192.168.131.150
-    port: 5672
-    username: ${spring.security.user.name}
-    password: ${spring.security.user.password}
+#  rabbitmq:
+#    host: 192.168.131.150
+#    port: 5672
+#    username: ${spring.security.user.name}
+#    password: ${spring.security.user.password}
   aop:
     proxy-target-class: true
 info:
   version: "@project.version@"
 logging:
-  config: classpath:conf/logback.xml
+  config: classpath:conf/log4j2.xml
 fui:
   quartz:
     quartzSwitch: false

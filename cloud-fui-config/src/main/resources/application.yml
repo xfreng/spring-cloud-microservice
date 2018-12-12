@@ -2,8 +2,8 @@ spring:
   application:
     name: config-server
   profiles:
-    active: dev
-    #active: consul
+#    active: dev
+    active: consul
   security:
     user:
       name: xfreng
@@ -11,4 +11,4 @@ spring:
 info:
   version: "@project.version@"
 logging:
-  config: classpath:conf/logback.xml
+  config: classpath:conf/log4j2.xml

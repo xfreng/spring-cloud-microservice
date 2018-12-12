@@ -3,8 +3,8 @@
     <parent>
         <artifactId>spring-cloud-microservice</artifactId>
         <groupId>com.fui.cloud</groupId>
-        <version>v1.0.8</version>
-        <relativePath/>
+        <version>${project.version}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.23</version>
+            <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
     <build>

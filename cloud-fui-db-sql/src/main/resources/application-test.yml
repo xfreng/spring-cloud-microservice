@@ -2,7 +2,7 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://${security.user.name}:${security.user.password}@192.168.131.150:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@192.168.131.150:8761/eureka/
   instance:
     # 续约更新时间间隔（默认30秒）
     lease-renewal-interval-in-seconds: 1
@@ -13,8 +13,8 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    fui:
-      driverClassName: com.mysql.jdbc.Driver
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://192.168.52.106:3306/fui?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
       username: root
       password: admin
@@ -38,11 +38,10 @@ mybatis:
   databaseSchemaUpdate: false
   datasource:
     type: org.apache.commons.dbcp.BasicDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.52.106:3306/test?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
-    username: root
-    password: admin
+    dbcp:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.52.106:3306/fui?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+      username: root
+      password: admin
 pagehelper:
   helperDialect: mysql
-logging:
-  file: /usr/apps/logs/fui-db.log

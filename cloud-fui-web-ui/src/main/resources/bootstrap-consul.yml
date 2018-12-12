@@ -1,5 +1,14 @@
 spring:
   cloud:
+    #配置consul服务注册中心
+    consul:
+      host: 192.168.131.150
+      port: 8500
+      discovery:
+        enabled: true
+        healthCheckInterval: 15s
+        instance-id: ${spring.application.name}
+        prefer-ip-address: true
     config:
       #配置中心服务器地址配置
       uri: http://192.168.131.150:8082/

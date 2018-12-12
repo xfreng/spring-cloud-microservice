@@ -17,6 +17,9 @@ public class DataSourceConfiguration {
     @Value("${spring.datasource.type}")
     private Class<? extends DataSource> type;
 
+    @Value("${mybatis.datasource.type}")
+    private Class<? extends DataSource> ddlType;
+
     @Value("${pagehelper.helperDialect}")
     private String mybatisDialect;
 
@@ -30,14 +33,14 @@ public class DataSourceConfiguration {
     }
 
     @Bean(name = "fuiDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.fui")
+    @ConfigurationProperties(prefix = "spring.datasource.druid")
     public DataSource fuiDataSource() {
         return DataSourceBuilder.create().type(type).build();
     }
 
     @Bean(name = "fuiDdlDataSource")
-    @ConfigurationProperties(prefix = "mybatis.datasource")
+    @ConfigurationProperties(prefix = "mybatis.datasource.dbcp")
     public DataSource fuiDdlDataSource() {
-        return DataSourceBuilder.create().type(type).build();
+        return DataSourceBuilder.create().type(ddlType).build();
     }
 }

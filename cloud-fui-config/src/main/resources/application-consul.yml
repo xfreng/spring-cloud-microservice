@@ -24,5 +24,3 @@ spring:
     port: 5672
     username: ${spring.security.user.name}
     password: ${spring.security.user.password}
-logging:
-  file: /usr/apps/logs/fui-config.log

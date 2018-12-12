@@ -11,7 +11,7 @@
 	</style>
 </head>
 <body>
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div class="fui-fit" style="width:100%;height:100%;">
 	<div class="fui-panel" title="项目配置信息列表" style="width:100%;height:99%;" bodyStyle="overflow:hidden;" showCollapseButton="false">
 		<div class="fui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">

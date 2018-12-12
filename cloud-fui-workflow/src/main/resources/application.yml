@@ -12,22 +12,16 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
+  security:
+    user:
+      name: xfreng
+      password: passw0rd
   rabbitmq:
     host: 192.168.131.150
     port: 5672
-    username: ${security.user.name}
-    password: ${security.user.password}
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 info:
   version: "@project.version@"
-management:
-  security:
-    enabled: false
-security:
-  basic:
-    enabled: false
-  user:
-    name: xfreng
-    password: passw0rd
 logging:
-  config: classpath:conf/logback.xml
-  level: debug
+  config: classpath:conf/log4j2.xml

@@ -14,7 +14,7 @@
 	</style>
 </head>
 <body>
-<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp"></jsp:include>
+<jsp:include flush="false" page="/public/include/iplat.ef.head.jsp" />
 <div id="layout" class="fui-layout" style="width:100%;">
 	<div region="west" showHeader="false" style="cursor:hand;" bodyStyle="padding-left:0px;" showSplitIcon="true" width="230" maxWidth="530">
 	    <ul id="tree" class="fui-tree" url="${path}/supervisor/menu/loadMenuNodes" style="width:100%;margin-top:5px;"

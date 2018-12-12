@@ -10,5 +10,3 @@ eureka:
     lease-expiration-duration-in-seconds: 5
 server:
   port: 8034
-logging:
-  file: D:/installed/apache-tomcat-7.0.72/logs/fui-portal.log
