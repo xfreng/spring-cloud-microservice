@@ -22,7 +22,6 @@ public class DatabaseEngine {
         if (databaseSchemaUpdate) {
             ScriptRunner runner = new ScriptRunner(dataSource.getConnection());
             Resources.setCharset(Charset.forName("utf-8"));
-            runner.runScript(Resources.getResourceAsReader("db/" + databaseType + "/fui_user.sql"));
             runner.runScript(Resources.getResourceAsReader("db/" + databaseType + "/fui.sql"));
             runner.closeConnection();
         }
