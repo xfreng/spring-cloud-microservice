@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <Property name="LOG_HOME">f:/data/logs/fui-web-ui</Property>
-        <!--<Property name="LOG_HOME">/usr/apps/logs/fui-web-ui</Property>-->
+        <Property name="LOG_HOME">/usr/apps/logs/fui-workflow</Property>
     </Properties>
 
     <Appenders>

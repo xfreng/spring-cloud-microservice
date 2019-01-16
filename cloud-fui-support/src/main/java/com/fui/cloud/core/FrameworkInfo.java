@@ -1,6 +1,5 @@
 package com.fui.cloud.core;
 
-import com.fui.cloud.common.MemCachedUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,34 +14,26 @@ public class FrameworkInfo {
     }
 
     public static String getLoginBackground() {
-        return MemCachedUtils.getText("login.background", "background");
+        return "background";
     }
 
     public static String getProjectEname() {
-        return MemCachedUtils.getText("project.ename", "fui");
+        return "fui";
     }
 
     public static String getProjectName() {
-        return MemCachedUtils.getText("project.name", "jcoffee Demo");
+        return "jcoffee Demo";
     }
 
     public static String getLogo() {
-        return MemCachedUtils.getText("logo", "logo.png");
+        return "logo.png";
     }
 
     public static String getDev() {
-        return MemCachedUtils.getText("dev", "框架研发");
+        return "框架研发";
     }
 
     public static String getTempDir() {
-        return MemCachedUtils.getText("temp.dir", "c:/infogen");
-    }
-
-    public static String get(String key) {
-        return MemCachedUtils.getText(key, null);
-    }
-
-    public static String get(String key, String defaultText) {
-        return MemCachedUtils.getText(key, defaultText);
+        return "/usr/infogen";
     }
 }

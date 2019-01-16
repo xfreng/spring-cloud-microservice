@@ -1,6 +1,8 @@
 #服务注册中心配置
 eureka:
   client:
+    healthcheck:
+      enabled: true
     service-url:
       defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
   instance:
@@ -32,9 +34,16 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       connectionProperties: druid.stat.mergeSql=true;dbcp.stat.slowSqlMillis=5000
+  rabbitmq:
+    host: 192.168.131.150
+    port: 5672
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 activiti:
   databaseType: mysql
   tablePrefixIsSchema: true
   databaseSchemaUpdate: true
   activityFontName: 宋体
   labelFontName: 宋体
+logging:
+  config: classpath:conf/log4j2-dev.xml

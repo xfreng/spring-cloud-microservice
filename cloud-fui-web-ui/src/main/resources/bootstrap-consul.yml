@@ -2,7 +2,7 @@ spring:
   cloud:
     #配置consul服务注册中心
     consul:
-      host: 192.168.131.150
+      host: 172.16.0.4
       port: 8500
       discovery:
         enabled: true
@@ -11,7 +11,7 @@ spring:
         prefer-ip-address: true
     config:
       #配置中心服务器地址配置
-      uri: http://192.168.131.150:8082/
+      uri: http://172.16.0.4:8082/
       profile: consul
       label: master
       retry:
@@ -23,5 +23,10 @@ spring:
         initial-interval: 1000
         # 最大间隔时间，默认2000ms
         max-interval: 2000
+  rabbitmq:
+    host: 172.16.0.4
+    port: 5672
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 server:
   port: 8088

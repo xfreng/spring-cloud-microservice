@@ -6,10 +6,12 @@ spring:
   cloud:
     #配置consul服务注册中心
     consul:
-      host: 192.168.131.150
+      #host: 192.168.131.150
+      host: 127.0.0.1
       port: 8500
       enabled: true
       discovery:
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
         enabled: true
         prefer-ip-address: true
     config:
@@ -20,7 +22,8 @@ spring:
     bus:
       enabled: true
   rabbitmq:
-    host: 192.168.131.150
+    #host: 192.168.131.150
+    host: 127.0.0.1
     port: 5672
     username: ${spring.security.user.name}
     password: ${spring.security.user.password}

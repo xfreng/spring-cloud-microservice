@@ -7,9 +7,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/activiti?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
+      url: jdbc:mysql://172.16.0.4:3306/activiti?useUnicode=true&characterEncoding=UTF8&noAccessToProcedureBodies=true
       username: root
-      password: admin
+      #password: admin
+      password: Admin1234!~
       initialSize: 1
       minIdle: 5
       maxActive: 20
@@ -22,9 +23,16 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       connectionProperties: druid.stat.mergeSql=true;dbcp.stat.slowSqlMillis=5000
+  rabbitmq:
+    host: 172.16.0.4
+    port: 5672
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}
 activiti:
   databaseType: mysql
   tablePrefixIsSchema: true
   databaseSchemaUpdate: true
   activityFontName: 宋体
   labelFontName: 宋体
+logging:
+  config: classpath:conf/log4j2-consul.xml

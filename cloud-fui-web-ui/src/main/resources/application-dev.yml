@@ -8,3 +8,5 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     # 续约到期时间（默认90秒）
     lease-expiration-duration-in-seconds: 5
+logging:
+  config: classpath:conf/log4j2-dev.xml
