@@ -42,7 +42,7 @@ public class MenuController extends AbstractSuperController {
 
     @GetMapping(value = {"/loadMenuNodePage/{pageNum}/{pageSize}/{key}/{pid}"})
     public JSONObject loadMenuNodePage(@PathVariable Integer pageNum, @PathVariable Integer pageSize, @PathVariable String key, @PathVariable String pid) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("id", pid);
         //分页查询
         PageHelper.startPage(pageNum, pageSize);
@@ -54,7 +54,7 @@ public class MenuController extends AbstractSuperController {
 
     @GetMapping(value = "/queryShortcut/{currPage}/{pageSize}/{key}/{userId}")
     public JSONObject queryShortcut(@PathVariable int currPage, @PathVariable int pageSize, @PathVariable String key, @PathVariable Long userId) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("userId", userId);
         //分页查询
         PageHelper.startPage(currPage, pageSize);
@@ -67,20 +67,20 @@ public class MenuController extends AbstractSuperController {
     @PostMapping(value = "/saveMenu/{info}/{data}")
     public int saveMenu(@PathVariable String info, @PathVariable String data) {
         JSONObject operateInfo = JSONObject.parseObject(info);
-        JSONArray columns = JSONArray.parseArray(data);
+        List<JSONObject> columns = JSONArray.parseArray(data, JSONObject.class);
         return menuService.saveMenu(operateInfo, columns);
     }
 
     @DeleteMapping(value = "/deleteMenu/{userId}/{data}")
     public int deleteMenu(@PathVariable Long userId, @PathVariable String data) {
-        JSONArray columns = JSONArray.parseArray(data);
+        List<JSONObject> columns = JSONArray.parseArray(data, JSONObject.class);
         return menuService.deleteMenu(userId, columns);
     }
 
     @PutMapping(value = "/updateMenu/{info}/{data}")
     public int updateMenu(@PathVariable String info, @PathVariable String data) {
         JSONObject operateInfo = JSONObject.parseObject(info);
-        JSONArray columns = JSONArray.parseArray(data);
+        List<JSONObject> columns = JSONArray.parseArray(data, JSONObject.class);
         return menuService.updateMenu(operateInfo, columns);
     }
 

@@ -32,13 +32,12 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      * @return List<JSONObject>
      */
     public List<JSONObject> queryMenuNodeById(String id) {
-        List<JSONObject> menus = new ArrayList<JSONObject>();
-        Map<String, Object> param = new HashMap<String, Object>();
+        List<JSONObject> menus = new ArrayList<>();
+        Map<String, Object> param = new HashMap<>();
         param.put("id", id);
         List<Menu> menuTrees = menuMapper.queryMenuNodeBySelective(param);
-        List menuList = JSONArray.parseArray(JSONArray.toJSONString(menuTrees));
-        for (Object menuTree : menuList) {
-            JSONObject treeNode = (JSONObject) menuTree;
+        List<JSONObject> menuList = JSONArray.parseArray(JSONArray.toJSONString(menuTrees), JSONObject.class);
+        for (JSONObject treeNode : menuList) {
             param.put("id", treeNode.getString("id"));
             List<Menu> nodes = menuMapper.queryMenuNodeBySelective(param);
             if (nodes.size() > 0) {
@@ -63,7 +62,7 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      *
      * @param userId
      * @param id
-     * @return List<Map                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               String                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Object>>
+     * @return list
      */
     public List<Map<String, Object>> query(Long userId, String id) {
         return menuMapper.query(userId, id);
@@ -87,7 +86,7 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      */
     private List<Menu> getMenuNodeById(String id, String rootId) {
         List<Menu> roots = getChildNodes(id, rootId);
-        List<Menu> menus = new ArrayList<Menu>(roots);
+        List<Menu> menus = new ArrayList<>(roots);
         for (Menu menuTree : roots) {
             List<Menu> nodes = getChildNodes(menuTree.getId(), rootId);
             if (nodes.size() > 0) {
@@ -112,7 +111,7 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
         if (StringUtils.isEmpty(id)) {
             id = rootId;
         }
-        Map<String, Object> param = new HashMap<String, Object>();
+        Map<String, Object> param = new HashMap<>();
         param.put("id", id);
         return menuMapper.queryMenuNodeBySelective(param);
     }
@@ -124,11 +123,12 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      * @param columns
      * @return int
      */
-    public int saveMenu(JSONObject info, JSONArray columns) {
+    public int saveMenu(JSONObject info, List<JSONObject> columns) {
         int result = 0;
         try {
-            for (Object column : columns) {
-                Menu menuTree = JSONObject.parseObject(JSONObject.toJSONString(column), Menu.class);
+            for (JSONObject column : columns) {
+                Menu menuTree = JSONObject.parseObject(column.toJSONString(), Menu.class);
+                menuTree.setId(column.getString("id"));
                 menuTree.setRecCreateTime(info.getString("recCreateTime"));
                 menuTree.setRecCreator(info.getString("recCreator"));
                 result = menuMapper.insertMenuNode(menuTree);
@@ -146,12 +146,12 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      * @param columns
      * @return int
      */
-    public int deleteMenu(Long userId, JSONArray columns) {
+    public int deleteMenu(Long userId, List<JSONObject> columns) {
         int result = 0;
         try {
-            for (Object objectTree : columns) {
-                String jsonString = JSONObject.toJSONString(objectTree);
-                Menu menuTree = JSONObject.parseObject(jsonString, Menu.class);
+            for (JSONObject objectTree : columns) {
+                Menu menuTree = JSONObject.parseObject(objectTree.toJSONString(), Menu.class);
+                menuTree.setId(objectTree.getString("id"));
                 if (userId != null) {
                     int menuChildCount = query(userId, menuTree.getId()).size();
                     if (menuChildCount > 0) {
@@ -173,11 +173,12 @@ public class MenuService extends AbstractSuperImplService<Menu, Long> {
      * @param columns
      * @return int
      */
-    public int updateMenu(JSONObject info, JSONArray columns) {
+    public int updateMenu(JSONObject info, List<JSONObject> columns) {
         int result = 0;
         try {
-            for (Object objectTree : columns) {
-                Menu menuTree = JSONObject.parseObject(JSONObject.toJSONString(objectTree), Menu.class);
+            for (JSONObject objectTree : columns) {
+                Menu menuTree = JSONObject.parseObject(objectTree.toJSONString(), Menu.class);
+                menuTree.setId(objectTree.getString("id"));
                 menuTree.setRecReviseTime(info.getString("recReviseTime"));
                 menuTree.setRecRevisor(info.getString("recRevisor"));
                 result = menuMapper.updateMenuNodeById(menuTree);

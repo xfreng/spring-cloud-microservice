@@ -102,6 +102,7 @@
 	       	node_type=#{type},
 	       	node_sort_id=#{sortId},
 	       	node_url=#{url},
+	       	node_param=#{param},
 	       	node_image_path=#{image}
        	where tree_ename=#{pid} and node_ename=#{id}
     </update>
