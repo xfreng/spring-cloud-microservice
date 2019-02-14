@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,6 +24,7 @@
 		.color_a{
 			color:#595959;
 		}
+		.fuiAdmin{ background:#696969;border:1px solid #808080;}
 	</style>
 	<script type="text/javascript" src="${path}/public/scripts/supervisor/pact-index.js?v=<%=java.lang.System.currentTimeMillis()%>"></script>
 </head>
@@ -68,6 +69,7 @@
 	                    		<li onclick="updateStyle('pact','black')" ${"black" eq menuStyle?"class'selected'":""}><span class="black color"></span><span class="pd_l_15">黑色</span></li>
 	                            <li onclick="updateStyle('pact','pact')" ${"pact" eq menuStyle?"class'selected'":""}><span class="blue color"></span><span class="pd_l_15">蓝色</span></li>
 	                            <li onclick="updateStyle('pact','skyblue')" ${"skyblue" eq menuStyle?"class'selected'":""}><span class="skyblue color"></span><span class="pd_l_15">青色</span></li>
+								<li onclick="updateStyle('pact','fuiAdmin')" ${"fuiAdmin" eq menuStyle?"class'selected'":""}><span class="fuiAdmin color"></span><span class="pd_l_15">灰色</span></li>
 	                        </ul>
 	                    </li>
 	                </ul>

@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false"%>
+﻿<%@ page pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,11 +53,15 @@
 	            </tr>
 	            <tr>
 	                <td width="15%" align="right">菜单类型：</td>
-	                <td colspan="3">    
+	                <td>
 	                    <input name="type" class="fui-combobox" textField="text" valueField="id" emptyText="请选择..."
 	                    	   data="[{ id: 1, text: '叶子节点' }, { id: 0, text: '树节点'}]"
     						   required="true" allowInput="true" showNullItem="true" nullItemText="请选择..."/>
 	                </td>
+					<td align="right">（样式）参数：</td>
+					<td>
+						<input name="param" class="fui-textbox" required="false"/>
+					</td>
 	            </tr>         
 	        </table>            
         </div>

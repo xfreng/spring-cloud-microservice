@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +54,9 @@
 	            <div field="url" width="120" headerAlign="center" allowSort="false">菜单URL                        
 	                <input property="editor" class="fui-textbox" style="width:100%;"/>
 	            </div>
+				<div field="param" width="120" headerAlign="center" allowSort="false" align="center">（样式）参数
+					<input property="editor" class="fui-textbox" style="width:100%;"/>
+				</div>
 	            <div field="image" width="120" headerAlign="center" allowSort="false" align="center">自定义图标样式                        
 	                <input property="editor" class="fui-textbox" style="width:100%;"/>
 	            </div>

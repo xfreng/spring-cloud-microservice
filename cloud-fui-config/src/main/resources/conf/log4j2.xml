@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <!--<Property name="LOG_HOME">f:/data/logs/fui-config</Property>-->
+        <!--<Property name="LOG_HOME">f:/data/log/fui-config</Property>-->
         <Property name="LOG_HOME">/usr/apps/logs/fui-config</Property>
     </Properties>
 

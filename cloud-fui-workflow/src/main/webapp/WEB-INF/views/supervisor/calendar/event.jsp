@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="com.fui.cloud.common.DateUtils"%>
 <%@page import="com.fui.cloud.common.StringUtils"%>
 <%@page import="java.util.Date"%>

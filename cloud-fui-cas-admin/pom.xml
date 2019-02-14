@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>com.fui.cloud</groupId>
-            <artifactId>cloud-fui-support</artifactId>
+            <artifactId>cloud-fui-db-sql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

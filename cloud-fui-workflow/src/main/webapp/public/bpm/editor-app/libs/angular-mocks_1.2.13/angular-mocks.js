@@ -200,7 +200,7 @@ angular.mock.$Browser.prototype = {
  * @name ngMock.$exceptionHandler
  *
  * @description
- * Mock implementation of {@link ng.$exceptionHandler} that rethrows or logs errors passed
+ * Mock implementation of {@link ng.$exceptionHandler} that rethrows or log errors passed
  * into it. See {@link ngMock.$exceptionHandlerProvider $exceptionHandlerProvider} for configuration
  * information.
  *
@@ -222,7 +222,7 @@ angular.mock.$Browser.prototype = {
  *         expect($log.assertEmpty());
  *         $timeout.flush();
  *         expect($exceptionHandler.errors).toEqual(['banana peel']);
- *         expect($log.log.logs).toEqual([[1], [2], [3]]);
+ *         expect($log.log.log).toEqual([[1], [2], [3]]);
  *       });
  *     });
  *   });
@@ -289,8 +289,8 @@ angular.mock.$ExceptionHandlerProvider = function() {
  *
  * @description
  * Mock implementation of {@link ng.$log} that gathers all logged messages in arrays
- * (one array per logging level). These arrays are exposed as `logs` property of each of the
- * level-specific log function, e.g. for level `error` the array is exposed as `$log.error.logs`.
+ * (one array per logging level). These arrays are exposed as `log` property of each of the
+ * level-specific log function, e.g. for level `error` the array is exposed as `$log.error.log`.
  *
  */
 angular.mock.$LogProvider = function() {
@@ -342,7 +342,7 @@ angular.mock.$LogProvider = function() {
        * @example
        * <pre>
        * $log.log('Some Log');
-       * var first = $log.log.logs.unshift();
+       * var first = $log.log.log.unshift();
        * </pre>
        */
       $log.log.logs = [];
@@ -357,7 +357,7 @@ angular.mock.$LogProvider = function() {
        * @example
        * <pre>
        * $log.info('Some Info');
-       * var first = $log.info.logs.unshift();
+       * var first = $log.info.log.unshift();
        * </pre>
        */
       $log.info.logs = [];
@@ -372,7 +372,7 @@ angular.mock.$LogProvider = function() {
        * @example
        * <pre>
        * $log.warn('Some Warning');
-       * var first = $log.warn.logs.unshift();
+       * var first = $log.warn.log.unshift();
        * </pre>
        */
       $log.warn.logs = [];
@@ -387,7 +387,7 @@ angular.mock.$LogProvider = function() {
        * @example
        * <pre>
        * $log.error('Some Error');
-       * var first = $log.error.logs.unshift();
+       * var first = $log.error.log.unshift();
        * </pre>
        */
       $log.error.logs = [];
@@ -402,7 +402,7 @@ angular.mock.$LogProvider = function() {
        * @example
        * <pre>
        * $log.debug('Some Error');
-       * var first = $log.debug.logs.unshift();
+       * var first = $log.debug.log.unshift();
        * </pre>
        */
       $log.debug.logs = [];

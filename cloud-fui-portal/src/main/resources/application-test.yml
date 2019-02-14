@@ -1,0 +1,18 @@
+#服务注册中心配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@192.168.131.150:8761/eureka/
+  instance:
+    # 续约更新时间间隔（默认30秒）
+    lease-renewal-interval-in-seconds: 1
+    # 续约到期时间（默认90秒）
+    lease-expiration-duration-in-seconds: 5
+server:
+  port: 8034
+spring:
+  rabbitmq:
+    host: 192.168.131.150
+    port: 5672
+    username: ${spring.security.user.name}
+    password: ${spring.security.user.password}

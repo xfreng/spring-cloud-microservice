@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -24,6 +24,7 @@
 
 <link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/common/fui/themes/pact/demo.css"/>
 <link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/common/fui/themes/default/fui-ext-style.css"/>
+<link rel="stylesheet" href="${path}/webjars/fui/public/fuiAdmin/layui/css/layui.css" media="all">
 
 <script type="text/javascript">
     fui.treeRootId="root";

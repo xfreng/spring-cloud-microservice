@@ -14,10 +14,9 @@
         <module>cloud-fui-db-sql</module>
         <module>cloud-fui-workflow</module>
         <module>cloud-fui-boot-admin-server</module>
-        <module>cloud-fui-support</module>
         <module>cloud-fui-consul-client</module>
         <module>cloud-fui-cas-admin</module>
-        <module>spring-fui-portal</module>
+        <module>cloud-fui-portal</module>
         <module>cloud-fui-zuul</module>
         <module>cloud-fui-consul-config</module>
     </modules>
@@ -45,7 +44,7 @@
             </dependency>
             <dependency>
                 <groupId>com.fui.cloud</groupId>
-                <artifactId>cloud-fui-support</artifactId>
+                <artifactId>cloud-fui-db-sql</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
@@ -139,6 +138,11 @@
         <swagger.version>2.8.0</swagger.version>
         <fastjson.version>1.2.47</fastjson.version>
         <batik.version>1.7</batik.version>
+        <ehcache.version>3.6.0</ehcache.version>
+        <shiro.version>1.4.0</shiro.version>
+        <pac4j-cas.version>3.1.0</pac4j-cas.version>
+        <buji-pac4j.version>4.0.0</buji-pac4j.version>
+        <poi.version>3.15</poi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>

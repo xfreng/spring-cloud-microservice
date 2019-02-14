@@ -1,5 +1,5 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <%@include file="/public/include/layui-common.jsp" %>

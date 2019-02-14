@@ -105,6 +105,10 @@ function onTabsActiveChanged(e) {
 }
 
 function updateStyle(type, style) {
+    if (style === "fuiAdmin") {
+        window.location.href = fui.contextPath + "/supervisor/login/" + style;
+        return false;
+    }
     var data = {
         menuType: type,
         pageStyle: style

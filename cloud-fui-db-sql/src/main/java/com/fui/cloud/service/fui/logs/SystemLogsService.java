@@ -1,8 +1,10 @@
 package com.fui.cloud.service.fui.logs;
 
-import com.fui.cloud.dao.fui.logs.SystemLogsMapper;
+import com.fui.cloud.dao.fui.log.SystemLogsMapper;
 import com.fui.cloud.model.fui.SystemLogs;
 import com.fui.cloud.service.fui.AbstractSuperImplService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +35,10 @@ public class SystemLogsService extends AbstractSuperImplService<SystemLogs, Long
      * @param params 查询条件
      * @return 系统日志列表
      */
-    public List<SystemLogs> getSystemLogsList(Map<String, Object> params) {
-        return systemLogsMapper.getSystemLogsList(params);
+    public String getSystemLogsList(int page, int limit, Map<String, Object> params) {
+        PageHelper.startPage(page, limit);
+        List<SystemLogs> systemLogsList = systemLogsMapper.getSystemLogsList(params);
+        PageInfo<SystemLogs> pageInfo = createPagination(systemLogsList);
+        return success(systemLogsList, pageInfo.getTotal(), "logsList");
     }
 }

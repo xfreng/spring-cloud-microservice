@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -54,7 +55,7 @@ public class ModelController extends AbstractSuperController {
 
 
     @RequestMapping("/index")
-    public ModelAndView index() throws Exception {
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("supervisor/workflow/model-list");
         return init(mv);
     }
@@ -85,7 +86,7 @@ public class ModelController extends AbstractSuperController {
         JSONObject json = new JSONObject();
         json.put("modelList", modelList);
         json.put("total", modelQuery.count());
-        return success(json);
+        return json.toJSONString();
     }
 
     /**
@@ -134,7 +135,7 @@ public class ModelController extends AbstractSuperController {
         } catch (Exception e) {
             logger.error("创建模型失败：", e);
         }
-        return success(json);
+        return json.toJSONString();
     }
 
     /**
@@ -145,15 +146,15 @@ public class ModelController extends AbstractSuperController {
     @RequestMapping(value = {"/{modelId}/saveas"}, method = {RequestMethod.PUT}, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public String saveAsModel(@RequestBody MultiValueMap<String, String> values) {
-        Map<String, Object> data = new HashMap<String, Object>();
+    public String saveAsModel(@PathVariable("modelId") String modelId, @RequestBody MultiValueMap<String, String> values) {
+        Map<String, Object> data = new HashMap<>();
         try {
             String modelKey = values.getFirst("key");
             Model model = repositoryService.createModelQuery().modelKey(modelKey).singleResult();
             if (model != null) {
                 data.put("state", 1);
             } else {
-                String modelId = values.getFirst("modelId");
+                //String modelId = values.getFirst("modelId");
                 model = repositoryService.getModel(modelId);
 
                 Model modelData = repositoryService.newModel();
@@ -168,8 +169,8 @@ public class ModelController extends AbstractSuperController {
 
                 repositoryService.saveModel(modelData);
                 String jsonXML = editorJsonXML(values.getFirst("json_xml"), false);
-                repositoryService.addModelEditorSource(modelData.getId(), jsonXML.getBytes("utf-8"));
-                InputStream svgStream = new ByteArrayInputStream(values.getFirst("svg_xml").getBytes("utf-8"));
+                repositoryService.addModelEditorSource(modelData.getId(), jsonXML.getBytes(StandardCharsets.UTF_8));
+                InputStream svgStream = new ByteArrayInputStream(values.getFirst("svg_xml").getBytes(StandardCharsets.UTF_8));
                 TranscoderInput input = new TranscoderInput(svgStream);
                 PNGTranscoder transcoder = new PNGTranscoder();
                 // Setup output
@@ -186,7 +187,7 @@ public class ModelController extends AbstractSuperController {
             logger.error("Error saving model", e);
             throw new ActivitiException("Error saving model", e);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -207,7 +208,7 @@ public class ModelController extends AbstractSuperController {
             json.put("message", "Error deleting model！");
             logger.error("Error deleting model", e);
         }
-        return success(json);
+        return json.toJSONString();
     }
 
     /**
@@ -216,7 +217,7 @@ public class ModelController extends AbstractSuperController {
     @RequestMapping(value = "/copyModel", method = RequestMethod.POST, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String copyModel() {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             String modelIdArgs = request.getParameter("modelIdArgs");
             List<String> modelIdList = Arrays.asList(modelIdArgs.split(","));
@@ -242,7 +243,7 @@ public class ModelController extends AbstractSuperController {
             data.put("message", "Error saving model！");
             logger.error("Error saving model", e);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -251,7 +252,7 @@ public class ModelController extends AbstractSuperController {
     @RequestMapping(value = "/copyModel2Template", method = RequestMethod.POST, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String copyModel2Template() {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             String modelIdArgs = request.getParameter("modelIdArgs");
             List<String> modelIdList = Arrays.asList(modelIdArgs.split(","));
@@ -277,7 +278,7 @@ public class ModelController extends AbstractSuperController {
             data.put("message", "Error saving model！");
             logger.error("Error saving model", e);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -397,14 +398,14 @@ public class ModelController extends AbstractSuperController {
     /**
      * 递归保存子流程
      *
-     * @param uuidmodelKey
+     * @param uuidModelKey
      * @param model
      * @param isTemplate
      */
-    protected void loopSaveAsModel(String uuidmodelKey, Model model, boolean isTemplate) {
+    protected void loopSaveAsModel(String uuidModelKey, Model model, boolean isTemplate) {
         try {
-            MultiValueMap<String, String> values = new LinkedMultiValueMap<String, String>();
-            values.add("key", uuidmodelKey);
+            MultiValueMap<String, String> values = new LinkedMultiValueMap<>();
+            values.add("key", uuidModelKey);
             String modelId = model.getId();
             String name = model.getName();
             String metaInfo = model.getMetaInfo();
@@ -418,7 +419,7 @@ public class ModelController extends AbstractSuperController {
             String childJsonXML = new String(repositoryService.getModelEditorSource(modelId), "utf-8");
             ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(childJsonXML);
             ObjectNode editor = editorJsonNode.findParent("process_id");
-            editor.put("process_id", uuidmodelKey);
+            editor.put("process_id", uuidModelKey);
             if (isTemplate) {
                 editor.put("process_namespace", CommonConstants.CATEGORY_NOT_EQUALS);// 字流程类型
             }
@@ -473,7 +474,7 @@ public class ModelController extends AbstractSuperController {
     @RequestMapping(value = "/deploy/{modelId}", method = RequestMethod.POST, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String deploy(@PathVariable("modelId") String modelId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             Model modelData = repositoryService.getModel(modelId);
             ObjectNode modelNode = (ObjectNode) new ObjectMapper()
@@ -495,7 +496,7 @@ public class ModelController extends AbstractSuperController {
             logger.error("根据模型部署流程失败：modelId={}", modelId, e);
             data.put("message", "根据模型部署流程失败：modelId=" + modelId);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -551,13 +552,13 @@ public class ModelController extends AbstractSuperController {
     @RequestMapping(value = "/delete/{modelId}", method = RequestMethod.POST, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String delete(@PathVariable("modelId") String modelId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         try {
             repositoryService.deleteModel(modelId);
             data.put("message", "删除成功，模型ID=" + modelId);
         } catch (Exception e) {
             data.put("message", "删除失败，模型ID=" + modelId);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 }

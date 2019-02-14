@@ -3,7 +3,7 @@
 <mapper namespace="com.fui.cloud.dao.fui.style.StyleMapper">
 	<update id="updateMenuTypeAndStyleByUserId" parameterType="java.util.HashMap">
         update 
-        	fui_user
+        	fui_users
        	set 
 	       	style=#{style},
 	       	menu_type=#{menuType}

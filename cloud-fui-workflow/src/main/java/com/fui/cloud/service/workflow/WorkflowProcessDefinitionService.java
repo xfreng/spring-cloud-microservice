@@ -1,6 +1,6 @@
 package com.fui.cloud.service.workflow;
 
-import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.fui.AbstractSuperImplService;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.history.HistoricProcessInstance;
@@ -14,12 +14,18 @@ import org.springframework.stereotype.Service;
  * @author sf.xiong
  */
 @Service
-public class WorkflowProcessDefinitionService extends AbstractSuperService {
+public class WorkflowProcessDefinitionService extends AbstractSuperImplService {
+
     @Autowired
     protected RepositoryService repositoryService;
 
     @Autowired
     protected HistoryService historyService;
+
+    @Override
+    public void initMapper() {
+
+    }
 
     /**
      * 根据流程实例ID查询流程定义对象{@link ProcessDefinition}

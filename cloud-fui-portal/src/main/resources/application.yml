@@ -1,0 +1,16 @@
+spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  security:
+    user:
+      name: xfreng
+      password: passw0rd
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+info:
+  version: @project.version@

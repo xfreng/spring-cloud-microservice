@@ -1,4 +1,4 @@
-<%@page language="java" import="java.util.Calendar" pageEncoding="UTF-8"%>
+<%@page import="java.util.Calendar" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
 	Calendar cal=Calendar.getInstance();

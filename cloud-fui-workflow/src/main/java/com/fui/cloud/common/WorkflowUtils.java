@@ -51,7 +51,7 @@ public class WorkflowUtils {
      */
     public static boolean checkTypeShow(String typeId) {
         boolean bool = false;
-        List<String> types = new ArrayList<String>();
+        List<String> types = new ArrayList<>();
         types.add("UserTask");
         types.add("ServiceTask");
         types.add("ScriptTask");
@@ -98,7 +98,7 @@ public class WorkflowUtils {
      * @return 参数Map对象
      */
     public static Map<String, Object> getVariables(String vars) {
-        Map<String, Object> variables = new HashMap<String, Object>();
+        Map<String, Object> variables = new HashMap<>();
         List varArray = JSONArray.parseArray(vars);
         for (Object obj : varArray) {
             VariableModel var = JSONObject.parseObject(JSONObject.toJSONString(obj), VariableModel.class);
@@ -192,9 +192,9 @@ public class WorkflowUtils {
      */
     public static List<FlowItemModel> queryHistoryTaskInstance(RepositoryService repositoryService,
                                                                HistoryService historyService, String processInstanceId, String processTaskDefinitionKey) {
-        List<FlowItemModel> historyPageList = new ArrayList<FlowItemModel>();
+        List<FlowItemModel> historyPageList = new ArrayList<>();
         String userId = UserSession.getLoginName();
-        List<HistoricTaskInstance> historicTaskInstances = new ArrayList<HistoricTaskInstance>();
+        List<HistoricTaskInstance> historicTaskInstances = new ArrayList<>();
         if (StringUtils.isNotEmpty(processTaskDefinitionKey)) {
             historicTaskInstances.add(queryHistoryTaskInstanceByTaskDefinitionKey(historyService, processInstanceId,
                     processTaskDefinitionKey));
@@ -219,7 +219,7 @@ public class WorkflowUtils {
             } else {
                 flowItemEntity.setStatus("1");
             }
-            Map<String, Object> formProperties = new HashMap<String, Object>();
+            Map<String, Object> formProperties = new HashMap<>();
             List<HistoricVariableInstance> historicVariableInstances = historyService
                     .createHistoricVariableInstanceQuery().processInstanceId(processInstanceId)
                     .taskId(historicTaskInstance.getId()).list();

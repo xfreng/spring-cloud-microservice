@@ -1,7 +1,7 @@
-<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ page import="com.fui.cloud.common.UserUtils" %>
 <%@ page import="com.fui.cloud.core.FrameworkInfo" %>
-<%@ page import="com.alibaba.fastjson.JSONObject" %>
+<%@ page import="com.fui.cloud.model.fui.Users" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="EF" uri="http://jcoffee.fui.com/jsp/ef" %>
 <c:set value="${pageContext.request.contextPath}" var="path" scope="page"/>
@@ -12,14 +12,14 @@
 
 <link rel="stylesheet" type="text/css" href="${path}/webjars/fui/public/EF/iplat-ui-2.0.css"/>
 <%
-    JSONObject user = UserUtils.getCurrent();
+    Users user = UserUtils.getCurrent();
     String menuType = "pact";
     String menuStyle = "red";
     String iPlatStyle = "Blue";
 
     if (user != null) {
-        menuType = user.getString("menuType");
-        menuStyle = user.getString("style");
+        menuType = user.getMenuType();
+        menuStyle = user.getStyle();
     }
 
     if ("red".equals(menuStyle)) {

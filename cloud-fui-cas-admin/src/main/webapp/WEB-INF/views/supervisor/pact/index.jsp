@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.alibaba.fastjson.JSONObject" %>
 <%@ page import="com.fui.cloud.common.UserUtils" %>
 <!DOCTYPE html>

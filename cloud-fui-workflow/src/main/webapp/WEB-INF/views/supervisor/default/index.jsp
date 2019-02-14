@@ -1,4 +1,4 @@
-﻿<%@page language="java" contentType="text/html; charset=UTF-8"%>
+﻿<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,7 +36,7 @@
         <!--左侧菜单-->
         <div id="menu" class="">
 	         <div id="indexRealLeftTreeDiv" class="slim-scroll">
-	           <EF:EFTree model="leftMenuModel" id="nTree" text="" configFunc="configTree" type="menuTree"/>
+	           <EF:EFTree model="leftMenuModel" id="nTree" text="" configFunc="configTree" type="menusTree"/>
 	         </div>
     	</div>
     </div>

@@ -1,9 +1,8 @@
 package com.fui.cloud.controller.logs;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fui.cloud.common.CommonConstants;
 import com.fui.cloud.controller.AbstractSuperController;
-import com.fui.cloud.service.logs.SystemLogsService;
+import com.fui.cloud.service.fui.logs.SystemLogsService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ public class LogsController extends AbstractSuperController {
     private SystemLogsService systemLogsService;
 
     @RequestMapping(value = "/index")
-    public String index() throws Exception {
+    public String index() {
         return "/supervisor/logs/index";
     }
 
@@ -34,13 +33,9 @@ public class LogsController extends AbstractSuperController {
     @ResponseBody
     public String getUserList(@RequestParam(value = "pageIndex", defaultValue = "1") int pageNum,
                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         setParamsToQueryCondition(params);
-        JSONObject json = systemLogsService.getSystemLogsList(pageNum, pageSize, "data", params);
-        json.put("count", json.getIntValue("total"));
-        json.put("code","0");
-        json.put("msg","");
-        return json.toJSONString();
+        return systemLogsService.getSystemLogsList(pageNum, pageSize, params);
     }
 
     /**

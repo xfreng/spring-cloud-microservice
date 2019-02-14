@@ -19,16 +19,13 @@ import java.util.Map;
 @Service("rolesService")
 @Transactional
 public class RolesService extends AbstractSuperImplService<Roles, Long> {
+
     @Autowired
     private RolesMapper rolesMapper;
 
     @PostConstruct
     public void initMapper() {
         this.baseMapper = rolesMapper;
-    }
-
-    public Roles selectByPrimaryKey(Long id) {
-        return rolesMapper.selectByPrimaryKey(id);
     }
 
     /**

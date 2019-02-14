@@ -1,7 +1,6 @@
 package com.fui.cloud.service.fui.calendar;
 
-import com.alibaba.fastjson.JSONObject;
-import com.fui.cloud.dao.fui.calendar.CalendarMapper;
+import com.fui.cloud.dao.fui.calendar.CalendarsMapper;
 import com.fui.cloud.service.fui.AbstractSuperImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +13,17 @@ import java.util.Map;
 @Service("calendarService")
 @Transactional
 public class CalendarService extends AbstractSuperImplService {
+
     @Autowired
-    private CalendarMapper calendarMapper;
+    private CalendarsMapper calendarsMapper;
 
     @PostConstruct
     public void initMapper() {
-        this.baseMapper = calendarMapper;
+        this.baseMapper = calendarsMapper;
     }
 
     public List<Map<String, Object>> query() {
-        return calendarMapper.query();
+        return calendarsMapper.query();
     }
 
     /**
@@ -31,18 +31,18 @@ public class CalendarService extends AbstractSuperImplService {
      * @return
      */
     public Map<String, Object> getCalendarById(String id) {
-        return calendarMapper.getCalendarById(id);
+        return calendarsMapper.getCalendarById(id);
     }
 
-    public boolean addCalendar(String data) {
-        return calendarMapper.addCalendar(JSONObject.parseObject(data));
+    public boolean addCalendar(Map<String, Object> param) {
+        return calendarsMapper.addCalendar(param);
     }
 
     public boolean deleteCalendarById(String id) {
-        return calendarMapper.deleteCalendarById(id);
+        return calendarsMapper.deleteCalendarById(id);
     }
 
-    public boolean updateCalendarById(String data) {
-        return calendarMapper.updateCalendarById(JSONObject.parseObject(data));
+    public boolean updateCalendarById(Map<String, Object> param) {
+        return calendarsMapper.updateCalendarById(param);
     }
 }

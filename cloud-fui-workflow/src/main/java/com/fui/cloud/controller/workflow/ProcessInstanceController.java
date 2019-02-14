@@ -35,7 +35,7 @@ public class ProcessInstanceController extends AbstractSuperController {
     private RuntimeService runtimeService;
 
     @RequestMapping(value = "/index")
-    public ModelAndView index() throws Exception {
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("supervisor/workflow/running-manage");
         return init(mv);
     }
@@ -65,7 +65,7 @@ public class ProcessInstanceController extends AbstractSuperController {
         }
         List<ProcessInstance> runningList = processInstanceQuery.listPage(currPage, pageSize);
         ProcessDefinitionCache.setRepositoryService(repositoryService);
-        List<ProcessInstanceModel> processInstanceEntityList = new ArrayList<ProcessInstanceModel>();
+        List<ProcessInstanceModel> processInstanceEntityList = new ArrayList<>();
         for (ProcessInstance processInstance : runningList) {
             ProcessInstanceModel processInstanceModel = new ProcessInstanceModel();
             BeanUtils.copyProperties(processInstance, processInstanceModel);
@@ -76,7 +76,7 @@ public class ProcessInstanceController extends AbstractSuperController {
         JSONObject json = new JSONObject();
         json.put("runningList", processInstanceEntityList);
         json.put("total", processInstanceQuery.count());
-        return success(json);
+        return json.toJSONString();
     }
 
     /**
@@ -86,7 +86,7 @@ public class ProcessInstanceController extends AbstractSuperController {
     @ResponseBody
     public String updateState(@PathVariable("state") String state,
                               @PathVariable("processInstanceId") String processInstanceId) {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         if (state.equals("active")) {
             data.put("message", "已激活ID为[" + processInstanceId + "]的流程实例。");
             runtimeService.activateProcessInstanceById(processInstanceId);
@@ -94,6 +94,6 @@ public class ProcessInstanceController extends AbstractSuperController {
             runtimeService.suspendProcessInstanceById(processInstanceId);
             data.put("message", "已挂起ID为[" + processInstanceId + "]的流程实例。");
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 }

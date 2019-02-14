@@ -15,7 +15,7 @@ public class DruidConfiguration {
     @Bean
     public ServletRegistrationBean druidStatViewServlet() {
         ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
-        servletRegistrationBean.addInitParameter("allow", "127.0.0.1");//白名单
+        //servletRegistrationBean.addInitParameter("allow", "127.0.0.1");//白名单
         servletRegistrationBean.addInitParameter("deny", "192.168.100.189");//黑名单
         servletRegistrationBean.addInitParameter("loginUsername", "admin");
         servletRegistrationBean.addInitParameter("loginPassword", "123456");

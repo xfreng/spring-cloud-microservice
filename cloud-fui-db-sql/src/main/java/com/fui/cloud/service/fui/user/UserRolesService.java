@@ -18,6 +18,7 @@ import java.util.List;
 @Service("userRolesService")
 @Transactional
 public class UserRolesService extends AbstractSuperImplService<UserRoles, Long> {
+
     @Autowired
     private UserRolesMapper userRolesMapper;
 

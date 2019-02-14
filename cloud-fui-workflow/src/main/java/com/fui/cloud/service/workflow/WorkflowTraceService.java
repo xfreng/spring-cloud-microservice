@@ -1,7 +1,7 @@
 package com.fui.cloud.service.workflow;
 
 import com.fui.cloud.common.WorkflowUtils;
-import com.fui.cloud.service.AbstractSuperService;
+import com.fui.cloud.service.fui.AbstractSuperImplService;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -33,7 +33,8 @@ import java.util.*;
  */
 @Service
 @Component
-public class WorkflowTraceService extends AbstractSuperService {
+public class WorkflowTraceService extends AbstractSuperImplService {
+
     @Autowired
     protected RuntimeService runtimeService;
 
@@ -45,6 +46,11 @@ public class WorkflowTraceService extends AbstractSuperService {
 
     @Autowired
     protected IdentityService identityService;
+
+    @Override
+    public void initMapper() {
+
+    }
 
     /**
      * 流程跟踪图
@@ -65,7 +71,7 @@ public class WorkflowTraceService extends AbstractSuperService {
                 .getDeployedProcessDefinition(processInstance.getProcessDefinitionId());
         List<ActivityImpl> activitiList = processDefinition.getActivities();//获得当前任务的所有节点
 
-        List<Map<String, Object>> activityInfos = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> activityInfos = new ArrayList<>();
         for (ActivityImpl activity : activitiList) {
 
             boolean currentActiviti = false;
@@ -94,8 +100,8 @@ public class WorkflowTraceService extends AbstractSuperService {
      */
     private Map<String, Object> packageSingleActivitiInfo(ActivityImpl activity, ProcessInstance processInstance,
                                                           boolean currentActiviti) throws Exception {
-        Map<String, Object> vars = new HashMap<String, Object>();
-        Map<String, Object> activityInfo = new HashMap<String, Object>();
+        Map<String, Object> vars = new HashMap<>();
+        Map<String, Object> activityInfo = new HashMap<>();
         activityInfo.put("currentActiviti", currentActiviti);
         setPosition(activity, activityInfo);
         setWidthAndHeight(activity, activityInfo);

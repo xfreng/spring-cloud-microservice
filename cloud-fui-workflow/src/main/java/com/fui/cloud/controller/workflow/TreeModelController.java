@@ -1,5 +1,6 @@
 package com.fui.cloud.controller.workflow;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +39,7 @@ public class TreeModelController extends AbstractSuperController implements Mode
         String modelId = request.getParameter("modelId");
         try {
             List<TreeNodeModel> treeNodeModels = getModelNodeByModelId(modelId);
-            return success(treeNodeModels);
+            return JSON.toJSONString(treeNodeModels);
         } catch (Exception e) {
             logger.error("Error creating model JSON", e);
             throw new ActivitiException("Error creating model JSON", e);
@@ -99,7 +100,7 @@ public class TreeModelController extends AbstractSuperController implements Mode
      * @return 节点对象
      */
     protected List<TreeNodeModel> getModelNodeByModelId(String modelId) {
-        List<TreeNodeModel> treeNodeModels = new ArrayList<TreeNodeModel>();
+        List<TreeNodeModel> treeNodeModels = new ArrayList<>();
         Model model = repositoryService.getModel(modelId);
         if (model != null) {
             try {
@@ -110,7 +111,7 @@ public class TreeModelController extends AbstractSuperController implements Mode
                         .readTree(new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
                 treeNodeModel.setId(editorJsonNode.get("resourceId").asText());
                 Iterator<String> iterator = editorJsonNode.fieldNames();
-                List<TreeNodeModel> children = new ArrayList<TreeNodeModel>();
+                List<TreeNodeModel> children = new ArrayList<>();
                 while (iterator.hasNext()) {
                     String key = iterator.next();
                     if ("childShapes".equals(key)) {

@@ -80,7 +80,7 @@ public class ActivitiController extends AbstractSuperController {
 
 
     @RequestMapping(value = "/index")
-    public ModelAndView index() throws Exception {
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("supervisor/workflow/process-list");
         return init(mv);
     }
@@ -123,7 +123,7 @@ public class ActivitiController extends AbstractSuperController {
         JSONObject json = new JSONObject();
         json.put("processList", processDefinitionEntityList);
         json.put("total", processDefinitionQuery.count());
-        return success(json);
+        return json.toJSONString();
     }
 
     /**
@@ -195,7 +195,7 @@ public class ActivitiController extends AbstractSuperController {
         } catch (Exception e) {
             data.put("message", "删除失败，流程部署ID=" + deploymentId);
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -268,7 +268,7 @@ public class ActivitiController extends AbstractSuperController {
             logger.error("error on deploy process, because of file input stream", e);
             data.put("message", "error on deploy process, because of file input stream。");
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -279,7 +279,7 @@ public class ActivitiController extends AbstractSuperController {
     @RequestMapping(value = "/start-running/{key}", method = RequestMethod.POST, produces = CommonConstants.MediaType_APPLICATION_JSON)
     @ResponseBody
     public String deploy(@PathVariable("key") String key) {
-        return success(workflowService.startWorkflowByKey(key, null));
+        return workflowService.startWorkflowByKey(key, null).toJSONString();
     }
 
     @RequestMapping(value = "/convert-to-model/{processDefinitionId}", produces = CommonConstants.MediaType_APPLICATION_JSON)
@@ -317,7 +317,7 @@ public class ActivitiController extends AbstractSuperController {
         } catch (Exception e) {
             data.put("message", "转换失败。");
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**
@@ -335,7 +335,7 @@ public class ActivitiController extends AbstractSuperController {
             repositoryService.suspendProcessDefinitionById(processDefinitionId, true, null);
             data.put("message", "已挂起ID为[" + processDefinitionId + "]的流程定义。");
         }
-        return success(data);
+        return JSONObject.toJSONString(data);
     }
 
     /**

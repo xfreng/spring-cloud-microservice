@@ -1,2 +1,2 @@
 logging:
-  config: classpath:conf/log4j2-consul.xml
+  config: classpath:conf/log4j2-dev.xml

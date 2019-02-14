@@ -40,7 +40,7 @@ public class VariableModel implements Serializable {
     }
 
     public Map<String, Object> getVariableMap() {
-        Map<String, Object> variables = new HashMap<String, Object>();
+        Map<String, Object> variables = new HashMap<>();
         ConvertUtils.register(new DateConverter(), java.util.Date.class);
         Class<?> targetType = Enum.valueOf(PropertyType.class, this.type).getValue();
         Object objectValue = ConvertUtils.convert(this.value, targetType);

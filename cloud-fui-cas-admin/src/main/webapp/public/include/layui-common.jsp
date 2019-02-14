@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ page import="com.alibaba.fastjson.JSONObject" %>
 <%@ page import="com.fui.cloud.common.UserUtils" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

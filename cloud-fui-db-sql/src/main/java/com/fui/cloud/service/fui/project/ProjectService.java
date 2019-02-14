@@ -1,7 +1,7 @@
 package com.fui.cloud.service.fui.project;
 
-import com.fui.cloud.dao.fui.project.ProjectMapper;
-import com.fui.cloud.model.fui.Project;
+import com.fui.cloud.dao.fui.project.ProjectsMapper;
+import com.fui.cloud.model.fui.Projects;
 import com.fui.cloud.service.fui.AbstractSuperImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +18,16 @@ import java.util.List;
 @Service("projectService")
 @Transactional
 public class ProjectService extends AbstractSuperImplService {
+
     @Autowired
-    private ProjectMapper projectMapper;
+    private ProjectsMapper projectsMapper;
 
     @PostConstruct
     public void initMapper() {
-        this.baseMapper = projectMapper;
+        this.baseMapper = projectsMapper;
     }
 
-    public List<Project> selectAll() {
-        return projectMapper.selectAll();
+    public List<Projects> selectAll() {
+        return projectsMapper.selectAll();
     }
 }

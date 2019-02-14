@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" %>
 <nav class="nav navbar-default navbar-mystyle navbar-fixed-top">
     <div class="navbar-header">
         <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
